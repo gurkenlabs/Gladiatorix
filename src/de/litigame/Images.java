@@ -24,9 +24,9 @@ public class Images {
 
 		while (true) {
 			line = br.readLine();
-			
+
 			if (line == null) break;
-		
+
 			String[] tokens = line.split(":");
 
 			if (tokens.length != 2) continue;
