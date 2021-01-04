@@ -1,4 +1,4 @@
-package litigame;
+package de.litigame;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -25,11 +25,15 @@ public class Images {
 		while (true) {
 			line = br.readLine();
 
-			if (line == null) break;
+			if (line == null) {
+				break;
+			}
 
 			String[] tokens = line.split(":");
 
-			if (tokens.length != 2) continue;
+			if (tokens.length != 2) {
+				continue;
+			}
 
 			String key = tokens[0].trim();
 			BufferedImage value = ImageIO.read(new File(tokens[1].trim()));
