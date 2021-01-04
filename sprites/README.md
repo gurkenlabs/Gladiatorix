@@ -1,1 +1,1 @@
-# This is where the spritesheets go
+# This is where the spritesheets are
