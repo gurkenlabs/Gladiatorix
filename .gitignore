@@ -3,3 +3,6 @@
 /.project
 /.classpath
 *.jar
+config.properties
+crash.txt
+game.log*
