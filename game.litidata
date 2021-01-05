@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<litidata version="1.0">
+ <maps>
+  <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map1">
+   <tileset firstgid="1" source="tileset.tsx"/>
+   <layer id="1" name="Tile Layer 1" width="2" height="2">
+    <data encoding="csv">
+1,1,
+1,1
+</data>
+   </layer>
+   <objectgroup id="0" name="group" visible="1">
+    <object id="1" name="spawn" type="SPAWNPOINT" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </map>
+ </maps>
+ <spriteSheets>
+  <sprite width="16" height="16" imageformat="PNG" name="black">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVR4XqXIoREAMBAEoeu/6U8Bq5gIDNt2nxIqoRIqoRIqoRIqoRIqoRIqoRIqoRLkAZvM/wEhpU2cAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="1" height="1" imageformat="PNG" name="player-idle-left">
+   <image>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4XmP4z8DwHwAFAAH/NQZ7kgAAAABJRU5ErkJggg==</image>
+  </sprite>
+ </spriteSheets>
+ <tilesets>
+  <tileset firstgid="0" name="tileset" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+   <image source="black.png" width="16" height="16"/>
+  </tileset>
+ </tilesets>
+ <emitters/>
+ <blueprints/>
+ <sounds/>
+</litidata>
