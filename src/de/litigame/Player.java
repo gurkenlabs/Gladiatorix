@@ -9,12 +9,12 @@ public class Player extends Creature {
 
 	private static Player instance = new Player();
 
+	public static Player getInstance() {
+		return instance;
+	}
+
 	private Player() {
 		super("player");
 		addController(new KeyboardEntityController<>(this));
-	}
-
-	public static Player getInstance() {
-		return instance;
 	}
 }

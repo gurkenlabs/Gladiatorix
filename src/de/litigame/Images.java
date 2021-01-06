@@ -11,10 +11,10 @@ import javax.imageio.ImageIO;
 
 public class Images {
 
-	private static HashMap<String, BufferedImage> map = new HashMap<>();
+	private static HashMap<String, BufferedImage> images = new HashMap<>();
 
 	public static BufferedImage get(String key) {
-		return map.get(key);
+		return images.get(key);
 	}
 
 	public static void loadImages(String imageFile) {
@@ -35,7 +35,7 @@ public class Images {
 				String key = tokens[0].trim();
 				BufferedImage value = ImageIO.read(new File(tokens[1].trim()));
 
-				map.put(key, value);
+				images.put(key, value);
 			}
 
 			br.close();
