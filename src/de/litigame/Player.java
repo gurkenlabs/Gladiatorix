@@ -10,21 +10,21 @@ import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.input.KeyboardEntityController;
 
 @AnimationInfo(spritePrefix = "player")
-@EntityInfo(width = 16, height = 6)
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6)
+@EntityInfo(width = 16, height = 6)
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature {
 
 	private static Player instance = new Player();
 
+	public static Player getInstance() {
+		return instance;
+	}
+
 	private Player() {
 		super("player");
 		addController(new KeyboardEntityController<>(this));
-	}
-
-	public static Player getInstance() {
-		return instance;
 	}
 
 	public boolean touches(Rectangle2D rect) {
