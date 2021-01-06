@@ -17,26 +17,30 @@ public class Images {
 		return map.get(key);
 	}
 
-	public static void loadImages(File imageFile) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(imageFile));
+	public static void loadImages(String imageFile) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(imageFile));
 
-		String line = "";
+			String line = "";
 
-		while (true) {
-			line = br.readLine();
+			while (true) {
+				line = br.readLine();
 
-			if (line == null) break;
+				if (line == null) break;
 
-			String[] tokens = line.split(":");
+				String[] tokens = line.split(":");
 
-			if (tokens.length != 2) continue;
+				if (tokens.length != 2) continue;
 
-			String key = tokens[0].trim();
-			BufferedImage value = ImageIO.read(new File(tokens[1].trim()));
+				String key = tokens[0].trim();
+				BufferedImage value = ImageIO.read(new File(tokens[1].trim()));
 
-			map.put(key, value);
+				map.put(key, value);
+			}
+
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		br.close();
 	}
 }
