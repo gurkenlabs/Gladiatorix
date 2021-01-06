@@ -7,15 +7,18 @@ public class PlayerCamera extends PositionLockCamera implements IUpdateable {
 
 	private static final int TIME_OUT = 10000;
 	private static final int TRANSITION_MILLIS = 1000;
-	private static final float ZOOM_IN = 0f;
-	private static final float ZOOM_OUT = 2f;
+	private static final float ZOOM_IN = 2f;
+	private static final float ZOOM_OUT = 1.5f;
 
 	private int lastMoved = 0;
-	private boolean zoomedIn = false;
+	private boolean zoomedIn;
 
 	public PlayerCamera() {
 		super(Player.getInstance());
 		Player.getInstance().onMoved(e -> moved());
+
+		zoomedIn = true;
+		toggleZoom();
 	}
 
 	private void moved() {
@@ -35,6 +38,7 @@ public class PlayerCamera extends PositionLockCamera implements IUpdateable {
 
 	@Override
 	public void update() {
+		super.update();
 		++lastMoved;
 		if (lastMoved > TIME_OUT && zoomedIn) toggleZoom();
 	}
