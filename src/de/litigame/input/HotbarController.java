@@ -11,7 +11,7 @@ import de.litigame.hotbar.Hotbar;
 public class HotbarController implements KeyPressedListener {
 
 	private final Hotbar bar;
-	private final List<Integer>[] slotKeys = new List[Hotbar.SLOTS];
+	private final List<List<Integer>> slotKeys;
 
 	public HotbarController(Hotbar hotbar) {
 		this(hotbar, KeyEvent.VK_1, KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6,
@@ -24,27 +24,29 @@ public class HotbarController implements KeyPressedListener {
 		if (hot.length != Hotbar.SLOTS) throw new RuntimeException(
 				"Parameter size (" + hot.length + ") and hotbar slots (" + Hotbar.SLOTS + ") don't match");
 
-		for (int i = 0; i < Hotbar.SLOTS; ++i) {
-			slotKeys[i] = new ArrayList<>();
+		slotKeys = new ArrayList<>();
 
-			slotKeys[i].add(hot[i]);
+		for (int i = 0; i < Hotbar.SLOTS; ++i) {
+			slotKeys.set(i, new ArrayList<>());
+
+			addHotKey(i, hot[i]);
 		}
 	}
 
 	public void addHotKey(int index, int keyCode) {
-		slotKeys[index].add(keyCode);
+		slotKeys.get(index).add(keyCode);
 	}
 
 	public List<Integer> getHotKeys(int index) {
-		return slotKeys[index];
+		return slotKeys.get(index);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int key = event.getKeyCode();
 
-		for (int slot = 0; slot < slotKeys.length; ++slot) {
-			List<Integer> keys = slotKeys[slot];
+		for (int slot = 0; slot < slotKeys.size(); ++slot) {
+			List<Integer> keys = slotKeys.get(slot);
 
 			if (keys.contains(key)) {
 				bar.setToSlot(slot);
@@ -58,6 +60,6 @@ public class HotbarController implements KeyPressedListener {
 	}
 
 	public void setHotKeys(int index, List<Integer> hot) {
-		slotKeys[index] = hot;
+		slotKeys.set(index, hot);
 	}
 }

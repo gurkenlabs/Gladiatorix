@@ -6,12 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
 public class Images {
 
-	private static HashMap<String, BufferedImage> images = new HashMap<>();
+	private static Map<String, BufferedImage> images = new HashMap<>();
 
 	public static BufferedImage get(String key) {
 		return images.get(key);
