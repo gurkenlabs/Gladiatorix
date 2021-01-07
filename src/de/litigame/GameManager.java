@@ -1,20 +1,19 @@
 package de.litigame;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.environment.PropMapObjectLoader;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
+import de.litigame.entities.Player;
+import de.litigame.entities.Portal;
 
 public class GameManager {
 
-	public static void switchToMap(String map) {
-		Game.world().loadEnvironment(map);
-		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
-
+	public enum GameState {
+		INGAME, MAIN_MENU, MENU, SETTINGS;
 	}
 
-	public static void enterPortal(Prop portal) {
+	public static void enterPortal(Portal portal) {
 		switchToMap(portal.getProperties().getProperty("toMap").getAsString());
 	}
 
@@ -26,5 +25,10 @@ public class GameManager {
 		Game.world().setCamera(cam);
 
 		switchToMap("map1");
+	}
+
+	public static void switchToMap(String map) {
+		Game.world().loadEnvironment(map);
+		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 	}
 }

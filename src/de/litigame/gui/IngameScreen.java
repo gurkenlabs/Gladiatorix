@@ -1,4 +1,4 @@
-package de.litigame;
+package de.litigame.gui;
 
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 
