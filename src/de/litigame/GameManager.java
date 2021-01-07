@@ -4,16 +4,13 @@ import java.awt.event.KeyEvent;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.environment.PropMapObjectLoader;
-import de.gurkenlabs.litiengine.graphics.Camera;
-import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
 import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.entities.Player;
 import de.litigame.entities.Portal;
+import de.litigame.graphics.PlayerCamera;
 import de.litigame.input.InputManager;
 
 public class GameManager {
-
-	private static GameState currentState;
 
 	public static void enterPortal(Portal portal) {
 		switchToMap(portal.getProperties().getProperty("toMap").getAsString());
@@ -25,9 +22,7 @@ public class GameManager {
 
 		InputManager.init();
 
-		Camera cam = new PositionLockCamera(Player.getInstance());
-
-		Game.world().setCamera(cam);
+		Game.world().setCamera(new PlayerCamera());
 
 		switchToMap("map1");
 
@@ -45,7 +40,6 @@ public class GameManager {
 	}
 
 	public static void switchToState(GameState state) {
-		currentState = state;
 		InputManager.adjustInput(state);
 	}
 }
