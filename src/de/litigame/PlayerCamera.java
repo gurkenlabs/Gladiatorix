@@ -2,6 +2,7 @@ package de.litigame;
 
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
+import de.litigame.entities.Player;
 
 public class PlayerCamera extends PositionLockCamera implements IUpdateable {
 
