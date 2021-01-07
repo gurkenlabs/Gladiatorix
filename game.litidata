@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <litidata version="1.0">
  <maps>
-  <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="2" height="2" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map1">
-   <tileset firstgid="1" source="tileset.tsx"/>
-   <layer id="1" name="Tile Layer 1" width="2" height="2">
+  <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map1">
+   <tileset firstgid="1" source="maps/tileset.tsx"/>
+   <layer id="1" name="Tile Layer 1" width="10" height="10">
     <data encoding="csv">
-1,1,
-1,1
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2
 </data>
    </layer>
-   <objectgroup id="0" name="group" visible="1">
-    <object id="1" name="spawn" type="SPAWNPOINT" x="0" y="0" width="32" height="32"/>
+   <objectgroup id="0" name="default" visible="1">
+    <object id="1" name="spawn" type="SPAWNPOINT" x="112" y="112" width="16" height="16"/>
+    <object id="2" name="portal" type="PROP" x="32" y="32" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="false"/>
+      <property name="collisionboxHeight" type="float" value="0.0"/>
+      <property name="collisionboxWidth" type="float" value="0.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="portal"/>
+      <property name="toMap" value="map2"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </map>
+  <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map2">
+   <tileset firstgid="1" source="maps/tileset.tsx"/>
+   <layer id="1" name="Tile Layer 1" width="10" height="10">
+    <data encoding="csv">
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1
+</data>
+   </layer>
+   <objectgroup id="0" name="default" visible="1">
+    <object id="1" name="spawn" type="SPAWNPOINT" x="112" y="112" width="16" height="16"/>
+    <object id="2" name="portal" type="PROP" x="32" y="32" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="false"/>
+      <property name="collisionboxHeight" value="16.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="portal"/>
+      <property name="toMap" value="map1"/>
+     </properties>
+    </object>
    </objectgroup>
   </map>
  </maps>
@@ -18,15 +68,20 @@
   <sprite width="16" height="16" imageformat="PNG" name="black">
    <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVR4XqXIoREAMBAEoeu/6U8Bq5gIDNt2nxIqoRIqoRIqoRIqoRIqoRIqoRIqoRLkAZvM/wEhpU2cAAAAAElFTkSuQmCC</image>
   </sprite>
-  <sprite width="1" height="1" imageformat="PNG" name="player-idle-left">
-   <image>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4XmP4z8DwHwAFAAH/NQZ7kgAAAABJRU5ErkJggg==</image>
+  <sprite width="16" height="16" imageformat="PNG" name="grass">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJUlEQVR4Xk2TSXcaQQyE58g+kEti4ukNbOf/GLOaHZs4h/z/m/JVN7yXg5hmRiqVStXVj7eWPa465hYdS4eBTQ99e7rU9rIf2PO2Z5O9om/+ozZ/rc2daxsv2ta8tsy/ta36vu7YmMTm2DdHcdz1LG67BM9NzzzFzXFg4QTIsYQa+iU5AvhJwaNeUuz2ip65LYm7rvn3WwAW3gET4Kabz4mcKflVcx1ZcxmaOw0KgBK3JdGvSF52iLZ5aAc6B97FHcXnAaMOrXJfI/O/R3lGd2ROPmaA9a143rZIBOjqf9wUgAlapM/aqvD3m4U/oyKQhGKUwFhhQzLCas44a1nSU2AAJxokGEQBTK5Di4RDeU8EAezvABSwpfR6C0CSABhzgrCR/OqFHx0CQgZ0yN21hfWNPgCZwUxnAFYC6Fva/wcgtICAUd2z4t0sWKY8E0ApjtKE7nnV1CR0qH5JUQwUoZ0y9W4R6i4gDLKAc22AID+PKeYfdwB1J5KQVbwuAEnq3zeAoNqMjOUZVbrFL9b4xCwv6q7ZlSDhKErzVlnfouxeJnKM5+TGs2w9tMD6q8lFhqjLGDLPUh0LbW0hF8uNNHCKQ2GgjflPGDTytHzPh6QP8jmdPWsLCOiXhbpm96dyL/K9wQdafdVwaGRfInAOMNIaHcUOFk5gYsLsQduiSPemkfW1hQfQH6A+Vmf5AWECDpvyTsaZEs8ykS6ZQMjRvRnDSAz+Ac62iEDn3BryAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="16" height="16" imageformat="PNG" name="player-idle-left">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAQklEQVR4XmNgGAW0A+bm5v+RMbo8HIAkBfNK4AqR2egYmzq4AcgYXSOyJnR11DMAWRG6RmxycANwAXTN6PKjgIoAAIRyfXGhF9QTAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="16" height="16" imageformat="PNG" name="prop-portal">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVR4XqXIoREAMBAEoeu/6U8Bq5gIDNt2nxIqoRIqoRIqoRIqoRIqoRIqoRIqoRLkAZvM/wEhpU2cAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="16" height="16" imageformat="PNG" name="tile">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABS0lEQVR4XoVS2arCUAw8fyVW1NqqFWm1rmirv6fS5cENl6q/NjKBI9yXm4cwSWmSyZkxeZ6jKApYLMtScLfbybdutwvP89BsNuE4DlqtFlzXFazVajCHwwGPxwP3+x2XywVVVUl9Pp8lHw6HWK1WGI1GGAwGEkEQoNfrodPpwOz3e2l4Pp+Cr9frN5A5Gcznc8RxLMOISZJgOp1KbUj1eDxKAxu51bJ4v9/wfV9+Xq/XSNMUi8VCgoPIxmRZhtvt9ocF8XQ64Xq9ot1uI4oizGYzLJdLbDYbOYmshAEfzDbZzRbJinfyfjaNx2OEYSjbyYq5MOCD2Ubm9hxGo9GQTfyZlDmQ9Xa7laG/E3jv5/ORh2PYul6vSxOls9jv94XNZDKB0XTWfGI0nTWfCIP/dNZ8YjSdNZ8YTWfNJ0bTWfOJ0XTWfGI0nTWffAGMPn+LLm12zwAAAABJRU5ErkJggg==</image>
   </sprite>
  </spriteSheets>
- <tilesets>
-  <tileset firstgid="0" name="tileset" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-   <image source="black.png" width="16" height="16"/>
-  </tileset>
- </tilesets>
+ <tilesets/>
  <emitters/>
  <blueprints/>
  <sounds/>
