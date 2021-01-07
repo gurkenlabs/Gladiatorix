@@ -2,6 +2,7 @@ package de.litigame;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.gui.IngameScreen;
 
 public class Program {
 
@@ -10,12 +11,7 @@ public class Program {
 		Resources.load("game.litidata");
 		Images.loadImages("images.txt");
 		Game.screens().add(new IngameScreen());
-		test();
+		GameManager.init();
 		Game.start();
-	}
-
-	private static void test() {
-		Game.world().loadEnvironment("map1");
-		Game.world().getEnvironment("map1").getSpawnpoint("spawn").spawn(Player.getInstance());
 	}
 }
