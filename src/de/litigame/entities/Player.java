@@ -9,6 +9,9 @@ import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
+import de.gurkenlabs.litiengine.entities.Prop;
+import de.litigame.GameManager;
+import de.litigame.hotbar.Hotbar;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6)
@@ -23,9 +26,20 @@ public class Player extends Creature implements IUpdateable {
 		return instance;
 	}
 
+	public final Hotbar hotbar;
+
 	private Player() {
 		super("player");
+		hotbar = new Hotbar();
 		Game.loop().attach(this);
+	}
+
+	public void interact() {
+		for (Prop prop : Game.world().environment().getProps()) {
+			if (prop.getName().startsWith("portal") && touches(prop.getBoundingBox())) {
+				GameManager.enterPortal((Portal) prop);
+			}
+		}
 	}
 
 	public boolean touches(Rectangle2D rect) {
