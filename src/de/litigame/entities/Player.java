@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.entities.AnimationInfo;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
+import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.entities.Prop;
@@ -32,6 +33,10 @@ public class Player extends Creature implements IUpdateable {
 		super("player");
 		hotbar = new Hotbar();
 		Game.loop().attach(this);
+	}
+
+	public double distanceTo(Entity other) {
+		return getLocation().distance(other.getLocation());
 	}
 
 	public void interact() {

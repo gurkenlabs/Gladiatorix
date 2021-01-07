@@ -21,25 +21,31 @@ public class GameManager {
 
 	public static void init() {
 
-		Input.keyboard().onKeyPressed(KeyEvent.VK_X, e -> InputManager.adjustInput(GameState.MENU));
-		Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> InputManager.adjustInput(GameState.INGAME));
-
-		currentState = GameState.INGAME;
-
 		PropMapObjectLoader.registerCustomPropType(Portal.class);
 
 		InputManager.init();
-		InputManager.adjustInput(currentState);
 
 		Camera cam = new PositionLockCamera(Player.getInstance());
 
 		Game.world().setCamera(cam);
 
 		switchToMap("map1");
+
+		// just for now
+		Input.keyboard().onKeyPressed(KeyEvent.VK_X, e -> InputManager.adjustInput(GameState.MENU));
+		Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> InputManager.adjustInput(GameState.INGAME));
+
+		switchToState(GameState.INGAME);
+		//
 	}
 
 	public static void switchToMap(String map) {
 		Game.world().loadEnvironment(map);
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
+	}
+
+	public static void switchToState(GameState state) {
+		currentState = state;
+		InputManager.adjustInput(state);
 	}
 }
