@@ -27,7 +27,7 @@ public class HotbarController implements KeyPressedListener {
 		slotKeys = new ArrayList<>();
 
 		for (int i = 0; i < Hotbar.SLOTS; ++i) {
-			slotKeys.set(i, new ArrayList<>());
+			slotKeys.add(new ArrayList<>());
 
 			addHotKey(i, hot[i]);
 		}
