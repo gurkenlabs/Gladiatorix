@@ -10,8 +10,6 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
-import de.gurkenlabs.litiengine.entities.Prop;
-import de.litigame.GameManager;
 import de.litigame.hotbar.Hotbar;
 
 @AnimationInfo(spritePrefix = "player")
@@ -40,11 +38,7 @@ public class Player extends Creature implements IUpdateable {
 	}
 
 	public void interact() {
-		for (Prop prop : Game.world().environment().getProps()) {
-			if (prop.getName().startsWith("portal") && touches(prop.getBoundingBox())) {
-				GameManager.enterPortal((Portal) prop);
-			}
-		}
+		Game.world().environment().interact(this);
 	}
 
 	public boolean touches(Rectangle2D rect) {
@@ -53,6 +47,5 @@ public class Player extends Creature implements IUpdateable {
 
 	@Override
 	public void update() {
-		// wird
 	}
 }

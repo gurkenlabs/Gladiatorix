@@ -17,15 +17,17 @@
  </layer>
  <objectgroup id="0" name="default" visible="1">
   <object id="1" name="spawn" type="SPAWNPOINT" x="112" y="112" width="16" height="16"/>
-  <object id="2" name="portal" type="PROP" x="32" y="32" width="16" height="16">
+  <object id="3" type="TRIGGER" x="80" y="16" width="64" height="64">
    <properties>
-    <property name="addShadow" type="bool" value="true"/>
-    <property name="collision" type="bool" value="false"/>
-    <property name="collisionboxHeight" value="16.0"/>
-    <property name="collisionboxWidth" value="16.0"/>
-    <property name="indestructible" type="bool" value="false"/>
-    <property name="spritesheetName" value="portal"/>
+    <property name="tags" value="deadly"/>
+    <property name="triggerActivation" value="COLLISION"/>
+   </properties>
+  </object>
+  <object id="4" type="TRIGGER" x="16" y="32" width="32" height="32">
+   <properties>
+    <property name="tags" value="portal"/>
     <property name="toMap" value="map1"/>
+    <property name="triggerActivation" value="INTERACT"/>
    </properties>
   </object>
  </objectgroup>
