@@ -15,7 +15,11 @@ import de.litigame.input.InputManager;
 public class GameManager {
 
 	public static void enterPortal(IEntity portal) {
-		switchToMap(portal.getProperties().getProperty("toMap").getAsString());
+		switchToMap(portal.getProperties().getStringValue("toMap"));
+
+		String[] coords = portal.getProperties().getStringValue("toPos").split(",");
+		Player.getInstance().setLocation(Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+		Game.world().environment().add(Player.getInstance());
 	}
 
 	public static void init() {
@@ -26,6 +30,7 @@ public class GameManager {
 		Game.world().onLoaded(GameManager::setupMapObjects);
 
 		switchToMap("map2");
+		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 		// just for now
 		Input.keyboard().onKeyPressed(KeyEvent.VK_X, e -> InputManager.adjustInput(GameState.MENU));
 		Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> InputManager.adjustInput(GameState.INGAME));
@@ -48,8 +53,8 @@ public class GameManager {
 	}
 
 	public static void switchToMap(String map) {
+		Game.world().unloadEnvironment();
 		Game.world().loadEnvironment(map);
-		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 	}
 
 	public static void switchToState(GameState state) {

@@ -21,6 +21,7 @@
    <properties>
     <property name="tags" value="portal"/>
     <property name="toMap" value="map2"/>
+    <property name="toPos" value="112,112"/>
     <property name="triggerActivation" value="INTERACT"/>
    </properties>
   </object>
