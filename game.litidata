@@ -27,6 +27,62 @@
       <property name="triggerActivation" value="INTERACT"/>
      </properties>
     </object>
+    <object id="3" type="EMITTER" x="96" y="80" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+      <property name="emitterAlphaVariance" type="float" value="0.0"/>
+      <property name="emitterColorVariance" value="1.0"/>
+      <property name="emitterColors" value="#cc00a5bc,#cc00eb14,#cc001bff"/>
+      <property name="emitterDuration" value="0"/>
+      <property name="emitterMaxParticles" value="100"/>
+      <property name="emitterOriginAlign" value="CENTER"/>
+      <property name="emitterOriginValign" value="MIDDLE"/>
+      <property name="emitterParticleType" value="RECTANGLE"/>
+      <property name="emitterSpawnAmount" value="1"/>
+      <property name="emitterSpawnRate" value="10"/>
+      <property name="emitterUpdateDelay" value="40"/>
+      <property name="particleAnimateSprite" type="bool" value="true"/>
+      <property name="particleAntiAliasing" type="bool" value="false"/>
+      <property name="particleFade" type="bool" value="true"/>
+      <property name="particleFadeOnCollision" type="bool" value="false"/>
+      <property name="particleLoopSprite" type="bool" value="true"/>
+      <property name="particleMaxAccelerationX" type="float" value="0.009999999776482582"/>
+      <property name="particleMaxAccelerationY" type="float" value="0.009999999776482582"/>
+      <property name="particleMaxAngle" type="float" value="360.0"/>
+      <property name="particleMaxDeltaAngle" type="float" value="1.0"/>
+      <property name="particleMaxDeltaHeight" type="float" value="0.10000000149011612"/>
+      <property name="particleMaxDeltaWidth" type="float" value="0.10000000149011612"/>
+      <property name="particleMaxOffsetX" type="float" value="4.0"/>
+      <property name="particleMaxOffsetY" type="float" value="4.0"/>
+      <property name="particleMaxStartHeight" type="float" value="6.0"/>
+      <property name="particleMaxStartWidth" type="float" value="6.0"/>
+      <property name="particleMaxTTL" type="float" value="1500.0"/>
+      <property name="particleMaxVelocityX" type="float" value="0.10000000149011612"/>
+      <property name="particleMaxVelocityY" type="float" value="0.10000000149011612"/>
+      <property name="particleMinAccelerationX" type="float" value="-0.009999999776482582"/>
+      <property name="particleMinAccelerationY" type="float" value="-0.009999999776482582"/>
+      <property name="particleMinAngle" type="float" value="0.0"/>
+      <property name="particleMinDeltaAngle" type="float" value="-1.0"/>
+      <property name="particleMinDeltaHeight" type="float" value="-0.10000000149011612"/>
+      <property name="particleMinDeltaWidth" type="float" value="-0.10000000149011612"/>
+      <property name="particleMinOffsetX" type="float" value="-4.0"/>
+      <property name="particleMinOffsetY" type="float" value="-4.0"/>
+      <property name="particleMinStartHeight" type="float" value="2.0"/>
+      <property name="particleMinStartWidth" type="float" value="2.0"/>
+      <property name="particleMinTTL" type="float" value="400.0"/>
+      <property name="particleMinVelocityX" type="float" value="-0.10000000149011612"/>
+      <property name="particleMinVelocityY" type="float" value="-0.10000000149011612"/>
+      <property name="particleOutlineOnly" type="bool" value="false"/>
+      <property name="particleTexts" value="LITI"/>
+      <property name="requiredQuality" value="VERYLOW"/>
+      <property name="spritesheetName" value="grass"/>
+     </properties>
+    </object>
+    <object id="5" type="STATICSHADOW" x="64" y="96" width="16" height="16">
+     <properties>
+      <property name="shadowType" value="DOWN"/>
+     </properties>
+    </object>
    </objectgroup>
   </map>
   <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map2">

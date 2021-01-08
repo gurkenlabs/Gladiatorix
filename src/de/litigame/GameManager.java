@@ -1,13 +1,10 @@
 package de.litigame;
 
-import java.awt.event.KeyEvent;
-
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.CombatEntity;
 import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.Environment;
-import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.input.InputManager;
@@ -31,12 +28,8 @@ public class GameManager {
 
 		switchToMap("map2");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
-		// just for now
-		Input.keyboard().onKeyPressed(KeyEvent.VK_X, e -> InputManager.adjustInput(GameState.MENU));
-		Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> InputManager.adjustInput(GameState.INGAME));
 
 		switchToState(GameState.INGAME);
-		//
 	}
 
 	private static void setupMapObjects(Environment env) {
