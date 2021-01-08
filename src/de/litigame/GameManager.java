@@ -3,34 +3,34 @@ package de.litigame;
 import java.awt.event.KeyEvent;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.environment.PropMapObjectLoader;
-import de.gurkenlabs.litiengine.graphics.Camera;
-import de.gurkenlabs.litiengine.graphics.PositionLockCamera;
+import de.gurkenlabs.litiengine.entities.CombatEntity;
+import de.gurkenlabs.litiengine.entities.IEntity;
+import de.gurkenlabs.litiengine.entities.Trigger;
+import de.gurkenlabs.litiengine.environment.Environment;
 import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.entities.Player;
-import de.litigame.entities.Portal;
+import de.litigame.graphics.PlayerCamera;
 import de.litigame.input.InputManager;
 
 public class GameManager {
 
-	private static GameState currentState;
+	public static void enterPortal(IEntity portal) {
+		switchToMap(portal.getProperties().getStringValue("toMap"));
 
-	public static void enterPortal(Portal portal) {
-		switchToMap(portal.getProperties().getProperty("toMap").getAsString());
+		String[] coords = portal.getProperties().getStringValue("toPos").split(",");
+		Player.getInstance().setLocation(Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+		Game.world().environment().add(Player.getInstance());
 	}
 
 	public static void init() {
-
-		PropMapObjectLoader.registerCustomPropType(Portal.class);
-
 		InputManager.init();
 
-		Camera cam = new PositionLockCamera(Player.getInstance());
+		Game.world().setCamera(new PlayerCamera());
 
-		Game.world().setCamera(cam);
+		Game.world().onLoaded(GameManager::setupMapObjects);
 
-		switchToMap("map1");
-
+		switchToMap("map2");
+		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 		// just for now
 		Input.keyboard().onKeyPressed(KeyEvent.VK_X, e -> InputManager.adjustInput(GameState.MENU));
 		Input.keyboard().onKeyPressed(KeyEvent.VK_E, e -> InputManager.adjustInput(GameState.INGAME));
@@ -39,13 +39,25 @@ public class GameManager {
 		//
 	}
 
+	private static void setupMapObjects(Environment env) {
+		for (Trigger trigger : env.getTriggers()) {
+			if (trigger.hasTag("deadly")) trigger.addActivatedListener(e -> {
+				IEntity entity = e.getEntity();
+				if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
+			});
+			if (trigger.hasTag("portal")) trigger.addActivatedListener(e -> {
+				IEntity entity = e.getEntity();
+				if (entity instanceof Player) enterPortal(trigger);
+			});
+		}
+	}
+
 	public static void switchToMap(String map) {
+		Game.world().unloadEnvironment();
 		Game.world().loadEnvironment(map);
-		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 	}
 
 	public static void switchToState(GameState state) {
-		currentState = state;
 		InputManager.adjustInput(state);
 	}
 }
