@@ -1,4 +1,4 @@
-# Triggers
+### Triggers
 | Property   | required tags                               | description                     |
 | ---------- | ------------------------------------------- | --------------------------------|
 | **deadly** |                                             | kills touching Entity           |
