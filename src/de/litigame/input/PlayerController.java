@@ -14,7 +14,6 @@ import de.litigame.entities.Player;
 public class PlayerController extends KeyboardEntityController<Player>
 		implements KeyPressedListener, MouseWheelListener {
 
-
 	private List<Integer> attackKeys;
 	private final HotbarController hotbarController;
 	private List<Integer> interactKeys;
@@ -68,12 +67,13 @@ public class PlayerController extends KeyboardEntityController<Player>
 		event.consume();
 	}
 
-	public void setAttackKeys(int... attack) {
-		attackKeys = ListUtilities.getIntList(attack);
-
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		hotbarController.mouseWheelMoved(event);
+	}
+
+	public void setAttackKeys(int... attack) {
+		attackKeys = ListUtilities.getIntList(attack);
 	}
 
 	public void setInteractKeys(int... interact) {
