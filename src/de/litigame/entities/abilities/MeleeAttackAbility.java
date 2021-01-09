@@ -21,7 +21,6 @@ public class MeleeAttackAbility extends Ability {
 		protected void apply(ICombatEntity entity) {
 			super.apply(entity);
 			entity.hit(100);
-			System.out.println("lol");
 		}
 
 	}
