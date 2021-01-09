@@ -83,6 +83,83 @@
       <property name="shadowType" value="DOWN"/>
      </properties>
     </object>
+    <object id="6" type="CREATURE" x="91" y="16" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="7" type="CREATURE" x="112" y="16" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="8" type="CREATURE" x="128" y="16" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="9" type="CREATURE" x="91" y="32" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="10" type="CREATURE" x="128" y="32" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="11" type="CREATURE" x="91" y="24" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
+    <object id="12" type="CREATURE" x="128" y="24" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionValign" value="MIDDLE"/>
+      <property name="collisionboxHeight" value="6.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="player"/>
+     </properties>
+    </object>
    </objectgroup>
   </map>
   <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map2">

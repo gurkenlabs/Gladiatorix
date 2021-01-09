@@ -11,26 +11,37 @@ import de.litigame.entities.Player;
 
 public class PlayerController extends KeyboardEntityController<Player> implements KeyPressedListener {
 
+	private List<Integer> attackKeys;
 	private final KeyPressedListener hotbarController;
 	private List<Integer> interactKeys;
 	private final Player player;
 
 	public PlayerController() {
-		this(Player.getInstance(), KeyEvent.VK_F);
+		this(Player.getInstance(), KeyEvent.VK_SPACE, KeyEvent.VK_F);
 	}
 
-	public PlayerController(Player player, int interact) {
+	public PlayerController(Player player, int attack, int interact) {
 		super(player);
 		this.player = player;
 		hotbarController = new HotbarController(player.hotbar);
+		attackKeys = new ArrayList<>();
 		interactKeys = new ArrayList<>();
 
+		attackKeys.add(attack);
 		interactKeys.add(interact);
 		player.addController(this);
 	}
 
+	public void addAttackKey(int keyCode) {
+		if (!attackKeys.contains(keyCode)) attackKeys.add(keyCode);
+	}
+
 	public void addInteractKey(int keyCode) {
 		if (!interactKeys.contains(keyCode)) interactKeys.add(keyCode);
+	}
+
+	public List<Integer> getAttackKeys() {
+		return attackKeys;
 	}
 
 	public List<Integer> getInteractKeys() {
@@ -46,10 +57,15 @@ public class PlayerController extends KeyboardEntityController<Player> implement
 	public void keyPressed(KeyEvent event) {
 		super.handlePressedKey(event);
 
+		if (attackKeys.contains(event.getKeyCode())) player.attack();
 		if (interactKeys.contains(event.getKeyCode())) player.interact();
 
 		hotbarController.keyPressed(event);
 		event.consume();
+	}
+
+	public void setAttackKeys(int... attack) {
+		attackKeys = ListUtilities.getIntList(attack);
 	}
 
 	public void setInteractKeys(int... interact) {
