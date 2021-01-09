@@ -30,8 +30,8 @@ public class PlayerController extends KeyboardEntityController<Player>
 		attackKeys = new ArrayList<>();
 		interactKeys = new ArrayList<>();
 
-		attackKeys.add(attack);
-		interactKeys.add(interact);
+		addAttackKey(attack);
+		addInteractKey(interact);
 		player.addController(this);
 	}
 
