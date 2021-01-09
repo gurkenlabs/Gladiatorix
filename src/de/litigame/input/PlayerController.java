@@ -1,6 +1,8 @@
 package de.litigame.input;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +11,10 @@ import de.gurkenlabs.litiengine.input.KeyboardEntityController;
 import de.gurkenlabs.litiengine.util.ListUtilities;
 import de.litigame.entities.Player;
 
-public class PlayerController extends KeyboardEntityController<Player> implements KeyPressedListener {
+public class PlayerController extends KeyboardEntityController<Player>
+		implements KeyPressedListener, MouseWheelListener {
 
-	private final KeyPressedListener hotbarController;
+	private final HotbarController hotbarController;
 	private List<Integer> interactKeys;
 	private final Player player;
 
@@ -50,6 +53,11 @@ public class PlayerController extends KeyboardEntityController<Player> implement
 
 		hotbarController.keyPressed(event);
 		event.consume();
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent event) {
+		hotbarController.mouseWheelMoved(event);
 	}
 
 	public void setInteractKeys(int... interact) {

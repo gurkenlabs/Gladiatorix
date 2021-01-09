@@ -1,6 +1,8 @@
 package de.litigame.input;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +10,10 @@ import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.util.ListUtilities;
 import de.litigame.hotbar.Hotbar;
 
-public class HotbarController implements KeyPressedListener {
+public class HotbarController implements KeyPressedListener, MouseWheelListener {
 
 	private final Hotbar bar;
+	public boolean invertMouseWheel = false;
 	private final List<List<Integer>> slotKeys;
 
 	public HotbarController(Hotbar hotbar) {
@@ -52,6 +55,15 @@ public class HotbarController implements KeyPressedListener {
 				bar.setToSlot(slot);
 				break;
 			}
+		}
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent event) {
+		if (invertMouseWheel) {
+			bar.addToPosition(event.getWheelRotation());
+		} else {
+			bar.addToPosition(-event.getWheelRotation());
 		}
 	}
 
