@@ -3,7 +3,7 @@ package de.litigame.hotbar;
 public class Hotbar {
 
 	public final static int SLOTS = 9;
-	public int selectedSlot;
+	private int selectedSlot;
 
 	public void addToPosition(int shift) {
 		selectedSlot += shift;
