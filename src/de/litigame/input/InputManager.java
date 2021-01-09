@@ -25,10 +25,12 @@ public class InputManager {
 
 	public static void attachPlayerControl() {
 		Input.keyboard().onKeyPressed(playerController);
+		Input.mouse().onWheelMoved(playerController);
 	}
 
 	public static void detachPlayerControl() {
 		Input.keyboard().removeKeyPressedListener(playerController);
+		Input.mouse().removeMouseWheelListener(playerController);
 	}
 
 	public static void init() {
