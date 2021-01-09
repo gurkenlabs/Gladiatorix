@@ -1,3 +1,7 @@
+## Layers
+1. prop
+2. collision box
+3. trigger
 ## Triggers
 | tag        | required properties                         | description                            |
 | ---------- | ------------------------------------------- | -------------------------------------- |
