@@ -11,7 +11,7 @@ public class PlayerCamera extends PositionLockCamera {
 	private static final float ZOOM_IN = 2.5f;
 	private static final float ZOOM_OUT = 1.5f;
 
-	private static int MillisToLoopValue(int millis) {
+	private static int millisToLoopValue(int millis) {
 		return millis * Game.loop().getTickRate() / 1000;
 	}
 
@@ -57,6 +57,6 @@ public class PlayerCamera extends PositionLockCamera {
 	public void update() {
 		super.update();
 		++lastMoved;
-		if (lastMoved > MillisToLoopValue(TIME_OUT)) setZoom(false);
+		if (lastMoved > millisToLoopValue(TIME_OUT)) setZoom(false);
 	}
 }
