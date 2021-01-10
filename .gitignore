@@ -6,3 +6,4 @@
 config.properties
 crash.txt
 game.log*
+/.gradle
