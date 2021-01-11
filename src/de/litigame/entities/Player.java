@@ -11,7 +11,7 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
-import de.litigame.entities.abilities.MeleeAttackAbility;
+import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 
 @AnimationInfo(spritePrefix = "player")
@@ -19,7 +19,7 @@ import de.litigame.hotbar.Hotbar;
 @EntityInfo(width = 16, height = 6)
 @MovementInfo(velocity = 70)
 
-public class Player extends Creature implements IUpdateable {
+public class Player extends Creature implements IUpdateable, IFighter {
 
 	private static Player instance = new Player();
 
@@ -27,13 +27,12 @@ public class Player extends Creature implements IUpdateable {
 		return instance;
 	}
 
-	public final Hotbar hotbar;
-	public final MeleeAttackAbility melee;
+	public final Hotbar hotbar = new Hotbar();
+	public final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 
 	private Player() {
 		super("player");
-		hotbar = new Hotbar();
-		melee = new MeleeAttackAbility(this);
+
 		Game.loop().attach(this);
 	}
 
@@ -43,6 +42,12 @@ public class Player extends Creature implements IUpdateable {
 
 	public double distanceTo(Entity other) {
 		return getLocation().distance(other.getLocation());
+	}
+
+	@Override
+	public double getStrength() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public void interact() {

@@ -36,4 +36,7 @@ public class InputManager {
 	public static void init() {
 		playerController = new PlayerController();
 	}
+
+	private InputManager() {
+	}
 }

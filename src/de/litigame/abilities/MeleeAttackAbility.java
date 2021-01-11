@@ -1,13 +1,10 @@
-package de.litigame.entities.abilities;
+package de.litigame.abilities;
 
 import de.gurkenlabs.litiengine.abilities.Ability;
-import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
-
-@AbilityInfo(name = "MeleeAttackAbility", cooldown = 400, range = 10, impact = 20, impactAngle = 90, value = 1, duration = 1, multiTarget = true)
 
 public class MeleeAttackAbility extends Ability {
 
@@ -20,7 +17,7 @@ public class MeleeAttackAbility extends Ability {
 		@Override
 		protected void apply(ICombatEntity entity) {
 			super.apply(entity);
-			entity.hit(100);
+			entity.hit(getAbility().getAttributes().value().get());
 		}
 	}
 

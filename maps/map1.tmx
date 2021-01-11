@@ -76,11 +76,6 @@
     <property name="spritesheetName" value="grass"/>
    </properties>
   </object>
-  <object id="5" type="STATICSHADOW" x="64" y="96" width="16" height="16">
-   <properties>
-    <property name="shadowType" value="DOWN"/>
-   </properties>
-  </object>
   <object id="6" type="CREATURE" x="96" y="48" width="4" height="4">
    <properties>
     <property name="spritesheetName" value="test"/>
@@ -1359,6 +1354,18 @@
   <object id="263" type="CREATURE" x="92" y="12" width="4" height="4">
    <properties>
     <property name="spritesheetName" value="test"/>
+   </properties>
+  </object>
+  <object id="264" type="TRIGGER" x="0" y="0" width="80" height="96">
+   <properties>
+    <property name="tags" value="zoom"/>
+    <property name="zoomValue" value="2.5"/>
+   </properties>
+  </object>
+  <object id="265" type="STATICSHADOW" x="16" y="32" width="32" height="32">
+   <properties>
+    <property name="shadowOffset" value="0"/>
+    <property name="shadowType" value="DOWN"/>
    </properties>
   </object>
  </objectgroup>
