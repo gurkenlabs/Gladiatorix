@@ -53,7 +53,7 @@ public class GameManager {
 						float zoom = trigger.getProperties().getFloatValue("zoomValue");
 						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
 								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DURATION;
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
@@ -62,7 +62,7 @@ public class GameManager {
 						float zoom = PlayerCamera.STD_ZOOM;
 						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
 								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DURATION;
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});

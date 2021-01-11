@@ -5,10 +5,8 @@ import de.litigame.entities.Player;
 
 public class PlayerCamera extends PositionLockCamera {
 
-	public static final int STD_DURATION = 500;
+	public static final int STD_DELAY = 500;
 	public static final float STD_ZOOM = 1.5f;
-	public static final int TIME_OUT = 200;
-	public static final float ZOOM_IN = 2.5f;
 
 	public PlayerCamera() {
 		this(Player.getInstance());
@@ -16,5 +14,6 @@ public class PlayerCamera extends PositionLockCamera {
 
 	public PlayerCamera(Player player) {
 		super(player);
+		setZoom(STD_ZOOM, STD_DELAY);
 	}
 }
