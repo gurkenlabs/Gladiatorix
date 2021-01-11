@@ -11,11 +11,9 @@ import de.litigame.input.InputManager;
 
 public class GameManager {
 
-	public static void enterPortal(IEntity portal) {
-		switchToMap(portal.getProperties().getStringValue("toMap"));
-
-		String[] coords = portal.getProperties().getStringValue("toPos").split(",");
-		Player.getInstance().setLocation(Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+	public static void enterPortal(String map, double x, double y) {
+		switchToMap(map);
+		Player.getInstance().setLocation(x, y);
 		Game.world().environment().add(Player.getInstance());
 	}
 
@@ -26,22 +24,49 @@ public class GameManager {
 
 		Game.world().onLoaded(GameManager::setupMapObjects);
 
-		switchToMap("map2");
+		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
 		switchToState(GameState.INGAME);
 	}
 
 	private static void setupMapObjects(Environment env) {
+		setupTriggers(env);
+	}
+
+	private static void setupTriggers(Environment env) {
 		for (Trigger trigger : env.getTriggers()) {
 			if (trigger.hasTag("deadly")) trigger.addActivatedListener(e -> {
 				IEntity entity = e.getEntity();
 				if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
 			});
 			if (trigger.hasTag("portal")) trigger.addActivatedListener(e -> {
-				IEntity entity = e.getEntity();
-				if (entity instanceof Player) enterPortal(trigger);
+				if (e.getEntity() instanceof Player) {
+					String map = trigger.getProperties().getStringValue("toMap");
+					String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+					enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+				}
 			});
+			if (trigger.hasTag("zoom")) {
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player) {
+						float zoom = trigger.getProperties().getFloatValue("zoomValue");
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DURATION;
+						Game.world().camera().setZoom(zoom, duration);
+					}
+				});
+				trigger.addDeactivatedListener(e -> {
+					if (e.getEntity() instanceof Player) {
+						float zoom = PlayerCamera.STD_ZOOM;
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DURATION;
+						Game.world().camera().setZoom(zoom, duration);
+					}
+				});
+			}
 		}
 	}
 
