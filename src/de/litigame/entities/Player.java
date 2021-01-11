@@ -13,6 +13,7 @@ import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.weapons.Weapon;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
@@ -37,7 +38,17 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void attack() {
-		if (melee.canCast()) melee.cast();
+		if (hotbar.getSelectedItem() instanceof Weapon) {
+			Weapon weapon = (Weapon) hotbar.getSelectedItem();
+			switch (weapon.type) {
+			case MELEE:
+				weapon.attributes.mergeAbilityAttributes(melee.getAttributes());
+				melee.cast();
+				break;
+			case RANGE:
+				break;
+			}
+		}
 	}
 
 	public double distanceTo(Entity other) {
