@@ -83,81 +83,1284 @@
       <property name="shadowType" value="DOWN"/>
      </properties>
     </object>
-    <object id="6" type="CREATURE" x="91" y="16" width="16" height="16">
+    <object id="6" type="CREATURE" x="96" y="48" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="7" type="CREATURE" x="112" y="16" width="16" height="16">
+    <object id="7" type="CREATURE" x="100" y="48" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="8" type="CREATURE" x="128" y="16" width="16" height="16">
+    <object id="8" type="CREATURE" x="104" y="48" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="9" type="CREATURE" x="91" y="32" width="16" height="16">
+    <object id="9" type="CREATURE" x="108" y="48" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="10" type="CREATURE" x="128" y="32" width="16" height="16">
+    <object id="10" type="CREATURE" x="96" y="52" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="11" type="CREATURE" x="91" y="24" width="16" height="16">
+    <object id="11" type="CREATURE" x="100" y="52" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="12" type="CREATURE" x="128" y="24" width="16" height="16">
+    <object id="12" type="CREATURE" x="104" y="52" width="4" height="4">
      <properties>
-      <property name="addShadow" type="bool" value="true"/>
-      <property name="collision" type="bool" value="true"/>
-      <property name="collisionValign" value="MIDDLE"/>
-      <property name="collisionboxHeight" value="6.0"/>
-      <property name="collisionboxWidth" value="16.0"/>
-      <property name="indestructible" type="bool" value="false"/>
-      <property name="spritesheetName" value="player"/>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="13" type="CREATURE" x="108" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="14" type="CREATURE" x="96" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="15" type="CREATURE" x="100" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="16" type="CREATURE" x="104" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="17" type="CREATURE" x="108" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="18" type="CREATURE" x="96" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="19" type="CREATURE" x="100" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="20" type="CREATURE" x="104" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="21" type="CREATURE" x="108" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="22" type="CREATURE" x="112" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="23" type="CREATURE" x="116" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="24" type="CREATURE" x="120" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="25" type="CREATURE" x="124" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="26" type="CREATURE" x="112" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="27" type="CREATURE" x="116" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="28" type="CREATURE" x="120" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="29" type="CREATURE" x="124" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="30" type="CREATURE" x="112" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="31" type="CREATURE" x="116" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="32" type="CREATURE" x="120" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="33" type="CREATURE" x="124" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="34" type="CREATURE" x="112" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="35" type="CREATURE" x="116" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="36" type="CREATURE" x="120" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="37" type="CREATURE" x="124" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="38" type="CREATURE" x="96" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="39" type="CREATURE" x="100" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="40" type="CREATURE" x="104" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="41" type="CREATURE" x="108" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="42" type="CREATURE" x="96" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="43" type="CREATURE" x="100" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="44" type="CREATURE" x="104" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="45" type="CREATURE" x="108" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="46" type="CREATURE" x="96" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="47" type="CREATURE" x="100" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="48" type="CREATURE" x="104" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="49" type="CREATURE" x="108" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="50" type="CREATURE" x="96" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="51" type="CREATURE" x="100" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="52" type="CREATURE" x="104" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="53" type="CREATURE" x="108" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="54" type="CREATURE" x="112" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="55" type="CREATURE" x="116" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="56" type="CREATURE" x="120" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="57" type="CREATURE" x="124" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="58" type="CREATURE" x="112" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="59" type="CREATURE" x="116" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="60" type="CREATURE" x="120" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="61" type="CREATURE" x="124" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="62" type="CREATURE" x="112" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="63" type="CREATURE" x="116" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="64" type="CREATURE" x="120" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="65" type="CREATURE" x="124" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="66" type="CREATURE" x="112" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="67" type="CREATURE" x="116" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="68" type="CREATURE" x="120" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="69" type="CREATURE" x="124" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="71" type="CREATURE" x="64" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="72" type="CREATURE" x="68" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="73" type="CREATURE" x="72" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="74" type="CREATURE" x="76" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="75" type="CREATURE" x="64" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="76" type="CREATURE" x="68" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="77" type="CREATURE" x="72" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="78" type="CREATURE" x="76" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="79" type="CREATURE" x="64" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="80" type="CREATURE" x="68" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="81" type="CREATURE" x="72" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="82" type="CREATURE" x="76" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="83" type="CREATURE" x="64" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="84" type="CREATURE" x="68" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="85" type="CREATURE" x="72" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="86" type="CREATURE" x="76" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="87" type="CREATURE" x="80" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="88" type="CREATURE" x="84" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="89" type="CREATURE" x="88" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="90" type="CREATURE" x="92" y="48" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="91" type="CREATURE" x="80" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="92" type="CREATURE" x="84" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="93" type="CREATURE" x="88" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="94" type="CREATURE" x="92" y="52" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="95" type="CREATURE" x="80" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="96" type="CREATURE" x="84" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="97" type="CREATURE" x="88" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="98" type="CREATURE" x="92" y="56" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="99" type="CREATURE" x="80" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="100" type="CREATURE" x="84" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="101" type="CREATURE" x="88" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="102" type="CREATURE" x="92" y="60" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="103" type="CREATURE" x="64" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="104" type="CREATURE" x="68" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="105" type="CREATURE" x="72" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="106" type="CREATURE" x="76" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="107" type="CREATURE" x="64" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="108" type="CREATURE" x="68" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="109" type="CREATURE" x="72" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="110" type="CREATURE" x="76" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="111" type="CREATURE" x="64" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="112" type="CREATURE" x="68" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="113" type="CREATURE" x="72" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="114" type="CREATURE" x="76" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="115" type="CREATURE" x="64" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="116" type="CREATURE" x="68" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="117" type="CREATURE" x="72" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="118" type="CREATURE" x="76" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="119" type="CREATURE" x="80" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="120" type="CREATURE" x="84" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="121" type="CREATURE" x="88" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="122" type="CREATURE" x="92" y="32" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="123" type="CREATURE" x="80" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="124" type="CREATURE" x="84" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="125" type="CREATURE" x="88" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="126" type="CREATURE" x="92" y="36" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="127" type="CREATURE" x="80" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="128" type="CREATURE" x="84" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="129" type="CREATURE" x="88" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="130" type="CREATURE" x="92" y="40" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="131" type="CREATURE" x="80" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="132" type="CREATURE" x="84" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="133" type="CREATURE" x="88" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="134" type="CREATURE" x="92" y="44" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="136" type="CREATURE" x="96" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="137" type="CREATURE" x="100" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="138" type="CREATURE" x="104" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="139" type="CREATURE" x="108" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="140" type="CREATURE" x="96" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="141" type="CREATURE" x="100" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="142" type="CREATURE" x="104" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="143" type="CREATURE" x="108" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="144" type="CREATURE" x="96" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="145" type="CREATURE" x="100" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="146" type="CREATURE" x="104" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="147" type="CREATURE" x="108" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="148" type="CREATURE" x="96" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="149" type="CREATURE" x="100" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="150" type="CREATURE" x="104" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="151" type="CREATURE" x="108" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="152" type="CREATURE" x="112" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="153" type="CREATURE" x="116" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="154" type="CREATURE" x="120" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="155" type="CREATURE" x="124" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="156" type="CREATURE" x="112" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="157" type="CREATURE" x="116" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="158" type="CREATURE" x="120" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="159" type="CREATURE" x="124" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="160" type="CREATURE" x="112" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="161" type="CREATURE" x="116" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="162" type="CREATURE" x="120" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="163" type="CREATURE" x="124" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="164" type="CREATURE" x="112" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="165" type="CREATURE" x="116" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="166" type="CREATURE" x="120" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="167" type="CREATURE" x="124" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="168" type="CREATURE" x="96" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="169" type="CREATURE" x="100" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="170" type="CREATURE" x="104" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="171" type="CREATURE" x="108" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="172" type="CREATURE" x="96" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="173" type="CREATURE" x="100" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="174" type="CREATURE" x="104" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="175" type="CREATURE" x="108" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="176" type="CREATURE" x="96" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="177" type="CREATURE" x="100" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="178" type="CREATURE" x="104" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="179" type="CREATURE" x="108" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="180" type="CREATURE" x="96" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="181" type="CREATURE" x="100" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="182" type="CREATURE" x="104" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="183" type="CREATURE" x="108" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="184" type="CREATURE" x="112" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="185" type="CREATURE" x="116" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="186" type="CREATURE" x="120" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="187" type="CREATURE" x="124" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="188" type="CREATURE" x="112" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="189" type="CREATURE" x="116" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="190" type="CREATURE" x="120" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="191" type="CREATURE" x="124" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="192" type="CREATURE" x="112" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="193" type="CREATURE" x="116" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="194" type="CREATURE" x="120" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="195" type="CREATURE" x="124" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="196" type="CREATURE" x="112" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="197" type="CREATURE" x="116" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="198" type="CREATURE" x="120" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="199" type="CREATURE" x="124" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="200" type="CREATURE" x="64" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="201" type="CREATURE" x="68" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="202" type="CREATURE" x="72" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="203" type="CREATURE" x="76" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="204" type="CREATURE" x="64" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="205" type="CREATURE" x="68" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="206" type="CREATURE" x="72" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="207" type="CREATURE" x="76" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="208" type="CREATURE" x="64" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="209" type="CREATURE" x="68" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="210" type="CREATURE" x="72" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="211" type="CREATURE" x="76" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="212" type="CREATURE" x="64" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="213" type="CREATURE" x="68" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="214" type="CREATURE" x="72" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="215" type="CREATURE" x="76" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="216" type="CREATURE" x="80" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="217" type="CREATURE" x="84" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="218" type="CREATURE" x="88" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="219" type="CREATURE" x="92" y="16" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="220" type="CREATURE" x="80" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="221" type="CREATURE" x="84" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="222" type="CREATURE" x="88" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="223" type="CREATURE" x="92" y="20" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="224" type="CREATURE" x="80" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="225" type="CREATURE" x="84" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="226" type="CREATURE" x="88" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="227" type="CREATURE" x="92" y="24" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="228" type="CREATURE" x="80" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="229" type="CREATURE" x="84" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="230" type="CREATURE" x="88" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="231" type="CREATURE" x="92" y="28" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="232" type="CREATURE" x="64" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="233" type="CREATURE" x="68" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="234" type="CREATURE" x="72" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="235" type="CREATURE" x="76" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="236" type="CREATURE" x="64" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="237" type="CREATURE" x="68" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="238" type="CREATURE" x="72" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="239" type="CREATURE" x="76" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="240" type="CREATURE" x="64" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="241" type="CREATURE" x="68" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="242" type="CREATURE" x="72" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="243" type="CREATURE" x="76" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="244" type="CREATURE" x="64" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="245" type="CREATURE" x="68" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="246" type="CREATURE" x="72" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="247" type="CREATURE" x="76" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="248" type="CREATURE" x="80" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="249" type="CREATURE" x="84" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="250" type="CREATURE" x="88" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="251" type="CREATURE" x="92" y="0" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="252" type="CREATURE" x="80" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="253" type="CREATURE" x="84" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="254" type="CREATURE" x="88" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="255" type="CREATURE" x="92" y="4" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="256" type="CREATURE" x="80" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="257" type="CREATURE" x="84" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="258" type="CREATURE" x="88" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="259" type="CREATURE" x="92" y="8" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="260" type="CREATURE" x="80" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="261" type="CREATURE" x="84" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="262" type="CREATURE" x="88" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
+     </properties>
+    </object>
+    <object id="263" type="CREATURE" x="92" y="12" width="4" height="4">
+     <properties>
+      <property name="spritesheetName" value="test"/>
      </properties>
     </object>
    </objectgroup>
@@ -209,6 +1412,12 @@
   </sprite>
   <sprite width="16" height="16" imageformat="PNG" name="prop-portal">
    <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVR4XqXIoREAMBAEoeu/6U8Bq5gIDNt2nxIqoRIqoRIqoRIqoRIqoRIqoRIqoRLkAZvM/wEhpU2cAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="4" height="4" imageformat="PNG" name="test-dead">
+   <image>iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVR4XmPoMjP7j4wZSBcAAB4oH1EZ4hLCAAAAAElFTkSuQmCC</image>
+  </sprite>
+  <sprite width="4" height="4" imageformat="PNG" name="test-idle-left">
+   <image>iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAEklEQVR4XmMQzCv5j4wZSBcAAAxAHyHS2WLtAAAAAElFTkSuQmCC</image>
   </sprite>
   <sprite width="16" height="16" imageformat="PNG" name="tile">
    <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABS0lEQVR4XoVS2arCUAw8fyVW1NqqFWm1rmirv6fS5cENl6q/NjKBI9yXm4cwSWmSyZkxeZ6jKApYLMtScLfbybdutwvP89BsNuE4DlqtFlzXFazVajCHwwGPxwP3+x2XywVVVUl9Pp8lHw6HWK1WGI1GGAwGEkEQoNfrodPpwOz3e2l4Pp+Cr9frN5A5Gcznc8RxLMOISZJgOp1KbUj1eDxKAxu51bJ4v9/wfV9+Xq/XSNMUi8VCgoPIxmRZhtvt9ocF8XQ64Xq9ot1uI4oizGYzLJdLbDYbOYmshAEfzDbZzRbJinfyfjaNx2OEYSjbyYq5MOCD2Ubm9hxGo9GQTfyZlDmQ9Xa7laG/E3jv5/ORh2PYul6vSxOls9jv94XNZDKB0XTWfGI0nTWfCIP/dNZ8YjSdNZ8YTWfNJ0bTWfOJ0XTWfGI0nTWffAGMPn+LLm12zwAAAABJRU5ErkJggg==</image>

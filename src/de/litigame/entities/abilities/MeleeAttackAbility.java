@@ -7,7 +7,7 @@ import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
 
-@AbilityInfo(name = "MeleeAttackAbility", cooldown = 400, range = 10, impact = 60, impactAngle = 45, value = 1, duration = 1, multiTarget = true)
+@AbilityInfo(name = "MeleeAttackAbility", cooldown = 400, range = 10, impact = 60, impactAngle = 90, value = 1, duration = 1, multiTarget = true)
 
 public class MeleeAttackAbility extends Ability {
 
