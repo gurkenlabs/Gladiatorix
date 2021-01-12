@@ -1,15 +1,22 @@
 package de.litigame.hotbar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Graphics2D;
 
+import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.litigame.items.Item;
 
-public class Hotbar {
+public class Hotbar implements IRenderable {
 
-	public final static int SLOTS = 9;
-	private final List<Item> items = new ArrayList<>();
+	private final Item[] items;
 	private int selectedSlot = 0;
+
+	public Hotbar() {
+		this(9);
+	}
+
+	public Hotbar(int size) {
+		items = new Item[size];
+	}
 
 	public void addToPosition(int shift) {
 		selectedSlot += shift;
@@ -18,15 +25,24 @@ public class Hotbar {
 
 	private void checkBounds() {
 		if (selectedSlot < 0) selectedSlot = 0;
-		else if (selectedSlot >= SLOTS) selectedSlot = SLOTS - 1;
+		else if (selectedSlot >= size()) selectedSlot = size() - 1;
 	}
 
 	public Item getSelectedItem() {
-		return items.get(selectedSlot);
+		return items[selectedSlot];
+	}
+
+	@Override
+	public void render(Graphics2D g) {
+
 	}
 
 	public void setToSlot(int slot) {
 		selectedSlot = slot;
 		checkBounds();
+	}
+
+	public int size() {
+		return items.length;
 	}
 }

@@ -8,10 +8,11 @@ public class Weapon extends Item {
 
 	private static final String[] attributeKeys = { "weapon_cooldown", "weapon_duration", "weapon_impact",
 			"weapon_impactAngle", "weapon_range", "weapon_value" };
-	public final WeaponAttributes attributes = new WeaponAttributes();
+	public final MeleeWeaponAttributes attributes = new MeleeWeaponAttributes();
 	public final WeaponType type;
 
 	public Weapon(Map<String, String> itemInfo) {
+		super(itemInfo);
 		for (int i = 0; i < attributeKeys.length; ++i) {
 			String key = attributeKeys[i];
 			if (itemInfo.containsKey(key)) attributes.list.get(i).setBaseValue(Integer.valueOf(itemInfo.get(key)));

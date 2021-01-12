@@ -13,7 +13,7 @@ public class Program {
 		Game.init(args);
 		Resources.load("game.litidata");
 		Images.init(new File("images.txt"));
-		Items.init(new File("items.txt"));
+		Items.init(new File("items.json"));
 		Game.screens().add(new IngameScreen());
 		GameManager.init();
 		Game.start();

@@ -26,7 +26,6 @@ public class Projectile extends Creature implements IUpdateable {
 		this.executor = executor;
 		setLocation(position);
 		setAngle(angle);
-
 		Game.loop().attach(this);
 	}
 

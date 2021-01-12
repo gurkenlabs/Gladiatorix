@@ -37,7 +37,7 @@ public class Items {
 		case "weapon":
 			return new Weapon(info);
 		}
-		return new Item();
+		return null;
 	}
 
 	public static void init(File itemFile) {

@@ -24,10 +24,10 @@ public class HotbarController implements KeyPressedListener, MouseWheelListener 
 	public HotbarController(Hotbar hotbar, int... hot) {
 		bar = hotbar;
 
-		if (hot.length != Hotbar.SLOTS) throw new RuntimeException(
-				"Parameter size (" + hot.length + ") and hotbar slots (" + Hotbar.SLOTS + ") don't match");
+		if (hot.length != hotbar.size()) throw new RuntimeException(
+				"Parameter size (" + hot.length + ") and hotbar slots (" + hotbar.size() + ") don't match");
 
-		for (int i = 0; i < Hotbar.SLOTS; ++i) {
+		for (int i = 0; i < bar.size(); ++i) {
 			slotKeys.add(new ArrayList<>());
 
 			addHotKey(i, hot[i]);

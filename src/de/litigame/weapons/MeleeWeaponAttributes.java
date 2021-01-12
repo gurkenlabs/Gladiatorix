@@ -6,12 +6,12 @@ import java.util.List;
 import de.gurkenlabs.litiengine.abilities.AbilityAttributes;
 import de.gurkenlabs.litiengine.attributes.Attribute;
 
-public class WeaponAttributes {
+public class MeleeWeaponAttributes {
 
 	private static final int COUNT = 6; // 0: cooldown, 1: duration, 2: impact, 3: impactAngle, 4:range, 5: value
 	final List<Attribute<Integer>> list = new ArrayList<>();
 
-	public WeaponAttributes() {
+	public MeleeWeaponAttributes() {
 		for (int i = 0; i < COUNT; ++i) {
 			list.add(new Attribute<>(0));
 		}
