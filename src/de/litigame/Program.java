@@ -2,7 +2,7 @@ package de.litigame;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.resources.Resources;
-import de.litigame.gui.IngameScreen;
+import de.litigame.gui.*;
 
 public class Program {
 

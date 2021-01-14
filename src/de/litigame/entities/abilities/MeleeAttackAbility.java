@@ -26,7 +26,6 @@ public class MeleeAttackAbility extends Ability {
 
 	public MeleeAttackAbility(Creature executor) {
 		super(executor);
-
 		addEffect(new MeleeAttackEffect(this));
 	}
 
