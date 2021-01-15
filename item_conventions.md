@@ -9,10 +9,10 @@
 
 ## Weapon
 + `weapon_cooldown`: how long before re-use
-+ `weapon_duration`
-+ `weapon_impact`: radius of 
-+ `weapon_impactAngle`
++ `weapon_duration`: only range weapon, velocity projectile
++ `weapon_impact`: radius of attacked area
++ `weapon_impactAngle`: only melee weapons, how far to side
 + `weapon_multiTarget`: "true" or "false"
-+ `weapon_range`: only use for range weapons, how far
++ `weapon_range`: only for range weapons, how far
 + `weapon_type`: "melee" or "range"
 + `weapon_value`: strength of the weapon
