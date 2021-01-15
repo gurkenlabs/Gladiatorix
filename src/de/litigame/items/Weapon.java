@@ -1,4 +1,4 @@
-package de.litigame.weapons;
+package de.litigame.items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import java.util.Map;
 import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityAttributes;
 import de.gurkenlabs.litiengine.attributes.Attribute;
-import de.litigame.items.Item;
 
 public class Weapon extends Item {
 	

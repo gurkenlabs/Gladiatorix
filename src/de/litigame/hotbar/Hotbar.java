@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.litigame.items.Item;
+import de.litigame.items.Stackable;
 
 public class Hotbar implements IRenderable {
 
@@ -18,8 +19,19 @@ public class Hotbar implements IRenderable {
 		items = new Item[size];
 	}
 
-	public void addItem(Item item) {
-		items[0] = item;
+	public boolean addItem(Item other) {
+		for (int i = 0; i < items.length; ++i) {
+			if (items[i] == null) {
+				items[i] = other;
+				removeEmptyItems();
+				return true;
+			} else if (items[i].getName().equals(other.getName()) && Item.isStackable(other)
+					&& ((Stackable) items[i]).addAmount(((Stackable) other).getAmount())) {
+						removeEmptyItems();
+						return true;
+					}
+		}
+		return false;
 	}
 
 	public void addToPosition(int shift) {
@@ -34,6 +46,12 @@ public class Hotbar implements IRenderable {
 
 	public Item getSelectedItem() {
 		return items[selectedSlot];
+	}
+
+	private void removeEmptyItems() {
+		for (int i = 0; i < items.length; ++i) {
+			if (Item.isStackable(items[i]) && ((Stackable) items[i]).isEmpty()) items[i] = null;
+		}
 	}
 
 	@Override

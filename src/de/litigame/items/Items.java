@@ -11,8 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import de.litigame.weapons.Weapon;
-
 public class Items {
 
 	private static JSONArray items;

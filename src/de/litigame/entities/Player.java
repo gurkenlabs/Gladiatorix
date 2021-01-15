@@ -13,7 +13,7 @@ import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.hotbar.Hotbar;
-import de.litigame.weapons.Weapon;
+import de.litigame.items.Weapon;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
