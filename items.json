@@ -1,0 +1,27 @@
+{
+	"items":
+	[
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"test",
+			"item_name"				:	"sword",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"	:	"90",
+			"weapon_multiTarget"	:	"true",
+			"weapon_value"			:	"10",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"2000"
+		},
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"test",
+			"item_name"				:	"shield",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"	:	"90",
+			"weapon_multiTarget"	:	"true",
+			"weapon_value"			:	"10",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"2000"
+		},
+	]
+}

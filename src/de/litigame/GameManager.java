@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.input.InputManager;
+import de.litigame.items.Items;
 
 public class GameManager {
 
@@ -26,6 +27,9 @@ public class GameManager {
 
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
+
+		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+		Player.getInstance().hotbar.addItem(Items.getItem("shield"));
 
 		switchToState(GameState.INGAME);
 	}
@@ -73,6 +77,7 @@ public class GameManager {
 	public static void switchToMap(String map) {
 		Game.world().unloadEnvironment();
 		Game.world().loadEnvironment(map);
+		Game.world().camera().setZoom(PlayerCamera.STD_ZOOM, PlayerCamera.STD_DELAY);
 	}
 
 	public static void switchToState(GameState state) {

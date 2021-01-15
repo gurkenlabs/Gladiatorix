@@ -1,0 +1,1 @@
+test:sprites/test-dead.png

@@ -11,15 +11,16 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
-import de.litigame.entities.abilities.MeleeAttackAbility;
+import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.items.Weapon;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
 @EntityInfo(width = 16, height = 6)
 @MovementInfo(velocity = 70)
 
-public class Player extends Creature implements IUpdateable {
+public class Player extends Creature implements IUpdateable, IFighter {
 
 	private static Player instance = new Player();
 
@@ -27,22 +28,37 @@ public class Player extends Creature implements IUpdateable {
 		return instance;
 	}
 
-	public final Hotbar hotbar;
-	public final MeleeAttackAbility melee;
+	public final Hotbar hotbar = new Hotbar();
+	public final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 
 	private Player() {
 		super("player");
-		hotbar = new Hotbar();
-		melee = new MeleeAttackAbility(this);
+
 		Game.loop().attach(this);
 	}
 
 	public void attack() {
-		if (melee.canCast()) melee.cast();
+		if (hotbar.getSelectedItem() instanceof Weapon) {
+			Weapon weapon = (Weapon) hotbar.getSelectedItem();
+			switch (weapon.type) {
+			case MELEE:
+				weapon.overrideAbility(melee);
+				melee.cast();
+				break;
+			case RANGE:
+				break;
+			}
+		}
 	}
 
 	public double distanceTo(Entity other) {
 		return getLocation().distance(other.getLocation());
+	}
+
+	@Override
+	public double getStrength() {
+		// TODO Auto-generated method stub
+		return 10;
 	}
 
 	public void interact() {
