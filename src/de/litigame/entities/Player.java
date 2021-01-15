@@ -42,7 +42,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			Weapon weapon = (Weapon) hotbar.getSelectedItem();
 			switch (weapon.type) {
 			case MELEE:
-				weapon.attributes.mergeAbilityAttributes(melee.getAttributes());
+				weapon.overrideAbility(melee);
 				melee.cast();
 				break;
 			case RANGE:
@@ -58,7 +58,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 10;
 	}
 
 	public void interact() {

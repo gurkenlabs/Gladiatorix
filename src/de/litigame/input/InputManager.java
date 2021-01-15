@@ -5,18 +5,21 @@ import de.litigame.GameState;
 
 public class InputManager {
 
-	private static PlayerController playerController;
+	private final static PlayerController playerController = new PlayerController();
 
 	public static void adjustInput(GameState state) {
 		switch (state) {
 		case INGAME:
 			attachPlayerControl();
+			break;
 		case MAIN_MENU:
+			detachPlayerControl();
 			break;
 		case MENU:
 			detachPlayerControl();
 			break;
 		case SETTINGS:
+			detachPlayerControl();
 			break;
 		default:
 			break;
@@ -34,7 +37,6 @@ public class InputManager {
 	}
 
 	public static void init() {
-		playerController = new PlayerController();
 	}
 
 	private InputManager() {

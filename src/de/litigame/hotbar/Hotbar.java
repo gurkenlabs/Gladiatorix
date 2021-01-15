@@ -18,6 +18,10 @@ public class Hotbar implements IRenderable {
 		items = new Item[size];
 	}
 
+	public void addItem(Item item) {
+		items[0] = item;
+	}
+
 	public void addToPosition(int shift) {
 		selectedSlot += shift;
 		checkBounds();

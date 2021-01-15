@@ -19,8 +19,8 @@ public class Items {
 
 	public static Map<String, String> getInfo(String itemName) {
 		for (Object obj : items) {
-			JSONObject item = new JSONObject(obj);
-			if (item.getString("name").equals(itemName)) {
+			JSONObject item = (JSONObject) obj;
+			if (item.getString("item_name").equals(itemName)) {
 				Map<String, String> map = new HashMap<>();
 				for (String key : item.keySet()) {
 					map.put(key.toLowerCase(), item.getString(key).toLowerCase());
@@ -33,7 +33,7 @@ public class Items {
 
 	public static Item getItem(String itemName) {
 		Map<String, String> info = getInfo(itemName);
-		switch (info.get("class")) {
+		switch (info.get("item_class")) {
 		case "weapon":
 			return new Weapon(info);
 		}
