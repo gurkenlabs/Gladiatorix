@@ -4,5 +4,5 @@
 - syntax: <image_name>:<path/to/image.png>
 
 e.g.:	images.txt
-	test:sprites/test.png
-	foo : sprites/foo.png
+test:sprites/test.png
+foo : sprites/foo.png
