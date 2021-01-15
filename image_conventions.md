@@ -5,6 +5,5 @@
 
 ## Example
 ### images.txt
-
 test:sprites/test.png</br>
 foo : sprites/foo.png
