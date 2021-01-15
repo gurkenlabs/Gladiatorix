@@ -1,4 +1,4 @@
-##Images
+## Images
 - stored in a text-file
 - images seperated by lines
 - syntax: <image_name>:<path/to/image.png>
