@@ -1,11 +1,14 @@
 package de.litigame.abilities;
 
 import de.gurkenlabs.litiengine.abilities.Ability;
+import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
 import de.litigame.entities.IFighter;
+
+@AbilityInfo(name = "MeleeAttackAbility")
 
 public class MeleeAttackAbility extends Ability {
 
