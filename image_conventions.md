@@ -5,6 +5,6 @@
 
 e.g.:</br>
 images.txt</br>
-
-  test:sprites/test.png</br>
-  foo : sprites/foo.png
+---------------------------
+test:sprites/test.png</br>
+foo : sprites/foo.png
