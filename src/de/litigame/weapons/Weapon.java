@@ -10,12 +10,16 @@ import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.litigame.items.Item;
 
 public class Weapon extends Item {
+	
+	public enum Type {
+		MELEE, RANGE;
+	}
 
 	private static final String[] attributeKeys = { "weapon_cooldown", "weapon_duration", "weapon_impact",
 			"weapon_impactAngle", "weapon_range", "weapon_value" };
 	private final List<Attribute<Integer>> attributes = new ArrayList<>();
 	private boolean multiTarget = true;
-	public final WeaponType type;
+	public final Type type;
 
 	public Weapon(Map<String, String> itemInfo) {
 		super(itemInfo);
@@ -34,10 +38,10 @@ public class Weapon extends Item {
 
 		switch (itemInfo.get("weapon_type")) {
 		case "melee":
-			type = WeaponType.MELEE;
+			type = Type.MELEE;
 			break;
 		case "range":
-			type = WeaponType.RANGE;
+			type = Type.RANGE;
 			break;
 		default:
 			type = null;

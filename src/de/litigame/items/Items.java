@@ -23,7 +23,7 @@ public class Items {
 			if (item.getString("item_name").equals(itemName)) {
 				Map<String, String> map = new HashMap<>();
 				for (String key : item.keySet()) {
-					map.put(key.toLowerCase(), item.getString(key).toLowerCase());
+					map.put(key, item.getString(key));
 				}
 				return map;
 			}
