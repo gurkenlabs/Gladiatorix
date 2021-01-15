@@ -4,7 +4,7 @@
 
 ## Item
 + `item_class`: "weapon"
-+ `item_image`: a key value of the [image-list](../image_conventions.md)
++ `item_image`: a key value of the [image-list](/image_conventions.md)
 + `item_name`: name of the item
 
 ## Weapon
