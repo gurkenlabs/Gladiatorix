@@ -12,6 +12,7 @@ import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.litigame.abilities.MeleeAttackAbility;
+import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.items.Weapon;
 
@@ -29,7 +30,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public final Hotbar hotbar = new Hotbar();
-	public final MeleeAttackAbility melee = new MeleeAttackAbility(this);
+	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
+	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
 	private Player() {
 		super("player");
@@ -46,6 +48,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				melee.cast();
 				break;
 			case RANGE:
+				weapon.overrideAbility(range);
+				range.cast();
 				break;
 			}
 		}

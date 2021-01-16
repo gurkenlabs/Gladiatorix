@@ -29,7 +29,7 @@ public class GameManager {
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
 		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
-		Player.getInstance().hotbar.addItem(Items.getItem("shield"));
+		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
 
 		switchToState(GameState.INGAME);
 	}
