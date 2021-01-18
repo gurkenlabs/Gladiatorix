@@ -51,10 +51,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		multiTarget = ability.isMultiTarget();
 		origin = (Point2D) position.clone();
 		range = ability.getAttributes().range().get();
-		Vector2D loc = new Vector2D(getLocation().getX(), getLocation().getY());
-		Vector2D delta = new Vector2D(getCenter(), position);
-		Vector2D start = loc.add(delta);
-		setLocation(new Point2D.Double(start.getX(), start.getY()));
+		setLocation(calcStartLocation(position));
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
 
@@ -67,6 +64,13 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	public void addHitListener(ProjectileHitListener listener) {
 		hitListeners.add(listener);
+	}
+
+	private Point2D calcStartLocation(Point2D position) {
+		Vector2D loc = new Vector2D(getLocation().getX(), getLocation().getY());
+		Vector2D delta = new Vector2D(getCenter(), position);
+		Vector2D start = loc.add(delta);
+		return new Point2D.Double(start.getX(), start.getY());
 	}
 
 	private void fall() {
