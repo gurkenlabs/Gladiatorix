@@ -18,7 +18,7 @@
 			"item_name"				:	"bow",
 			"weapon_impact"			:	"20",
 			"weapon_impactAngle"	:	"90",
-			"weapon_multiTarget"	:	"false",
+			"weapon_multiTarget"	:	"true",
 			"weapon_value"			:	"10",
 			"weapon_type"			:	"range",
 			"weapon_cooldown"		:	"2000",

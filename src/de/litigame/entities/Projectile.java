@@ -12,10 +12,12 @@ import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
+import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 
 @CollisionInfo(collision = false, collisionBoxWidth = 1, collisionBoxHeight = 1, valign = Valign.MIDDLE)
+@EntityInfo(width = 1, height = 1)
 
 public class Projectile extends Creature implements IUpdateable, IFighter {
 
@@ -39,18 +41,20 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 	private final int range;
 
 	public Projectile(ICombatEntity executor, Ability ability) {
-		this(executor.getLocation(), executor.getAngle(), executor, ability);
+		this(executor.getCenter(), executor.getAngle(), executor, ability);
 	}
 
 	public Projectile(Point2D position, double angle, ICombatEntity executor, Ability ability) {
 		damage = ((IFighter) executor).getStrength() * ability.getAttributes().value().get();
 		this.executor = executor;
 		multiTarget = ability.isMultiTarget();
-		origin = new Point2D.Double(position.getX(), position.getY());
+		origin = (Point2D) position.clone();
 		range = ability.getAttributes().range().get();
 		setLocation(position);
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
+
+		System.out.println(origin + "  " + getCenter());
 
 		Game.loop().attach(this);
 	}

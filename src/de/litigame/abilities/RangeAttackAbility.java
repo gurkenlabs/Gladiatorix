@@ -18,6 +18,7 @@ public class RangeAttackAbility extends Ability {
 			Projectile lol = new Projectile(getExecutor(), this);
 			lol.addHitListener((e, t, p) -> {
 				t.hit((int) p.getStrength());
+				System.out.println("hit");
 			});
 			lol.addFallListener((e, f) -> System.out.println("aww man"));
 		}
