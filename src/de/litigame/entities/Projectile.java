@@ -54,8 +54,6 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
 
-		System.out.println(origin + "  " + getCenter());
-
 		Game.loop().attach(this);
 	}
 
@@ -91,7 +89,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		setLocation(GeometricUtilities.project(getLocation(), getAngle(), getTickVelocity()));
 
 		for (ICombatEntity hit : Game.world().environment().findCombatEntities(getCollisionBox(),
-				entity -> !entity.equals(executor) && !hitEntities.contains(entity))) {
+				entity -> !entity.equals(executor) && !hitEntities.contains(entity) && !entity.isDead())) {
 			for (ProjectileHitListener listener : hitListeners) listener.apply(executor, hit, this);
 			hitEntities.add(hit);
 			if (!multiTarget) {

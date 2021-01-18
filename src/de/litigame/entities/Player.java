@@ -77,7 +77,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
-		if (hotbar.getSelectedItem() instanceof Weapon)
+		if (hotbar.getSelectedItem() instanceof Weapon) {
+			setTurnOnMove(false);
 			setAngle(GeometricUtilities.calcRotationAngleInDegrees(getCenter(), Input.mouse().getMapLocation()));
+		} else setTurnOnMove(true);
 	}
 }
