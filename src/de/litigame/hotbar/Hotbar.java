@@ -74,10 +74,8 @@ public class Hotbar implements IRenderable {
 
 		image = Images.getRescaledCopy(image, 3);
 
-		graphics.drawImage(image, (Game.window().getWidth() - image.getWidth()) / 2,
-				Game.window().getHeight() - image.getHeight(), null);
-		System.out.println(Game.window().getWidth() + "  " + Game.window().getHeight());
-
+		graphics.drawImage(image, (Game.window().getResolution().width - image.getWidth()) / 2,
+				Game.window().getResolution().height - image.getHeight(), null);
 	}
 
 	public void setToSlot(int slot) {
