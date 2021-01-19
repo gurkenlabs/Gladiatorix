@@ -1,5 +1,6 @@
 package de.litigame;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +17,28 @@ public class Images {
 
 	public static BufferedImage get(String key) {
 		return images.get(key);
+	}
+
+	public static BufferedImage getCopy(String key) {
+		BufferedImage copy = new BufferedImage(get(key).getWidth(), get(key).getHeight(), get(key).getType());
+		Graphics2D g = copy.createGraphics();
+		g.drawImage(get(key), 0, 0, null);
+		g.dispose();
+		return copy;
+	}
+
+	public static BufferedImage getRescaledCopy(BufferedImage image, double scalar) {
+		BufferedImage scaled = new BufferedImage((int) (image.getWidth() * scalar), (int) (image.getHeight() * scalar),
+				image.getType());
+		Graphics2D g = scaled.createGraphics();
+		g.scale(scalar, scalar);
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+		return scaled;
+	}
+
+	public static BufferedImage getRescaledCopy(String key, double scalar) {
+		return getRescaledCopy(get(key), scalar);
 	}
 
 	public static void init(File imageFile) {

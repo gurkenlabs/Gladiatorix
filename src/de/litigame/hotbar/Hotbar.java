@@ -1,8 +1,11 @@
 package de.litigame.hotbar;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
+import de.litigame.Images;
 import de.litigame.items.Item;
 import de.litigame.items.Stackable;
 
@@ -55,7 +58,25 @@ public class Hotbar implements IRenderable {
 	}
 
 	@Override
-	public void render(Graphics2D g) {
+	public void render(Graphics2D graphics) {
+		BufferedImage slot = Images.get("slot");
+		BufferedImage image = new BufferedImage(slot.getWidth() * size(), slot.getHeight(), slot.getType());
+		Graphics2D g = image.createGraphics();
+
+		for (int i = 0; i < size(); ++i) {
+			int x = i * slot.getWidth(), y = 0;
+			g.drawImage(slot, x, y, null);
+			if (i == selectedSlot) g.drawImage(Images.get("selected_slot"), x, y, null);
+			if (items[i] != null) g.drawImage(items[i].getImage(), x, y, null);
+		}
+
+		g.dispose();
+
+		image = Images.getRescaledCopy(image, 3);
+
+		graphics.drawImage(image, (Game.window().getWidth() - image.getWidth()) / 2,
+				Game.window().getHeight() - image.getHeight(), null);
+		System.out.println(Game.window().getWidth() + "  " + Game.window().getHeight());
 
 	}
 
