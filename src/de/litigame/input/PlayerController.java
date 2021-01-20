@@ -14,9 +14,9 @@ import de.litigame.entities.Player;
 public class PlayerController extends KeyboardEntityController<Player>
 		implements KeyPressedListener, MouseWheelListener {
 
-	private List<Integer> attackKeys;
+	private List<Integer> attackKeys = new ArrayList<>();
 	private final HotbarController hotbarController;
-	private List<Integer> interactKeys;
+	private List<Integer> interactKeys = new ArrayList<>();
 	private final Player player;
 
 	public PlayerController() {
@@ -27,8 +27,6 @@ public class PlayerController extends KeyboardEntityController<Player>
 		super(player);
 		this.player = player;
 		hotbarController = new HotbarController(player.hotbar);
-		attackKeys = new ArrayList<>();
-		interactKeys = new ArrayList<>();
 
 		addAttackKey(attack);
 		addInteractKey(interact);
