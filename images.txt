@@ -1,1 +1,3 @@
 test:sprites/test-dead.png
+selected_slot:sprites/sel_slot.png
+slot:sprites/slot.png
