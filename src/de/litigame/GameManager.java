@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.input.InputManager;
+import de.litigame.items.Items;
 
 public class GameManager {
 
