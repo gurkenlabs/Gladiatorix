@@ -2,9 +2,11 @@ package de.litigame;
 
 import java.io.File;
 
+import com.sun.tools.javac.Main;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.gui.IngameScreen;
+import de.litigame.gui.MainMenu;
 import de.litigame.items.Items;
 
 public class Program {
@@ -15,6 +17,8 @@ public class Program {
 		Images.init(new File("images.txt"));
 		Items.init(new File("items.json"));
 		Game.screens().add(new IngameScreen());
+		Game.screens().add(new MainMenu("menu"));
+		Game.screens().display("menu");
 		GameManager.init();
 		Game.start();
 	}
