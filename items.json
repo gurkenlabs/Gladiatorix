@@ -25,5 +25,10 @@
 			"weapon_duration"		:	"200";
 			"weapon_range"			:	"100";
 		},
+		{
+			"item_class"			:	"potion",
+			"item_image"			:	"test",
+			"item_name"				:	"potion"
+		}
 	]
 }

@@ -1,21 +1,20 @@
 package de.litigame.items;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class Potion extends Item implements Stackable {
+import de.litigame.items.Item.Consumable;
+import de.litigame.items.Item.Stackable;
+
+public class Potion extends Item implements Stackable, Consumable {
 
 	private int amount = 1;
 
+	List<ConsumeListener> consumeListeners = new ArrayList<>();
+
 	public Potion(Map<String, String> itemInfo) {
 		super(itemInfo);
-	}
-
-	@Override
-	public boolean addAmount(int amount) {
-		int test = this.amount + amount;
-		if (test > STACK_SIZE || test < 0) return false;
-		this.amount = test;
-		return true;
 	}
 
 	@Override
@@ -24,7 +23,12 @@ public class Potion extends Item implements Stackable {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return amount <= 0;
+	public List<ConsumeListener> getConsumeListeners() {
+		return consumeListeners;
+	}
+
+	@Override
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 }
