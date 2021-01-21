@@ -59,9 +59,9 @@ public class HotbarController implements KeyPressedListener, MouseWheelListener 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		if (invertMouseWheel) {
-			bar.addToPosition(event.getWheelRotation());
-		} else {
 			bar.addToPosition(-event.getWheelRotation());
+		} else {
+			bar.addToPosition(event.getWheelRotation());
 		}
 	}
 

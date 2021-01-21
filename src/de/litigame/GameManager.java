@@ -27,6 +27,9 @@ public class GameManager {
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
+		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
+		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+
 		switchToState(GameState.INGAME);
 	}
 

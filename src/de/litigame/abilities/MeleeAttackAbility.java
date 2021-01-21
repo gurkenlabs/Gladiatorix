@@ -31,5 +31,4 @@ public class MeleeAttackAbility extends Ability {
 
 		addEffect(new MeleeAttackEffect(this));
 	}
-
 }
