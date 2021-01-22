@@ -16,6 +16,7 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
 
 @AnimationInfo(spritePrefix = "player")
@@ -37,6 +38,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	private Player() {
 		super("player");
+
+		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
 	}

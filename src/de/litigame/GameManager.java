@@ -7,7 +7,6 @@ import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
-import de.litigame.input.InputManager;
 import de.litigame.items.Items;
 
 public class GameManager {
@@ -19,7 +18,6 @@ public class GameManager {
 	}
 
 	public static void init() {
-		InputManager.init();
 
 		Game.world().setCamera(new PlayerCamera());
 
@@ -81,6 +79,5 @@ public class GameManager {
 	}
 
 	public static void switchToState(GameState state) {
-		InputManager.adjustInput(state);
 	}
 }
