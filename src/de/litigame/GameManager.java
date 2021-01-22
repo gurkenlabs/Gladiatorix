@@ -76,7 +76,7 @@ public class GameManager {
 	}
 
 	public static void switchToMap(String map) {
-		Game.world().unloadEnvironment();
+		// Game.world().unloadEnvironment();
 		Game.world().loadEnvironment(map);
 		Game.world().camera().setZoom(PlayerCamera.STD_ZOOM, PlayerCamera.STD_DELAY);
 	}
