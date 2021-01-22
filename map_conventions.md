@@ -1,6 +1,9 @@
 ## Layers
-1. prop | collision box
-2. trigger
+1. props
+2. collision boxes
+3. map areas
+4. triggers
+5. spawn points
 
 ## Triggers
 | tag        | description                            | required properties                         | optional properties        |
