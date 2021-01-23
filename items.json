@@ -22,13 +22,26 @@
 			"weapon_value"			:	"10",
 			"weapon_type"			:	"range",
 			"weapon_cooldown"		:	"200",
-			"weapon_duration"		:	"200";
-			"weapon_range"			:	"100";
+			"weapon_duration"		:	"200",
+			"weapon_range"			:	"100"
 		},
 		{
 			"item_class"			:	"potion",
 			"item_image"			:	"test",
 			"item_name"				:	"potion"
-		}
+		},
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"test",
+			"item_name"				:	"defaultWeapon",
+			"weapon_impact"			:	"0",
+			"weapon_impactAngle"	:	"0",
+			"weapon_multiTarget"	:	"false",
+			"weapon_value"			:	"0",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"0",
+			"weapon_duration"		:	"0",
+			"weapon_range"			:	"0"
+		},
 	]
 }

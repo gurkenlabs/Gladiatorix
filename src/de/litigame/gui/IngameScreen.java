@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.entities.IMobileEntity;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.litigame.entities.Enemy;
+import de.litigame.entities.EnemyController;
 import de.litigame.entities.Player;
 
 public class IngameScreen extends GameScreen {
@@ -21,8 +22,9 @@ public class IngameScreen extends GameScreen {
 
 		for (IMobileEntity e : Game.world().environment().getMobileEntities()) {
 			if (e instanceof Enemy) {
-				((Enemy) e).nav.render(g);
-				((AStarPathFinder) ((Enemy) e).nav.getPathFinder()).getGrid().render(g);
+				((Enemy) e).getController(EnemyController.class).nav.render(g);
+				((AStarPathFinder) ((Enemy) e).getController(EnemyController.class).nav.getPathFinder()).getGrid()
+						.render(g);
 			}
 		}
 
