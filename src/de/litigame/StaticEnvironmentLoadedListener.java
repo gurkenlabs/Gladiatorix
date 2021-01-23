@@ -6,11 +6,14 @@ import de.gurkenlabs.litiengine.environment.EnvironmentLoadedListener;
 
 public class StaticEnvironmentLoadedListener implements EnvironmentLoadedListener {
 
+	public static void attach(EnvironmentLoadedListener onLoaded) {
+		Game.world().onLoaded(new StaticEnvironmentLoadedListener(onLoaded));
+	}
+
 	private final EnvironmentLoadedListener listener;
 
-	public StaticEnvironmentLoadedListener(EnvironmentLoadedListener onLoaded) {
+	private StaticEnvironmentLoadedListener(EnvironmentLoadedListener onLoaded) {
 		listener = onLoaded;
-		Game.world().onLoaded(this);
 	}
 
 	@Override

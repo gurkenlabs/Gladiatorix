@@ -26,14 +26,18 @@ public class EnemyController extends MovementController<Enemy> {
 				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange;
 
 		if (!getEntity().isDead()) {
-			if (canSee) getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
-					getEntity().getTarget().getCenter()));
+			if (canSee) {
+				getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
+						getEntity().getTarget().getCenter()));
 
-			if (canHit) {
-				nav.stop();
-			} else {
-				if (canSee) {
+				if (canHit) {
+					nav.stop();
+				} else {
 					nav.navigate(getEntity().getTarget().getCenter());
+				}
+			} else {
+				if (!nav.isNavigating()) {
+					// idle behavior
 				}
 			}
 		}

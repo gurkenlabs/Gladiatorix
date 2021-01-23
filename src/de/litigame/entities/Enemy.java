@@ -33,7 +33,7 @@ public class Enemy extends Creature implements IFighter {
 
 		putWeapon((Weapon) Items.getItem("sword"));
 
-		new StaticEnvironmentLoadedListener(e -> {
+		StaticEnvironmentLoadedListener.attach(e -> {
 			MovementController<Enemy> controller = new EnemyController(this);
 			addController(controller);
 			Game.loop().attach(controller);

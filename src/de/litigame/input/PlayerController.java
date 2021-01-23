@@ -58,7 +58,7 @@ public class PlayerController extends KeyboardEntityController<Player> {
 		if (attackKeys.contains(event.getKeyCode())) player.attack();
 		if (interactKeys.contains(event.getKeyCode())) player.interact();
 
-		hotbarController.keyPressed(event);
+		hotbarController.handlePressedKey(event);
 	}
 
 	public void setAttackKeys(int... attack) {

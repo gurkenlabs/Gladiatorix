@@ -5,11 +5,10 @@ import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.util.ListUtilities;
 import de.litigame.hotbar.Hotbar;
 
-public class HotbarController implements KeyPressedListener {
+public class HotbarController {
 
 	private final Hotbar bar;
 	public boolean invertMouseWheel = false;
@@ -49,8 +48,7 @@ public class HotbarController implements KeyPressedListener {
 		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent event) {
+	public void handlePressedKey(KeyEvent event) {
 		int key = event.getKeyCode();
 
 		for (int slot = 0; slot < slotKeys.size(); ++slot) {
