@@ -13,12 +13,16 @@ import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
+import de.litigame.GameManager;
+import de.litigame.abilities.IHitAbility;
 
 public class EnemyController extends MovementController<Enemy> {
 
+	private static final int ATTACK_DELAY = 500;
 	private static final double P_REST = 0.7;
 	private static final int REST_TIME = 1000;
 	private static final int WANDER_RANGE = 2;
+	private int attack = GameManager.MillisToTicks(ATTACK_DELAY);
 	public final EntityNavigator nav;
 	private int rest = 0;
 	private final AttributeModifier<Float> slowness = new AttributeModifier<>(Modification.DIVIDE, 2);
@@ -31,6 +35,7 @@ public class EnemyController extends MovementController<Enemy> {
 
 	private void attack() {
 		nav.stop();
+		getEntity().getAttackAbility().cast();
 	}
 
 	private void chase() {
@@ -43,7 +48,7 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void rest() {
-		rest = REST_TIME * Game.loop().getTickRate() / 1000;
+		rest = GameManager.MillisToTicks(REST_TIME);
 	}
 
 	private void slowDown() {
@@ -69,17 +74,19 @@ public class EnemyController extends MovementController<Enemy> {
 
 		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
 				visionRange = getEntity().visionRange;
-		boolean canHit = getEntity().getAttackAbility().calculateImpactArea()
-				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange,
-				isDead = getEntity().isDead(), hasGoal = nav.isNavigating(), rests = rest > 0;
+		boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()),
+				canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(),
+				rests = rest > 0;
 
 		if (!isDead) {
 			if (canSee) {
 				speedUp();
 				turnToTarget();
 				if (canHit) {
-					attack();
+					if (attack <= 0) attack();
+					else--attack;
 				} else {
+					attack = GameManager.MillisToTicks(ATTACK_DELAY);
 					chase();
 				}
 			} else {

@@ -31,7 +31,7 @@ public class Enemy extends Creature implements IFighter {
 
 		setTarget(Player.getInstance());
 
-		putWeapon((Weapon) Items.getItem("sword"));
+		putWeapon((Weapon) Items.getItem("bow"));
 
 		StaticEnvironmentLoadedListener.attach(e -> {
 			MovementController<Enemy> controller = new EnemyController(this);
@@ -46,7 +46,7 @@ public class Enemy extends Creature implements IFighter {
 
 	@Override
 	public double getStrength() {
-		return 0;
+		return 10;
 	}
 
 	public void putWeapon(Weapon weapon) {

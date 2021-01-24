@@ -13,7 +13,9 @@ import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
+import de.gurkenlabs.litiengine.physics.Collision;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.gurkenlabs.litiengine.util.geom.Vector2D;
 
@@ -96,16 +98,27 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 	public void update() {
 		setLocation(GeometricUtilities.project(getLocation(), getAngle(), getTickVelocity()));
 
-		for (ICombatEntity hit : Game.world().environment().findCombatEntities(getCollisionBox(),
-				entity -> !entity.equals(executor) && !hitEntities.contains(entity) && !entity.isDead())) {
-			for (ProjectileHitListener listener : hitListeners) listener.apply(executor, hit, this);
-			hitEntities.add(hit);
-			if (!multiTarget) {
-				fall();
-				return;
+		for (ICollisionEntity hit : Game.physics().getCollisionEntities()) {
+			if (getCollisionBox().intersects(hit.getCollisionBox())) {
+				System.out.println(hit);
+				if (hit.getCollisionType() == Collision.STATIC) {
+					fall();
+					return;
+				} else if (hit instanceof ICombatEntity) {
+					ICombatEntity combatEntity = (ICombatEntity) hit;
+					if (!combatEntity.equals(executor) && !hitEntities.contains(combatEntity)
+							&& !combatEntity.isDead()) {
+						for (ProjectileHitListener listener : hitListeners)
+							listener.apply(executor, combatEntity, this);
+						if (!multiTarget) {
+							fall();
+							return;
+						}
+						hitEntities.add(combatEntity);
+					}
+				}
 			}
 		}
-
 		if (origin.distance(getCenter()) >= range) fall();
 	}
 }
