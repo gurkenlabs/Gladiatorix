@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.attributes.Attribute;
+import de.gurkenlabs.litiengine.attributes.AttributeModifier;
+import de.gurkenlabs.litiengine.attributes.Modification;
 import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
@@ -17,6 +20,7 @@ public class EnemyController extends MovementController<Enemy> {
 	private static final int WANDER_RANGE = 3;
 	public final EntityNavigator nav;
 	private int rest = 0;
+	private final AttributeModifier<Float> slowness = new AttributeModifier<>(Modification.DIVIDE, 2);
 
 	public EnemyController(Enemy enemy) {
 		super(enemy);
@@ -43,6 +47,13 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void slowDown() {
+		Attribute<Float> attribute = getEntity().getVelocity();
+		if (!attribute.isModifierApplied(slowness)) attribute.addModifier(slowness);
+	}
+
+	private void speedUp() {
+		Attribute<Float> attribute = getEntity().getVelocity();
+		if (attribute.isModifierApplied(slowness)) attribute.removeModifier(slowness);
 	}
 
 	private void turnToTarget() {
@@ -64,6 +75,7 @@ public class EnemyController extends MovementController<Enemy> {
 
 		if (!isDead) {
 			if (canSee) {
+				speedUp();
 				turnToTarget();
 				if (canHit) {
 					attack();
