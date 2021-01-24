@@ -30,7 +30,6 @@ public class EnemyController extends MovementController<Enemy> {
 
 	private void attack() {
 		nav.stop();
-
 	}
 
 	private void chase() {
