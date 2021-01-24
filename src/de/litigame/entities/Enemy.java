@@ -46,7 +46,7 @@ public class Enemy extends Creature implements IFighter {
 
 	@Override
 	public double getStrength() {
-		return 10;
+		return 1;
 	}
 
 	public void putWeapon(Weapon weapon) {

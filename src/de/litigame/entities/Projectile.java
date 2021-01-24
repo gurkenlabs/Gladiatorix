@@ -100,7 +100,6 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 		for (ICollisionEntity hit : Game.physics().getCollisionEntities()) {
 			if (getCollisionBox().intersects(hit.getCollisionBox())) {
-				System.out.println(hit);
 				if (hit.getCollisionType() == Collision.STATIC) {
 					fall();
 					return;
