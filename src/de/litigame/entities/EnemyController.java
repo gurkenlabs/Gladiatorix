@@ -33,6 +33,11 @@ public class EnemyController extends MovementController<Enemy> {
 		nav.navigate(getEntity().getTarget().getCenter());
 	}
 
+	private void idle() {
+		if (Game.random().nextBoolean()) rest();
+		else wanderAround();
+	}
+
 	private void rest() {
 		rest = REST_TIME * Game.loop().getTickRate() / 1000;
 	}
@@ -55,7 +60,7 @@ public class EnemyController extends MovementController<Enemy> {
 				visionRange = getEntity().visionRange;
 		boolean canHit = getEntity().getAttackAbility().calculateImpactArea()
 				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange,
-				isDead = getEntity().isDead(), hasGoal = nav.isNavigating();
+				isDead = getEntity().isDead(), hasGoal = nav.isNavigating(), rests = rest > 0;
 
 		if (!isDead) {
 			if (canSee) {
@@ -66,11 +71,9 @@ public class EnemyController extends MovementController<Enemy> {
 					chase();
 				}
 			} else {
-				if (hasGoal) {
-					slowDown();
-				} else if (rest <= 0) {
-					if (Game.random().nextBoolean()) rest();
-					else wanderAround();
+				slowDown();
+				if (!rests && !hasGoal) {
+					idle();
 				}
 			}
 		}
