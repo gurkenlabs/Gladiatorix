@@ -1,6 +1,11 @@
 package de.litigame.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
+import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.physics.MovementController;
@@ -8,7 +13,10 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 
 public class EnemyController extends MovementController<Enemy> {
 
+	private static final int REST_TIME = 1000;
+	private static final int WANDER_RANGE = 3;
 	public final EntityNavigator nav;
+	private int rest = 0;
 
 	public EnemyController(Enemy enemy) {
 		super(enemy);
@@ -25,12 +33,11 @@ public class EnemyController extends MovementController<Enemy> {
 		nav.navigate(getEntity().getTarget().getCenter());
 	}
 
-	private void idle() {
-
+	private void rest() {
+		rest = REST_TIME * Game.loop().getTickRate() / 1000;
 	}
 
 	private void slowDown() {
-
 	}
 
 	private void turnToTarget() {
@@ -42,6 +49,8 @@ public class EnemyController extends MovementController<Enemy> {
 	public void update() {
 		super.update();
 		// maybe add flee range later
+		if (rest > 0) --rest;
+
 		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
 				visionRange = getEntity().visionRange;
 		boolean canHit = getEntity().getAttackAbility().calculateImpactArea()
@@ -57,12 +66,29 @@ public class EnemyController extends MovementController<Enemy> {
 					chase();
 				}
 			} else {
-				if (!hasGoal) {
+				if (hasGoal) {
 					slowDown();
-				} else {
-					idle();
+				} else if (rest <= 0) {
+					if (Game.random().nextBoolean()) rest();
+					else wanderAround();
 				}
 			}
 		}
+	}
+
+	private void wanderAround() {
+		AStarGrid grid = ((AStarPathFinder) nav.getPathFinder()).getGrid();
+
+		Set<AStarNode> nodesInRange = new HashSet<>();
+		nodesInRange.add(grid.getNode(getEntity().getCenter()));
+		for (int i = 0; i < WANDER_RANGE; ++i) {
+			Set<AStarNode> discoveredNodes = new HashSet<>();
+			for (AStarNode node : nodesInRange) {
+				discoveredNodes.addAll(grid.getNeighbors(node));
+			}
+			nodesInRange.addAll(discoveredNodes);
+		}
+
+		nav.navigate(Game.random().choose(nodesInRange).getLocation());
 	}
 }
