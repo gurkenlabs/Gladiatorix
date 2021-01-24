@@ -16,6 +16,28 @@ public class EnemyController extends MovementController<Enemy> {
 		nav = new EntityNavigator(enemy, new AStarPathFinder(Game.world().environment().getMap()));
 	}
 
+	private void attack() {
+		nav.stop();
+
+	}
+
+	private void chase() {
+		nav.navigate(getEntity().getTarget().getCenter());
+	}
+
+	private void idle() {
+
+	}
+
+	private void slowDown() {
+
+	}
+
+	private void turnToTarget() {
+		getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
+				getEntity().getTarget().getCenter()));
+	}
+
 	@Override
 	public void update() {
 		super.update();
@@ -23,24 +45,24 @@ public class EnemyController extends MovementController<Enemy> {
 		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
 				visionRange = getEntity().visionRange;
 		boolean canHit = getEntity().getAttackAbility().calculateImpactArea()
-				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange;
+				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange,
+				isDead = getEntity().isDead(), hasGoal = nav.isNavigating();
 
-		if (!getEntity().isDead()) {
+		if (!isDead) {
 			if (canSee) {
-				getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
-						getEntity().getTarget().getCenter()));
-
+				turnToTarget();
 				if (canHit) {
-					nav.stop();
+					attack();
 				} else {
-					nav.navigate(getEntity().getTarget().getCenter());
+					chase();
 				}
 			} else {
-				if (!nav.isNavigating()) {
-					// idle behavior
+				if (!hasGoal) {
+					slowDown();
+				} else {
+					idle();
 				}
 			}
 		}
 	}
-
 }
