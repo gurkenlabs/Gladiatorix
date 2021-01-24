@@ -16,8 +16,9 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 
 public class EnemyController extends MovementController<Enemy> {
 
+	private static final double P_REST = 0.7;
 	private static final int REST_TIME = 1000;
-	private static final int WANDER_RANGE = 3;
+	private static final int WANDER_RANGE = 2;
 	public final EntityNavigator nav;
 	private int rest = 0;
 	private final AttributeModifier<Float> slowness = new AttributeModifier<>(Modification.DIVIDE, 2);
@@ -37,7 +38,7 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void idle() {
-		if (Game.random().nextBoolean()) rest();
+		if (Math.random() < P_REST) rest();
 		else wanderAround();
 	}
 
