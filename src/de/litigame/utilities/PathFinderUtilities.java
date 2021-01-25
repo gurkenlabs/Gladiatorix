@@ -1,4 +1,4 @@
-package de.litigame.items.utilities;
+package de.litigame.utilities;
 
 import java.awt.geom.Point2D;
 import java.util.HashSet;

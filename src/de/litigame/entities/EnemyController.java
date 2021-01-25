@@ -13,7 +13,7 @@ import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.IHitAbility;
-import de.litigame.items.utilities.PathFinderUtilities;
+import de.litigame.utilities.PathFinderUtilities;
 
 public class EnemyController extends MovementController<Enemy> {
 
