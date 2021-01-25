@@ -1,13 +1,11 @@
 package de.litigame.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.attributes.Modification;
-import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
@@ -15,6 +13,7 @@ import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.IHitAbility;
+import de.litigame.items.utilities.PathFinderUtilities;
 
 public class EnemyController extends MovementController<Enemy> {
 
@@ -49,6 +48,13 @@ public class EnemyController extends MovementController<Enemy> {
 
 	private void rest() {
 		rest = GameManager.MillisToTicks(REST_TIME);
+	}
+
+	private void runAway() {
+		AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(),
+				getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
+
+		nav.navigate(node.getLocation());
 	}
 
 	private void slowDown() {
@@ -99,18 +105,9 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void wanderAround() {
-		AStarGrid grid = ((AStarPathFinder) nav.getPathFinder()).getGrid();
+		Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(((AStarPathFinder) nav.getPathFinder()).getGrid(),
+				getEntity().getCenter(), WANDER_RANGE);
 
-		Set<AStarNode> nodesInRange = new HashSet<>();
-		nodesInRange.add(grid.getNode(getEntity().getCenter()));
-		for (int i = 0; i < WANDER_RANGE; ++i) {
-			Set<AStarNode> discoveredNodes = new HashSet<>();
-			for (AStarNode node : nodesInRange) {
-				discoveredNodes.addAll(grid.getNeighbors(node));
-			}
-			nodesInRange.addAll(discoveredNodes);
-		}
-
-		nav.navigate(Game.random().choose(nodesInRange).getLocation());
+		nav.navigate(Game.random().choose(nodes).getLocation());
 	}
 }
