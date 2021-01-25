@@ -14,7 +14,6 @@ import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
-import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.gurkenlabs.litiengine.util.geom.Vector2D;
 
 @CollisionInfo(collision = false, collisionBoxWidth = 1, collisionBoxHeight = 1, valign = Valign.MIDDLE)
@@ -94,7 +93,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
-		setLocation(GeometricUtilities.project(getLocation(), getAngle(), getTickVelocity()));
+		Game.physics().move(this, getTickVelocity());
 
 		for (ICombatEntity hit : Game.world().environment().findCombatEntities(getCollisionBox(),
 				entity -> !entity.equals(executor) && !hitEntities.contains(entity) && !entity.isDead())) {

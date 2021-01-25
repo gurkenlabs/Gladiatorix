@@ -7,3 +7,8 @@ config.properties
 crash.txt
 game.log*
 /.gradle
+.idea/
+build/
+gradle/
+gradlew
+gradlew.bat
