@@ -34,6 +34,8 @@ public class Items {
 		switch (info.get("item_class")) {
 		case "weapon":
 			return new Weapon(info);
+		case "potion":
+			return new Potion(info);
 		}
 		return null;
 	}

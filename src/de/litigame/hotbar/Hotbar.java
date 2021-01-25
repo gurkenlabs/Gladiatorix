@@ -7,7 +7,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.litigame.Images;
 import de.litigame.items.Item;
-import de.litigame.items.Stackable;
+import de.litigame.items.Item.Stackable;
 
 public class Hotbar implements IRenderable {
 
@@ -28,11 +28,12 @@ public class Hotbar implements IRenderable {
 				items[i] = other;
 				removeEmptyItems();
 				return true;
-			} else if (items[i].getName().equals(other.getName()) && Item.isStackable(other)
-					&& ((Stackable) items[i]).addAmount(((Stackable) other).getAmount())) {
-						removeEmptyItems();
-						return true;
-					}
+			} else if (items[i].getName().equals(other.getName()) && Item.isStackable(other)) {
+				int excess = Item.getStackable(items[i]).addAmount(Item.getStackable(other).getAmount());
+				Item.getStackable(other).setAmount(excess);
+				removeEmptyItems();
+				if (excess == 0) return true;
+			}
 		}
 		return false;
 	}

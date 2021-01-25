@@ -11,8 +11,12 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
+import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.abilities.MeleeAttackAbility;
+import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
 
 @AnimationInfo(spritePrefix = "player")
@@ -29,10 +33,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public final Hotbar hotbar = new Hotbar();
-	public final MeleeAttackAbility melee = new MeleeAttackAbility(this);
+	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
+	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
 	private Player() {
 		super("player");
+
+		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
 	}
@@ -46,6 +53,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				melee.cast();
 				break;
 			case RANGE:
+				weapon.overrideAbility(range);
+				range.cast();
 				break;
 			}
 		}
@@ -71,5 +80,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
+		if (hotbar.getSelectedItem() instanceof Weapon) {
+			setTurnOnMove(false);
+			setAngle(GeometricUtilities.calcRotationAngleInDegrees(getCenter(), Input.mouse().getMapLocation()));
+		} else setTurnOnMove(true);
 	}
 }
