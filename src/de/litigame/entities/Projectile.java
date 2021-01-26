@@ -15,7 +15,8 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
-import de.gurkenlabs.litiengine.util.geom.Vector2D;
+import de.gurkenlabs.litiengine.physics.Collision;
+import de.litigame.utilities.GeometryUtilities;
 
 @CollisionInfo(collision = false, collisionBoxWidth = 1, collisionBoxHeight = 1, valign = Valign.MIDDLE)
 @EntityInfo(width = 1, height = 1)
@@ -51,7 +52,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		multiTarget = ability.isMultiTarget();
 		origin = (Point2D) position.clone();
 		range = ability.getAttributes().range().get();
-		setLocation(calcStartLocation(position));
+		setLocation(GeometryUtilities.getCenterLocation(this));
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
 
@@ -64,13 +65,6 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	public void addHitListener(ProjectileHitListener listener) {
 		hitListeners.add(listener);
-	}
-
-	private Point2D calcStartLocation(Point2D position) {
-		Vector2D loc = new Vector2D(getLocation().getX(), getLocation().getY());
-		Vector2D delta = new Vector2D(getCenter(), position);
-		Vector2D start = loc.add(delta);
-		return new Point2D.Double(start.getX(), start.getY());
 	}
 
 	private void fall() {

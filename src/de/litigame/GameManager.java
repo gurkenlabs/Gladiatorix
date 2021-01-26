@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.CreatureMapObjectLoader;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Enemy;
+import de.litigame.entities.ItemProp;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.items.Items;
@@ -32,6 +33,7 @@ public class GameManager {
 
 		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
 		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+		Game.world().environment().add(new ItemProp(Items.getItem("bow")));
 
 		switchToState(GameState.INGAME);
 	}

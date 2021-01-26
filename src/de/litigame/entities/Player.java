@@ -32,7 +32,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		return instance;
 	}
 
-	public final Hotbar hotbar = new Hotbar();
+	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
@@ -62,6 +62,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public double distanceTo(Entity other) {
 		return getLocation().distance(other.getLocation());
+	}
+
+	public void dropItem() {
+		hotbar.dropSelectedItem();
 	}
 
 	@Override
