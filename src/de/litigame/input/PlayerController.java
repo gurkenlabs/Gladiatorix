@@ -66,7 +66,7 @@ public class PlayerController extends KeyboardEntityController<Player> {
 		super.handlePressedKey(event);
 
 		if (attackKeys.contains(event.getKeyCode())) player.attack();
-		if (dropKeys.contains(event.getKeyCode())) player.drop();
+		if (dropKeys.contains(event.getKeyCode())) player.dropItem();
 		if (interactKeys.contains(event.getKeyCode())) player.interact();
 
 		hotbarController.handlePressedKey(event);

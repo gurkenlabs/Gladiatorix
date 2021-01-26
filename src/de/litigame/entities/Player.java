@@ -1,6 +1,8 @@
 package de.litigame.entities;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -8,9 +10,10 @@ import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.AnimationInfo;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
-import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
+import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.abilities.MeleeAttackAbility;
@@ -18,6 +21,7 @@ import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
+import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
@@ -26,7 +30,9 @@ import de.litigame.items.Weapon;
 
 public class Player extends Creature implements IUpdateable, IFighter {
 
-	private static Player instance = new Player();
+	private static final Player instance = new Player();
+
+	private static final int PICKUP_RANGE = 20;
 
 	public static Player getInstance() {
 		return instance;
@@ -60,11 +66,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		}
 	}
 
-	public double distanceTo(Entity other) {
-		return getLocation().distance(other.getLocation());
-	}
-
-	public void drop() {
+	public void dropItem() {
 		hotbar.dropSelectedItem();
 	}
 
@@ -75,7 +77,17 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
+		pickUpItem();
 		Game.world().environment().interact(this);
+	}
+
+	public void pickUpItem() {
+		List<IEntity> props = new ArrayList<>();
+		for (Prop prop : Game.world().environment().getProps()) {
+			if (getCenter().distance(prop.getCenter()) <= PICKUP_RANGE) props.add(prop);
+		}
+		ItemProp nearest = (ItemProp) GeometryUtilities.getNearestEntity(this, props);
+		if (nearest != null && hotbar.addItem(nearest.item)) Game.world().environment().remove(nearest);
 	}
 
 	public boolean touches(Rectangle2D rect) {

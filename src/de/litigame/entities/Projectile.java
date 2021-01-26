@@ -52,7 +52,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		multiTarget = ability.isMultiTarget();
 		origin = (Point2D) position.clone();
 		range = ability.getAttributes().range().get();
-		setLocation(GeometryUtilities.getCenterLocation(this));
+		GeometryUtilities.setCenter(this, position);
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
 
@@ -88,6 +88,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
+
 		Game.physics().move(this, getTickVelocity());
 
 		for (ICollisionEntity hit : Game.physics().getCollisionEntities()) {

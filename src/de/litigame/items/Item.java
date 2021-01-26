@@ -91,8 +91,7 @@ public class Item {
 
 	public void drop(Point2D location) {
 		ItemProp prop = new ItemProp(this);
-		prop.setLocation(location);
-		prop.setLocation(GeometryUtilities.getCenterLocation(prop));
+		GeometryUtilities.setCenter(prop, location);
 		Game.world().environment().add(prop);
 	}
 
