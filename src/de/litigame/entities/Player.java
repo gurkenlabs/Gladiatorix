@@ -64,7 +64,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		return getLocation().distance(other.getLocation());
 	}
 
-	public void dropItem() {
+	public void drop() {
 		hotbar.dropSelectedItem();
 	}
 

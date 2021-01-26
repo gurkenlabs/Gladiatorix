@@ -53,6 +53,7 @@ public class Hotbar implements IRenderable {
 	}
 
 	public void dropSelectedItem() {
+		if (getSelectedItem() == null) return;
 		getSelectedItem().drop(owner.getCenter());
 		items[selectedSlot] = null;
 	}
