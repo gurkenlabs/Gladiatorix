@@ -36,6 +36,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
+	private int money;
+
 	private Player() {
 		super("player");
 
@@ -68,6 +70,14 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public double getStrength() {
 		// TODO Auto-generated method stub
 		return 10;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public void interact() {
