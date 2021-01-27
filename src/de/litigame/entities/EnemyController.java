@@ -1,24 +1,27 @@
 package de.litigame.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.attributes.Modification;
-import de.gurkenlabs.litiengine.entities.behavior.AStarGrid;
 import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
 import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
+import de.litigame.GameManager;
+import de.litigame.abilities.IHitAbility;
+import de.litigame.utilities.PathFinderUtilities;
 
 public class EnemyController extends MovementController<Enemy> {
 
+	private static final int ATTACK_DELAY = 500;
 	private static final double P_REST = 0.7;
 	private static final int REST_TIME = 1000;
 	private static final int WANDER_RANGE = 2;
+	private int attack = GameManager.MillisToTicks(ATTACK_DELAY);
 	public final EntityNavigator nav;
 	private int rest = 0;
 	private final AttributeModifier<Float> slowness = new AttributeModifier<>(Modification.DIVIDE, 2);
@@ -31,6 +34,7 @@ public class EnemyController extends MovementController<Enemy> {
 
 	private void attack() {
 		nav.stop();
+		getEntity().getAttackAbility().cast();
 	}
 
 	private void chase() {
@@ -43,7 +47,14 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void rest() {
-		rest = REST_TIME * Game.loop().getTickRate() / 1000;
+		rest = GameManager.MillisToTicks(REST_TIME);
+	}
+
+	private void runAway() {
+		AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(),
+				getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
+
+		nav.navigate(node.getLocation());
 	}
 
 	private void slowDown() {
@@ -69,17 +80,19 @@ public class EnemyController extends MovementController<Enemy> {
 
 		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
 				visionRange = getEntity().visionRange;
-		boolean canHit = getEntity().getAttackAbility().calculateImpactArea()
-				.intersects(getEntity().getTarget().getCollisionBox()), canSee = dist <= visionRange,
-				isDead = getEntity().isDead(), hasGoal = nav.isNavigating(), rests = rest > 0;
+		boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()),
+				canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(),
+				rests = rest > 0;
 
 		if (!isDead) {
 			if (canSee) {
 				speedUp();
 				turnToTarget();
 				if (canHit) {
-					attack();
+					if (attack <= 0) attack();
+					else--attack;
 				} else {
+					attack = GameManager.MillisToTicks(ATTACK_DELAY);
 					chase();
 				}
 			} else {
@@ -92,18 +105,9 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void wanderAround() {
-		AStarGrid grid = ((AStarPathFinder) nav.getPathFinder()).getGrid();
+		Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(((AStarPathFinder) nav.getPathFinder()).getGrid(),
+				getEntity().getCenter(), WANDER_RANGE);
 
-		Set<AStarNode> nodesInRange = new HashSet<>();
-		nodesInRange.add(grid.getNode(getEntity().getCenter()));
-		for (int i = 0; i < WANDER_RANGE; ++i) {
-			Set<AStarNode> discoveredNodes = new HashSet<>();
-			for (AStarNode node : nodesInRange) {
-				discoveredNodes.addAll(grid.getNeighbors(node));
-			}
-			nodesInRange.addAll(discoveredNodes);
-		}
-
-		nav.navigate(Game.random().choose(nodesInRange).getLocation());
+		nav.navigate(Game.random().choose(nodes).getLocation());
 	}
 }
