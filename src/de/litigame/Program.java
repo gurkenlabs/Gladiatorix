@@ -19,7 +19,7 @@ public class Program {
 		Items.init(new File("items.json"));
 		Game.config().graphics().setDisplayMode(DisplayMode.BORDERLESS);
 		Game.screens().add(new IngameScreen());
-		Game.screens().add(new MainMenu("menu"));
+		Game.screens().add(new MainMenu("menu_item"));
 		Game.screens().display("menu");
 		GameManager.init();
 		Game.start();

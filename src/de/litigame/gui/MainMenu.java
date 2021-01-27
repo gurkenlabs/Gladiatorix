@@ -6,6 +6,7 @@ import java.io.File;
 import com.sun.tools.javac.Main;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.ImageRenderer;
+import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
@@ -24,17 +25,22 @@ public class MainMenu extends Screen {
 
     public MainMenu(final double x, final double y, final double width, final double height, String image, final String... items){
         super("menu");
-        Spritesheet bkg = new Spritesheet(Images.getRescaledCopy(Images.get(image),2), "screens/"+image+".jpg", (int) Math.round(width), (int) Math.round(height));
-        menu = new Menu(x,y,width,height,bkg,items);
+        Spritesheet item = new Spritesheet(Images.get(image), "screens/"+image+".jpg", 830, 199);
+        menu = new Menu(x,y,width,height, item, "Start Game", "Load Game", "Settings", "Exit");
+        ImageComponent bkgr = new ImageComponent(0,0, Images.get("menu"));
+        getComponents().add(bkgr);
+        getComponents().add(menu);
     }
 
-    @Override
-    public void render(Graphics2D g) {
+    //@Override
+
+    //public void render(Graphics2D g) {
+        //Spritesheet img = new Spritesheet(Images.get("menu_item"), "screens/menu_item.jpg", 1, 1);
         /*System.out.println(this.menu.getBackground())
           ImageRenderer.render(g, this.menu.getBackground().getImage().getScaledInstance(1920,1080,0),0,0);
           menu.prepare();
           ImageRenderer.render(g, Images.get("menu").getScaledInstance(1920,1080,0),0,0);
-          Player.getInstance().hotbar.render(g);*/
-        menu.render(g);
-    }
+          Player.getInstance().hotbar.render(g);
+        menu.render(g);*/
+    //}
 }
