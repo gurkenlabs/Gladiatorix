@@ -35,6 +35,10 @@ public class GameManager {
 		switchToState(GameState.INGAME);
 	}
 
+	public static int MillisToTicks(int millis) {
+		return Game.loop().getTickRate() * millis / 1000;
+	}
+
 	private static void setupMapObjects(Environment env) {
 		setupTriggers(env);
 	}
