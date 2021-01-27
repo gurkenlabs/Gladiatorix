@@ -25,14 +25,16 @@ public class MainMenu extends Screen {
     public MainMenu(final double x, final double y, final double width, final double height, String image, final String... items){
         super("menu");
         Spritesheet bkg = new Spritesheet(Images.getRescaledCopy(Images.get(image),2), "screens/"+image+".jpg", (int) Math.round(width), (int) Math.round(height));
-        this.menu = new Menu(x,y,width,height,bkg,items);
+        menu = new Menu(x,y,width,height,bkg,items);
     }
 
     @Override
     public void render(Graphics2D g) {
-        //System.out.println(this.menu.getBackground().getName());
-        this.menu.render(g);
-        //ImageRenderer.render(g, Images.get("menu").getScaledInstance(1920,1080,0),0,0);
-        //Player.getInstance().hotbar.render(g);
+        /*System.out.println(this.menu.getBackground())
+          ImageRenderer.render(g, this.menu.getBackground().getImage().getScaledInstance(1920,1080,0),0,0);
+          menu.prepare();
+          ImageRenderer.render(g, Images.get("menu").getScaledInstance(1920,1080,0),0,0);
+          Player.getInstance().hotbar.render(g);*/
+        menu.render(g);
     }
 }
