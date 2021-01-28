@@ -14,6 +14,7 @@ import de.litigame.items.Items;
 public class GameManager {
 
 	public static void enterPortal(String map, double x, double y) {
+		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
 		Game.world().environment().add(Player.getInstance());
