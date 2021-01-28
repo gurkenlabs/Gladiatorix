@@ -6,30 +6,38 @@ import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.CreatureMapObjectLoader;
 import de.gurkenlabs.litiengine.environment.Environment;
-import de.litigame.entities.NPC;
+import de.litigame.entities.Enemy;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
-import de.litigame.input.InputManager;
+import de.litigame.items.Items;
 
 public class GameManager {
 
 	public static void enterPortal(String map, double x, double y) {
+		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
 		Game.world().environment().add(Player.getInstance());
 	}
 
 	public static void init() {
-		InputManager.init();
+		CreatureMapObjectLoader.registerCustomCreatureType(Enemy.class);
 
 		Game.world().setCamera(new PlayerCamera());
 
 		Game.world().onLoaded(GameManager::setupMapObjects);
 
-		CreatureMapObjectLoader.registerCustomCreatureType(NPC.class);
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
+
+		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
+		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+
 		switchToState(GameState.INGAME);
+	}
+
+	public static int MillisToTicks(int millis) {
+		return Game.loop().getTickRate() * millis / 1000;
 	}
 
 	private static void setupMapObjects(Environment env) {
@@ -79,6 +87,5 @@ public class GameManager {
 	}
 
 	public static void switchToState(GameState state) {
-		InputManager.adjustInput(state);
 	}
 }
