@@ -1,12 +1,18 @@
 package de.litigame.items;
 
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Creature;
-import de.litigame.Images;
+import de.gurkenlabs.litiengine.graphics.Spritesheet;
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.entities.ItemProp;
+import de.litigame.utilities.GeometryUtilities;
+import de.litigame.utilities.ImageUtilities;
 
 public class Item {
 
@@ -72,20 +78,32 @@ public class Item {
 		return Arrays.asList(item.getClass().getInterfaces()).contains(Stackable.class);
 	}
 
-	protected BufferedImage image;
-
 	protected String name;
 
+	protected Spritesheet sprite;
+
 	public Item(Map<String, String> itemInfo) {
-		image = Images.get(itemInfo.get("item_image"));
+		String spriteName = itemInfo.get("item_image");
+		BufferedImage image = Resources.images().get(spriteName);
+		sprite = new Spritesheet(image, ImageUtilities.getPath(spriteName), image.getWidth(), image.getHeight());
 		name = itemInfo.get("item_name");
 	}
 
+	public void drop(Point2D location) {
+		ItemProp prop = new ItemProp(this);
+		GeometryUtilities.setCenter(prop, location);
+		Game.world().environment().add(prop);
+	}
+
 	public BufferedImage getImage() {
-		return image;
+		return sprite.getImage();
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public Spritesheet getSprite() {
+		return sprite;
 	}
 }
