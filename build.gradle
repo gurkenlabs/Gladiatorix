@@ -5,7 +5,7 @@ apply plugin: 'application'
 // give your project a name
 archivesBaseName = "GURK NUKEM"
 version = "v0.0.1"
-targetCompatibility = "1.8"
+targetCompatibility = "15"
 mainClassName = "de.litigame.Program"
 
 repositories {
