@@ -1,8 +1,7 @@
 package de.litigame.entities;
 
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -19,6 +18,7 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.input.IInteractListener;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
 import de.litigame.utilities.GeometryUtilities;
@@ -39,12 +39,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public final Hotbar hotbar = new Hotbar(this);
+	public ArrayList<NpcController> interactListener;
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
 	private Player() {
 		super("player");
-
+		interactListener = new ArrayList<>();
 		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
@@ -77,10 +78,17 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
+		interactNPC();
 		pickUpItem();
 		Game.world().environment().interact(this);
 	}
 
+	public void interactNPC() {
+		//System.out.println(interactListener.size());
+		for(NpcController npc : interactListener){
+			npc.getEntity().interact();
+		}
+	}
 	public void pickUpItem() {
 		List<IEntity> props = new ArrayList<>();
 		for (Prop prop : Game.world().environment().getProps()) {

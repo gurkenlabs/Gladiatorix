@@ -11,11 +11,12 @@ import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.IHitAbility;
+import de.litigame.input.IInteractListener;
 import de.litigame.utilities.PathFinderUtilities;
 
 import java.util.Set;
 
-public class NpcController extends MovementController<NPC> {
+public class NpcController extends MovementController<NPC> implements IInteractListener {
 
     private static final int ATTACK_DELAY = 500;
     private static final double P_REST = 0.7;
@@ -57,8 +58,12 @@ public class NpcController extends MovementController<NPC> {
 
         if (!isDead) {
             if (canSee) {
+                if(!Player.getInstance().interactListener.contains(this)) {
+                    Player.getInstance().interactListener.add(this);
+                }
                 turnToTarget();
             } else {
+                Player.getInstance().interactListener.remove(this);
                 if (!rests && !hasGoal) {
                     idle();
                 }
@@ -71,5 +76,10 @@ public class NpcController extends MovementController<NPC> {
                 getEntity().getCenter(), WANDER_RANGE);
 
         nav.navigate(Game.random().choose(nodes).getLocation());
+    }
+
+    @Override
+    public void interact(Player player) {
+        player.interactListener.add(this);
     }
 }

@@ -3,6 +3,7 @@ package de.litigame.entities;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+import com.sun.xml.bind.v2.TODO;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.Valign;
@@ -25,9 +26,8 @@ import de.litigame.items.Weapon;
 @MovementInfo(velocity = 70)
 
 public class NPC extends Creature implements IUpdateable{
-
     //private NPC instance = new NPC();
-    private EntityNavigator nav = new EntityNavigator(this, new AStarPathFinder(Game.world().environment().getMap()));
+    //private EntityNavigator nav = new EntityNavigator(this, new AStarPathFinder(Game.world().environment().getMap()));
     public int visionRange = 40;
 
     public NPC() {
@@ -46,6 +46,7 @@ public class NPC extends Creature implements IUpdateable{
     }
 
     public void interact() {
+        //TODO: NPC-Player interaction
         Game.world().environment().interact(this);
     }
 
@@ -54,8 +55,5 @@ public class NPC extends Creature implements IUpdateable{
     }
 
     @Override
-    public void update() {
-        //Path path = nav.getPathFinder().findPath(this, new Point2D.Double(200,200));
-        //nav.navigate(path.getPath());
-    }
+    public void update() {}
 }
