@@ -12,6 +12,7 @@ import de.litigame.entities.Player;
 public class PlayerController extends KeyboardEntityController<Player> {
 
 	private List<Integer> attackKeys = new ArrayList<>();
+	private boolean canInteract = true;
 	private List<Integer> dropKeys = new ArrayList<>();
 	private final HotbarController hotbarController;
 	private List<Integer> interactKeys = new ArrayList<>();
@@ -34,6 +35,7 @@ public class PlayerController extends KeyboardEntityController<Player> {
 		addDropKey(drop);
 		addInteractKey(interact);
 
+		Input.keyboard().onKeyReleased(this::handleReleasedKey);
 		Input.mouse().onWheelMoved(hotbarController::handleMovedWheel);
 	}
 
@@ -67,9 +69,16 @@ public class PlayerController extends KeyboardEntityController<Player> {
 
 		if (attackKeys.contains(event.getKeyCode())) player.attack();
 		if (dropKeys.contains(event.getKeyCode())) player.dropItem();
-		if (interactKeys.contains(event.getKeyCode())) player.interact();
+		if (interactKeys.contains(event.getKeyCode()) && canInteract) {
+			player.interact();
+			canInteract = false;
+		}
 
 		hotbarController.handlePressedKey(event);
+	}
+
+	public void handleReleasedKey(KeyEvent event) {
+		if (interactKeys.contains(event.getKeyCode())) canInteract = true;
 	}
 
 	public void setAttackKeys(int... attack) {
