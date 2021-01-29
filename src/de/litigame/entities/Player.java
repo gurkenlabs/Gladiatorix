@@ -83,8 +83,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
-		pickUpItem();
 		for (InteractListener listener : interactListeners) listener.interact(this);
+		pickUpItem();
 		Game.world().environment().interact(this);
 	}
 

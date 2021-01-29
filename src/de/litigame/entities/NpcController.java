@@ -13,7 +13,7 @@ import de.litigame.utilities.PathFinderUtilities;
 
 import java.util.Set;
 
-public class NpcController extends MovementController<NPC> {
+public class NpcController extends MovementController<NPC> implements InteractListener{
 
     private static final double P_REST = 0.7;
     private static final int REST_TIME = 1000;
@@ -53,12 +53,10 @@ public class NpcController extends MovementController<NPC> {
 
         if (!isDead) {
             if (canSee) {
-                if(!Player.getInstance().interactListener.contains(this)) {
-                    Player.getInstance().interactListener.add(this);
-                }
+                Player.getInstance().addInteractListener(this);
                 turnToTarget();
             } else {
-                Player.getInstance().interactListener.remove(this);
+                Player.getInstance().removeInteractListener(this);
                 if (!rests && !hasGoal) {
                     idle();
                 }
@@ -71,5 +69,10 @@ public class NpcController extends MovementController<NPC> {
                 getEntity().getCenter(), WANDER_RANGE);
 
         nav.navigate(Game.random().choose(nodes).getLocation());
+    }
+
+    @Override
+    public void interact(Player player) {
+        // TODO Auto-generated method stub
     }
 }
