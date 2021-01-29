@@ -13,6 +13,8 @@ import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.entities.behavior.PathFinder;
 import de.gurkenlabs.litiengine.entities.behavior.PathFinder.*;
 import de.gurkenlabs.litiengine.environment.GameWorld;
+import de.gurkenlabs.litiengine.physics.MovementController;
+import de.litigame.StaticEnvironmentLoadedListener;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.items.Weapon;
@@ -25,10 +27,16 @@ import de.litigame.items.Weapon;
 public class NPC extends Creature implements IUpdateable{
 
     //private NPC instance = new NPC();
-    private EntityNavigator EN = new EntityNavigator(this, new AStarPathFinder(Game.world().environment().getMap()));
+    private EntityNavigator nav = new EntityNavigator(this, new AStarPathFinder(Game.world().environment().getMap()));
+    public int visionRange = 40;
 
     public NPC() {
         super("NPC");
+        StaticEnvironmentLoadedListener.attach(e -> {
+            MovementController<NPC> controller = new NpcController(this);
+            addController(controller);
+            Game.loop().attach(controller);
+        });
         Game.loop().attach(this);
     }
 
@@ -47,7 +55,7 @@ public class NPC extends Creature implements IUpdateable{
 
     @Override
     public void update() {
-        //Path path = EN.getPathFinder().findPath(this, new Point2D.Double(200,200));
-        //EN.navigate(path.getPath());
+        //Path path = nav.getPathFinder().findPath(this, new Point2D.Double(200,200));
+        //nav.navigate(path.getPath());
     }
 }

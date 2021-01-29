@@ -25,7 +25,7 @@ import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
-@EntityInfo(width = 16, height = 6)
+@EntityInfo(width = 16, height = 16)
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature implements IUpdateable, IFighter {
