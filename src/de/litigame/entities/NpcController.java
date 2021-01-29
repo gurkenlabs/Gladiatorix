@@ -1,7 +1,6 @@
 package de.litigame.entities;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.attributes.Attribute;
 import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.attributes.Modification;
 import de.gurkenlabs.litiengine.entities.behavior.AStarNode;
@@ -10,19 +9,15 @@ import de.gurkenlabs.litiengine.entities.behavior.EntityNavigator;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
-import de.litigame.abilities.IHitAbility;
-import de.litigame.input.IInteractListener;
 import de.litigame.utilities.PathFinderUtilities;
 
 import java.util.Set;
 
-public class NpcController extends MovementController<NPC> implements IInteractListener {
+public class NpcController extends MovementController<NPC> {
 
-    private static final int ATTACK_DELAY = 500;
     private static final double P_REST = 0.7;
     private static final int REST_TIME = 1000;
     private static final int WANDER_RANGE = 2;
-    private int attack = GameManager.MillisToTicks(ATTACK_DELAY);
     public final EntityNavigator nav;
     private int rest = 0;
     private final AttributeModifier<Float> slowness = new AttributeModifier<>(Modification.DIVIDE, 2);
@@ -76,10 +71,5 @@ public class NpcController extends MovementController<NPC> implements IInteractL
                 getEntity().getCenter(), WANDER_RANGE);
 
         nav.navigate(Game.random().choose(nodes).getLocation());
-    }
-
-    @Override
-    public void interact(Player player) {
-        player.interactListener.add(this);
     }
 }

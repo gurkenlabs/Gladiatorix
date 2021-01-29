@@ -18,14 +18,13 @@ import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
-import de.litigame.input.IInteractListener;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
 import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
-@EntityInfo(width = 16, height = 16)
+@EntityInfo(width = 16, height = 6)
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature implements IUpdateable, IFighter {
@@ -47,7 +46,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		super("player");
 		interactListener = new ArrayList<>();
 		addController(new PlayerController(this));
-
 		Game.loop().attach(this);
 	}
 

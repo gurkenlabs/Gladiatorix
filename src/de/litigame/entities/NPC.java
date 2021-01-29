@@ -25,7 +25,7 @@ import de.litigame.items.Weapon;
 @EntityInfo(width = 100, height = 100)
 @MovementInfo(velocity = 70)
 
-public class NPC extends Creature implements IUpdateable{
+public class NPC extends Creature{
     //private NPC instance = new NPC();
     //private EntityNavigator nav = new EntityNavigator(this, new AStarPathFinder(Game.world().environment().getMap()));
     public int visionRange = 40;
@@ -37,23 +37,10 @@ public class NPC extends Creature implements IUpdateable{
             addController(controller);
             Game.loop().attach(controller);
         });
-        Game.loop().attach(this);
-    }
-
-
-    public double distanceTo(Entity other) {
-        return getLocation().distance(other.getLocation());
     }
 
     public void interact() {
         //TODO: NPC-Player interaction
         Game.world().environment().interact(this);
     }
-
-    public boolean touches(Rectangle2D rect) {
-        return this.getBoundingBox().intersects(rect);
-    }
-
-    @Override
-    public void update() {}
 }
