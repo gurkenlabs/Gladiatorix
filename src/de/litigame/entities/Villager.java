@@ -2,11 +2,11 @@ package de.litigame.entities;
 
 import de.gurkenlabs.litiengine.entities.Creature;
 
-public class Villager extends Creature implements InteractListener {
+public class Villager extends Creature implements IInteractEntity {
 
 	public Villager() {
 		super("villager");
-		Player.getInstance().addInteractListener(this);
+		addToWorld();
 	}
 
 	@Override
