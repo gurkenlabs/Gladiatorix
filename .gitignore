@@ -1,5 +1,7 @@
 /bin/
 /.settings/
+/.project
+/.classpath
 *.jar
 config.properties
 crash.txt
