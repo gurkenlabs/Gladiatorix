@@ -7,6 +7,7 @@ import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.CreatureMapObjectLoader;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Enemy;
+import de.litigame.entities.NPC;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.items.Items;
@@ -22,6 +23,7 @@ public class GameManager {
 
 	public static void init() {
 		CreatureMapObjectLoader.registerCustomCreatureType(Enemy.class);
+		CreatureMapObjectLoader.registerCustomCreatureType(NPC.class);
 
 		Game.world().setCamera(new PlayerCamera());
 

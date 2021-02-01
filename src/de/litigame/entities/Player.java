@@ -1,8 +1,9 @@
 package de.litigame.entities;
 
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -39,6 +40,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public final Hotbar hotbar = new Hotbar(this);
+	private final Set<InteractListener> interactListeners = new HashSet<>();
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
@@ -48,6 +50,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
+	}
+
+	public void addInteractListener(InteractListener listener) {
+		interactListeners.add(listener);
 	}
 
 	public void attack() {
@@ -77,6 +83,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
+		for (InteractListener listener : interactListeners) listener.interact(this);
 		pickUpItem();
 		Game.world().environment().interact(this);
 	}
@@ -90,8 +97,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		if (nearest != null && hotbar.addItem(nearest.item)) Game.world().environment().remove(nearest);
 	}
 
-	public boolean touches(Rectangle2D rect) {
-		return instance.getBoundingBox().intersects(rect);
+	public void removeInteractListener(InteractListener listener) {
+		interactListeners.remove(listener);
 	}
 
 	@Override

@@ -43,6 +43,16 @@
       <property name="collisionType" value="STATIC"/>
      </properties>
     </object>
+    <object id="266" type="CREATURE" x="48" y="112" width="16" height="16">
+     <properties>
+      <property name="addShadow" type="bool" value="true"/>
+      <property name="collision" type="bool" value="true"/>
+      <property name="collisionboxHeight" value="16.0"/>
+      <property name="collisionboxWidth" value="16.0"/>
+      <property name="indestructible" type="bool" value="false"/>
+      <property name="spritesheetName" value="NPC"/>
+     </properties>
+    </object>
    </objectgroup>
   </map>
   <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map2">
@@ -81,6 +91,9 @@
   </map>
  </maps>
  <spriteSheets>
+  <sprite width="16" height="16" imageformat="PNG" name="NPC-idle-right">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAdElEQVR42mNgoCUwNjb+j4xJ1mwSM+N/ev9pMAaxiTIEZhtMIzrGawi6reheIMoAXJoJhgMh24k2ANmpO7ceBmOYZhCbqChDDnWSohLdGxTFALpBBNMBcgwghwW6dwgagB6QJCVlXBpIygvYFJNsADFiMAAATk3vbLAa8pcAAAAASUVORK5CYII=</image>
+  </sprite>
   <sprite width="16" height="16" imageformat="PNG" name="black">
    <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAM0lEQVR4XqXIoREAMBAEoeu/6U8Bq5gIDNt2nxIqoRIqoRIqoRIqoRIqoRIqoRIqoRLkAZvM/wEhpU2cAAAAAElFTkSuQmCC</image>
   </sprite>

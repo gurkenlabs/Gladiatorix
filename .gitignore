@@ -1,9 +1,10 @@
 /bin/
 /.settings/
-/.project
-/.classpath
 *.jar
 config.properties
 crash.txt
 game.log*
 /.gradle
+.idea/
+build/
+gradle/
