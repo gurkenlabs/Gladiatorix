@@ -28,6 +28,7 @@ public class GameManager {
 
 	public static void init() {
 		CreatureMapObjectLoader.registerCustomCreatureType(Enemy.class);
+		CreatureMapObjectLoader.registerCustomCreatureType(NPC.class);
 
 		Game.world().setCamera(new PlayerCamera());
 
