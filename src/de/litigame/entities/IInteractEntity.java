@@ -7,7 +7,7 @@ import de.litigame.GameManager;
 
 public interface IInteractEntity extends IEntity {
 
-	class InteractEntityListener implements EntityListener {
+	final class InteractEntityListener implements EntityListener {
 		@Override
 		public void loaded(IEntity entity, Environment environment) {
 			GameManager.interactEntities.add((IInteractEntity) entity);
