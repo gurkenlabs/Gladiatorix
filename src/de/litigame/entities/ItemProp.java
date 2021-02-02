@@ -1,5 +1,6 @@
 package de.litigame.entities;
 
+import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.litigame.items.Item;
@@ -10,7 +11,7 @@ public class ItemProp extends Prop implements IInteractEntity {
 
 	public ItemProp(Item item) {
 		super("item");
-		addToWorld();
+		addListener(new InteractEntityListener());
 
 		this.item = item;
 		animations().add(new Animation(item.getSprite(), false, false, 0));
@@ -18,6 +19,6 @@ public class ItemProp extends Prop implements IInteractEntity {
 
 	@Override
 	public void interact(Player player) {
-		if (player.hotbar.addItem(item)) removeFromWorld();
+		if (player.hotbar.addItem(item)) Game.world().environment().remove(this);
 	}
 }

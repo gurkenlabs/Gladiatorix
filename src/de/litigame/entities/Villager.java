@@ -16,7 +16,7 @@ public class Villager extends Creature implements IInteractEntity {
 
 	public Villager() {
 		super("villager");
-		addToWorld();
+		addListener(new InteractEntityListener());
 
 		StaticEnvironmentLoadedListener.attach(e -> {
 			VillagerController controller = new VillagerController(this);
@@ -27,6 +27,6 @@ public class Villager extends Creature implements IInteractEntity {
 
 	@Override
 	public void interact(Player player) {
-		// TODO Auto-generated method stub
+		System.out.println("villager interaction");
 	}
 }

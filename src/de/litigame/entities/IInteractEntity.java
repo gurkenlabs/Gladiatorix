@@ -1,20 +1,23 @@
 package de.litigame.entities;
 
-import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.EntityListener;
 import de.gurkenlabs.litiengine.entities.IEntity;
+import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.GameManager;
 
 public interface IInteractEntity extends IEntity {
 
-	default void addToWorld() {
-		Game.world().environment().add(this);
-		GameManager.interactEntities.add(this);
+	class InteractEntityListener implements EntityListener {
+		@Override
+		public void loaded(IEntity entity, Environment environment) {
+			GameManager.interactEntities.add((IInteractEntity) entity);
+		}
+
+		@Override
+		public void removed(IEntity entity, Environment environment) {
+			GameManager.interactEntities.remove(entity);
+		}
 	}
 
 	void interact(Player player);
-
-	default void removeFromWorld() {
-		Game.world().environment().remove(this);
-		GameManager.interactEntities.remove(this);
-	}
 }
