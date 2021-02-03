@@ -13,17 +13,32 @@ import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.IMouse.MouseClickedListener;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.entities.Player;
 import de.litigame.gui.IngameScreen;
 
 public class Shop implements IRenderable, KeyPressedListener, MouseClickedListener {
 
 	private final List<ShopExitedListener> exitListeners = new ArrayList<>();
-	private final List<ShopEntry> offers;
-	private final List<ShopEntry> storage;
+	private final List<ShopEntry> offers, storage;
 
 	public Shop(List<ShopEntry> offers, List<ShopEntry> storage) {
 		this.offers = offers;
 		this.storage = storage;
+	}
+
+	private void buy(int index, Player buyer) {
+		ShopEntry selected = offers.get(index);
+		if (buyer.canBuy(selected)) {
+			if (selected.equippable) {
+				offers.remove(selected);
+				storage.add(selected);
+			}
+			buyer.hotbar.giveItem(selected.getItem());
+		}
+	}
+
+	private void equip(int index, Player buyer) {
+
 	}
 
 	public void exit() {
