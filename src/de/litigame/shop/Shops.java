@@ -13,30 +13,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import de.litigame.items.Item;
 import de.litigame.items.Items;
 
 public class Shops {
-	private static final Map<String, Shop> map = new HashMap<>();
+
+	private static final Map<String, Shop> shops = new HashMap<>();
 
 	public static Shop getShop(String shopName) {
-		return map.get(shopName);
+		return shops.get(shopName);
 	}
 
 	public static void init(File shopFile) {
 		try {
-			final JSONArray shops = new JSONObject(new JSONTokener(new FileInputStream(shopFile)))
-					.getJSONArray("shops");
-			for (final Object objBig : shops) {
-				final JSONObject shop = (JSONObject) objBig;
-				final List<ShopEntry> offers = new ArrayList<>();
-				for (final Object objMedium : shop.getJSONArray("offers")) {
-					final JSONObject entry = (JSONObject) objMedium;
-					final ShopEntry entrySmall = new ShopEntry(Items.getItem(entry.getString("item_name")),
-							Integer.valueOf(entry.getString("price")), Integer.valueOf(entry.getString("reqLvl")),
-							Boolean.valueOf(entry.getString("equippable")));
-					offers.add(entrySmall);
+			JSONArray JSONShops = new JSONObject(new JSONTokener(new FileInputStream(shopFile))).getJSONArray("shops");
+			for (Object shop : JSONShops) {
+				JSONObject JSONShop = ((JSONObject) shop);
+				List<ShopEntry> offers = new ArrayList<>();
+
+				for (Object entry : JSONShop.getJSONArray("offers")) {
+					JSONObject JSONEntry = (JSONObject) entry;
+					Item item = Items.getItem(JSONEntry.getString("item_name"));
+
+					int price = Integer.valueOf(JSONEntry.getString("price"));
+					int required_level = Integer.valueOf(JSONEntry.getString("required_level"));
+					boolean equippable = Boolean.valueOf(JSONEntry.getString("equippable"));
+
+					ShopEntry shopEntry = new ShopEntry(item, price, required_level, equippable);
+
+					offers.add(shopEntry);
 				}
-				map.put(shop.getString("shop_name"), new Shop(offers, new ArrayList<>()));
+
+				shops.put(JSONShop.getString("shop_name"), new Shop(offers, new ArrayList<>()));
 			}
 		} catch (JSONException | FileNotFoundException e) {
 			e.printStackTrace();
