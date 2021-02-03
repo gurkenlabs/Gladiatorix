@@ -4,13 +4,13 @@
 - values may be array (`"offers"`), else String
 - following structure:
 
-  * "shops"
-    * "shop_name"
-    * "offers"
-      * "item_name"
-      * "price"
-      * "required_level"
-      * "equippable"
+"shops"
+  "shop_name"
+  "offers"
+    "item_name"
+    "price"
+    "required_level"
+    "equippable"
 
 ## Variables
 
