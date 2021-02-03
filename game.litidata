@@ -38,9 +38,11 @@
       <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="266" type="CREATURE" x="48" y="96" width="16" height="16">
+    <object id="267" type="TRIGGER" x="0" y="128" width="48" height="32">
      <properties>
-      <property name="spritesheetName" value="villager"/>
+      <property name="shopname" value="gay"/>
+      <property name="tags" value="shop"/>
+      <property name="triggerActivation" value="INTERACT"/>
      </properties>
     </object>
    </objectgroup>

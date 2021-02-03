@@ -16,6 +16,7 @@ import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
+import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
@@ -37,6 +38,20 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
+	private int money = 0, lvl = 1;
+
+	public boolean canBuy(ShopEntry entry) {
+		return lvl >= entry.reqLvl && money >= entry.price;
+	}
+
+	public void changeMoney(int shift) {
+		money += shift;
+	}
+
+	public void changeLvl(int shift) {
+		lvl += shift;
+	}
+
 	private Player() {
 		super("player");
 
@@ -47,7 +62,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public void attack() {
 		if (hotbar.getSelectedItem() instanceof Weapon) {
-			Weapon weapon = (Weapon) hotbar.getSelectedItem();
+			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
 			switch (weapon.type) {
 			case MELEE:
 				weapon.overrideAbility(melee);
@@ -72,10 +87,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
-		IInteractEntity nearest = GeometryUtilities.getNearestEntity(this, GameManager.interactEntities);
+		final IInteractEntity nearest = GeometryUtilities.getNearestEntity(this, GameManager.interactEntities);
 
-		if (nearest != null && getCenter().distance(nearest.getCenter()) <= INTERACT_RANGE) nearest.interact(this);
-		else Game.world().environment().interact(this);
+		if (nearest != null && getCenter().distance(nearest.getCenter()) <= INTERACT_RANGE) {
+			nearest.interact(this);
+		} else {
+			Game.world().environment().interact(this);
+		}
 	}
 
 	@Override
@@ -83,6 +101,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		if (hotbar.getSelectedItem() instanceof Weapon) {
 			setTurnOnMove(false);
 			setAngle(GeometricUtilities.calcRotationAngleInDegrees(getCenter(), Input.mouse().getMapLocation()));
-		} else setTurnOnMove(true);
+		} else {
+			setTurnOnMove(true);
+		}
 	}
 }

@@ -1,0 +1,17 @@
+{
+	"shops":
+	[
+		{
+			"shop_name" : "shop1",
+			"offers"	: 
+			[
+				{
+					"item_name" : "bow",
+					"price"		: "0",
+					"reqLvl"	: "1",
+					"equippable" : "true"
+				}
+			]
+		},
+	]
+}
