@@ -1,6 +1,9 @@
 /bin/
 /.settings/
+/.project
+/.classpath
 *.jar
+*.exe
 config.properties
 crash.txt
 game.log*
