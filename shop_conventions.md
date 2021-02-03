@@ -5,12 +5,12 @@
 - following structure:
 
 "shops"
-  "shop_name"
-  "offers"
-    "item_name"
-    "price"
-    "required_level"
-    "equippable"
+  * "shop_name"
+  * "offers"
+    * "item_name"
+    * "price"
+    * "required_level"
+    * "equippable"
 
 ## Variables
 
