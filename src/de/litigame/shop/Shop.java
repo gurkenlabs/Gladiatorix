@@ -48,7 +48,6 @@ public class Shop implements IRenderable, KeyPressedListener, MouseClickedListen
 
 	public void open(ShopExitedListener... onExit) {
 		exitListeners.addAll(Arrays.asList(onExit));
-		System.out.println("activate");
 
 		Input.keyboard().onKeyPressed(this);
 		Input.mouse().onClicked(this);

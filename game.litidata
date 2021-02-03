@@ -40,7 +40,7 @@
     </object>
     <object id="267" type="TRIGGER" x="0" y="80" width="112" height="80">
      <properties>
-      <property name="shop_name" value="shop1"/>
+      <property name="shopName" value="shop1"/>
       <property name="tags" value="shop"/>
       <property name="triggerActivation" value="INTERACT"/>
      </properties>
