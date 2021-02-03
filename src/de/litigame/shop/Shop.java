@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.gurkenlabs.litiengine.Game;
@@ -25,14 +26,7 @@ public class Shop implements IRenderable, KeyPressedListener, MouseClickedListen
 		this.storage = storage;
 	}
 
-	public void activate(ShopExitedListener onExit) {
-		exitListeners.add(onExit);
-		Input.keyboard().onKeyPressed(this);
-		Input.mouse().onClicked(this);
-		((IngameScreen) Game.screens().get("ingame")).addOverlayMenu(this);
-	}
-
-	public void deactivate() {
+	public void exit() {
 		Input.keyboard().removeKeyPressedListener(this);
 		Input.mouse().removeMouseClickedListener(this);
 		((IngameScreen) Game.screens().get("ingame")).removeOverlayMenu(this);
@@ -43,7 +37,7 @@ public class Shop implements IRenderable, KeyPressedListener, MouseClickedListen
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) deactivate();
+		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) exit();
 	}
 
 	@Override
@@ -52,8 +46,17 @@ public class Shop implements IRenderable, KeyPressedListener, MouseClickedListen
 
 	}
 
+	public void open(ShopExitedListener... onExit) {
+		exitListeners.addAll(Arrays.asList(onExit));
+		System.out.println("activate");
+
+		Input.keyboard().onKeyPressed(this);
+		Input.mouse().onClicked(this);
+		((IngameScreen) Game.screens().get("ingame")).addOverlayMenu(this);
+	}
+
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(Resources.images().get("ShopUI"), 0, 0, null);
+		g.drawImage(Resources.images().get("shop_background"), 0, 0, null);
 	}
 }

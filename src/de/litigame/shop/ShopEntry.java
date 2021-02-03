@@ -19,8 +19,8 @@ public class ShopEntry {
 		this.price = price;
 		this.reqLvl = reqLvl;
 		this.equippable = equippable;
-		imageBuy = Resources.images().get("ShopEntryBackgroundBuy");
-		imageOwned = Resources.images().get("ShopEntryBackgroundOwned");
+		imageBuy = Resources.images().get("shopEntry_background_buy");
+		imageOwned = Resources.images().get("shopEntry_background_owned");
 		final Graphics2D gBuy = imageBuy.createGraphics();
 		final Graphics2D gOwned = imageOwned.createGraphics();
 		gBuy.drawImage(item.getImage(), 0, 0, null);

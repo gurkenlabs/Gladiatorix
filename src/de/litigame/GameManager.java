@@ -91,7 +91,7 @@ public class GameManager {
 				if (entity instanceof Player) {
 					String shop = trigger.getProperties().getStringValue("shop_name");
 					entity.detachControllers();
-					Shops.getShop(shop).activate(() -> {
+					Shops.getShop(shop).open(() -> {
 						entity.attachControllers();
 					});
 				}
