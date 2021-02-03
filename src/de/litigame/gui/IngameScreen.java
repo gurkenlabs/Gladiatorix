@@ -15,6 +15,6 @@ public class IngameScreen extends GameScreen {
 	public void render(Graphics2D g) {
 		super.render(g);
 
-		Player.getInstance().hotbar.render(g);
+		//Player.getInstance().hotbar.render(g);
 	}
 }

@@ -11,6 +11,7 @@ import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.litigame.StaticEnvironmentLoadedListener;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
+import de.litigame.hp.HealthBar;
 import de.litigame.items.Items;
 import de.litigame.items.Weapon;
 
@@ -27,15 +28,15 @@ public class Enemy extends Creature implements IFighter {
 
 	public Enemy() {
 		super("enemy");
-
 		setTarget(Player.getInstance());
-
 		putWeapon((Weapon) Items.getItem("sword"));
 
 		StaticEnvironmentLoadedListener.attach(e -> {
 			EnemyController controller = new EnemyController(this);
+			HealthBar hb = new HealthBar(this);
 			addController(controller);
 			Game.loop().attach(controller);
+			Game.loop().attach(hb);
 		});
 	}
 
