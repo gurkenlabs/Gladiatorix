@@ -8,10 +8,11 @@ import de.litigame.items.Item;
 import de.litigame.items.Items;
 
 public class ShopEntry {
-	private final Item item;
-	public final int price, reqLvl;
+
 	public final boolean equippable;
 	public final BufferedImage imageBuy, imageOwned;
+	private final Item item;
+	public final int price, reqLvl;
 
 	public ShopEntry(Item item, int price, int reqLvl, boolean equippable) {
 		this.item = item;

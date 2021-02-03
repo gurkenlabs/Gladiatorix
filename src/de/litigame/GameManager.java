@@ -15,6 +15,7 @@ import de.litigame.entities.Player;
 import de.litigame.entities.Villager;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.items.Items;
+import de.litigame.shop.Shops;
 
 public class GameManager {
 
@@ -85,6 +86,16 @@ public class GameManager {
 					}
 				});
 			}
+			if (trigger.hasTag("shop")) trigger.addActivatedListener(e -> {
+				IEntity entity = e.getEntity();
+				if (entity instanceof Player) {
+					String shop = trigger.getProperties().getStringValue("shop_name");
+					entity.detachControllers();
+					Shops.getShop(shop).activate(() -> {
+						entity.attachControllers();
+					});
+				}
+			});
 		}
 	}
 

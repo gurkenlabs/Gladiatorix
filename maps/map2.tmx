@@ -17,7 +17,7 @@
  </layer>
  <objectgroup id="0" name="default" visible="1">
   <object id="1" name="spawn" type="SPAWNPOINT" x="112" y="112" width="16" height="16"/>
-  <object id="3" type="TRIGGER" x="80" y="16" width="64" height="64">
+  <object id="3" type="TRIGGER" x="96" y="0" width="64" height="64">
    <properties>
     <property name="tags" value="deadly"/>
     <property name="triggerActivation" value="COLLISION"/>

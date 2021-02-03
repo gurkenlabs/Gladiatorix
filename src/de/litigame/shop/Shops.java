@@ -16,9 +16,13 @@ import org.json.JSONTokener;
 import de.litigame.items.Items;
 
 public class Shops {
-	private final Map<String, Shop> map = new HashMap<>();
+	private static final Map<String, Shop> map = new HashMap<>();
 
-	public void init(File shopFile) {
+	public static Shop getShop(String shopName) {
+		return map.get(shopName);
+	}
+
+	public static void init(File shopFile) {
 		try {
 			final JSONArray shops = new JSONObject(new JSONTokener(new FileInputStream(shopFile)))
 					.getJSONArray("shops");
@@ -39,7 +43,6 @@ public class Shops {
 		}
 	}
 
-	public Shop getShop(String shopName) {
-		return map.get(shopName);
+	private Shops() {
 	}
 }
