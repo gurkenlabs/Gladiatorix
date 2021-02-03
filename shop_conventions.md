@@ -4,7 +4,7 @@
 - values may be array (`"offers"`), else String
 - following structure:
 
-"shops"
+* "shops"
   * "shop_name"
   * "offers"
     * "item_name"
