@@ -43,6 +43,17 @@
       <property name="collisionType" value="STATIC"/>
      </properties>
     </object>
+    <object id="267" type="COLLISIONBOX" x="24" y="96" width="8" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="268" type="TRIGGER" x="80" y="16" width="16" height="16">
+     <properties>
+      <property name="tags" value="portal"/>
+      <property name="toMap" value="map2"/>
+     </properties>
+    </object>
    </objectgroup>
   </map>
   <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1" name="map2">
