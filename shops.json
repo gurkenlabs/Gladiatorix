@@ -9,7 +9,7 @@
 					"item_name" : "bow",
 					"price"		: "0",
 					"required_level"	: "1",
-					"equippable" : "true"
+					"equippable" : "false"
 				}
 			]
 		},

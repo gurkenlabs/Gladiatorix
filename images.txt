@@ -2,5 +2,5 @@ test:sprites/test-dead.png
 selected_slot:sprites/sel_slot.png
 slot:sprites/slot.png
 shop_background:sprites/slot.png
-shopEntry_background_owned:sprites/test-dead.png
-shopEntry_background_buy:sprites/test-dead.png
+shopEntry_background_owned:sprites/shop.png
+shopEntry_background_buy:sprites/shop.png

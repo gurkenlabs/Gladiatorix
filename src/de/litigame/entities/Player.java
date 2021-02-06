@@ -36,21 +36,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
-	private final RangeAttackAbility range = new RangeAttackAbility(this);
-
 	private int money = 0, lvl = 1;
 
-	public boolean canBuy(ShopEntry entry) {
-		return lvl >= entry.reqLvl && money >= entry.price;
-	}
-
-	public void changeMoney(int shift) {
-		money += shift;
-	}
-
-	public void changeLvl(int shift) {
-		lvl += shift;
-	}
+	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
 	private Player() {
 		super("player");
@@ -74,6 +62,18 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				break;
 			}
 		}
+	}
+
+	public boolean canBuy(ShopEntry entry) {
+		return lvl >= entry.requiredLevel && money >= entry.price;
+	}
+
+	public void changeLvl(int shift) {
+		lvl += shift;
+	}
+
+	public void changeMoney(int shift) {
+		money += shift;
 	}
 
 	public void dropItem() {
