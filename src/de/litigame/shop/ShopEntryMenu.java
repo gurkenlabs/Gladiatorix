@@ -18,9 +18,10 @@ public class ShopEntryMenu extends ImageComponentList {
 
 	private final List<IntConsumer> selectionChangeConsumers = new ArrayList<>();
 
-	public ShopEntryMenu(double x, double y, double width, double height, List<ShopEntry> entries,
-			ShopEntry.State state) {
-		super(x, y, width, height, entries.size(), 1, shopEntriesToImages(entries, state), null);
+	public ShopEntryMenu(double x, double y, List<ShopEntry> entries, ShopEntry.State state) {
+		super(x, y, entries.isEmpty() ? 0 : shopEntriesToImages(entries, state).get(0).getWidth(null),
+				entries.isEmpty() ? 0 : shopEntriesToImages(entries, state).get(0).getWidth(null), entries.size(), 1,
+				shopEntriesToImages(entries, state), null);
 	}
 
 	public void onChange(IntConsumer cons) {
@@ -30,10 +31,12 @@ public class ShopEntryMenu extends ImageComponentList {
 	@Override
 	public void prepare() {
 		super.prepare();
-		for (ImageComponent cell : getCellComponents()) cell.onClicked(e -> {
-			if (!e.getEvent().isConsumed())
-				for (IntConsumer consumer : selectionChangeConsumers) consumer.accept(getComponents().indexOf(cell));
-			e.getEvent().consume();
-		});
+		for (ImageComponent cell : getCellComponents()) {
+			cell.onClicked(e -> {
+				if (!e.getEvent().isConsumed()) for (IntConsumer consumer : selectionChangeConsumers)
+					consumer.accept(getComponents().indexOf(cell));
+				e.getEvent().consume();
+			});
+		}
 	}
 }

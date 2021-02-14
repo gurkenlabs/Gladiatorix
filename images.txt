@@ -1,6 +1,7 @@
 test:sprites/test-dead.png
 selected_slot:sprites/sel_slot.png
 slot:sprites/slot.png
-shop_background:sprites/slot.png
-shopEntry_background_owned:sprites/shop.png
-shopEntry_background_buy:sprites/shop.png
+shopEntry_owned:sprites/shop_item_card_2.png
+shopEntry_buy:sprites/shop_item_card_1.png
+forge : sprites/shop_forge.png
+potion_shop : sprites/shop_potions.png

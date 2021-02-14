@@ -13,6 +13,7 @@ import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.entities.Player;
 import de.litigame.gui.IngameScreen;
+import de.litigame.utilities.ImageUtilities;
 
 public class Shop implements IRenderable, KeyPressedListener {
 
@@ -22,7 +23,7 @@ public class Shop implements IRenderable, KeyPressedListener {
 	private final List<ShopEntry> offers, storage;
 
 	public Shop(List<ShopEntry> offers, List<ShopEntry> storage, BufferedImage background) {
-		this.background = background;
+		this.background = ImageUtilities.getRescaledCopy(background, 2.5);
 		this.offers = offers;
 		this.storage = storage;
 	}
@@ -68,8 +69,8 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(background, Game.window().getResolution().width / 2 - background.getWidth(),
-				Game.window().getResolution().height / 2 - background.getHeight(), null);
+		g.drawImage(background, (Game.window().getResolution().width - background.getWidth()) / 2,
+				(Game.window().getResolution().height - background.getHeight()) / 2, null);
 		offerMenu.render(g);
 		storageMenu.render(g);
 	}
@@ -77,8 +78,11 @@ public class Shop implements IRenderable, KeyPressedListener {
 	private void updateMenus() {
 		if (offerMenu != null) offerMenu.suspend();
 		if (storageMenu != null) storageMenu.suspend();
-		offerMenu = new ShopEntryMenu(100, 100, 100, 200, offers, ShopEntry.State.BUY);
-		storageMenu = new ShopEntryMenu(200, 100, 100, 200, storage, ShopEntry.State.EQUIP);
+		double wOff = (Game.window().getResolution().width - background.getWidth()) / 2 + 56,
+				hOff = (Game.window().getResolution().height - background.getHeight()) / 2 + 140;
+		offerMenu = new ShopEntryMenu(wOff, hOff, offers, ShopEntry.State.BUY);
+		storageMenu = new ShopEntryMenu(Game.window().getResolution().width - wOff - offerMenu.getWidth(), hOff,
+				storage, ShopEntry.State.EQUIP);
 		offerMenu.onChange(i -> buy(i, Player.getInstance()));
 		storageMenu.onChange(i -> equip(i, Player.getInstance()));
 		offerMenu.prepare();

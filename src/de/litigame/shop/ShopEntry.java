@@ -3,9 +3,9 @@ package de.litigame.shop;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
+import de.litigame.utilities.ImageUtilities;
 
 public class ShopEntry {
 
@@ -14,8 +14,8 @@ public class ShopEntry {
 	}
 
 	public final boolean equippable;
-	private final BufferedImage[] images = { Resources.images().get("shopEntry_background_buy"),
-			Resources.images().get("shopEntry_background_owned") };
+	private final BufferedImage[] images = { ImageUtilities.getRescaledCopy("shopEntry_buy", 2.5),
+			ImageUtilities.getRescaledCopy("shopEntry_owned", 2.5) };
 	private final Item item;
 
 	public final int price, requiredLevel;
