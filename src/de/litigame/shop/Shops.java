@@ -1,5 +1,6 @@
 package de.litigame.shop;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
 
@@ -29,6 +31,8 @@ public class Shops {
 			JSONArray JSONShops = new JSONObject(new JSONTokener(new FileInputStream(shopFile))).getJSONArray("shops");
 			for (Object shop : JSONShops) {
 				JSONObject JSONShop = ((JSONObject) shop);
+				String name = JSONShop.getString("shop_name");
+				Image background = Resources.images().get(JSONShop.getString("background"));
 				List<ShopEntry> offers = new ArrayList<>();
 
 				for (Object entry : JSONShop.getJSONArray("offers")) {
@@ -44,7 +48,7 @@ public class Shops {
 					offers.add(shopEntry);
 				}
 
-				shops.put(JSONShop.getString("shop_name"), new Shop(offers, new ArrayList<>()));
+				shops.put(name, new Shop(offers, new ArrayList<>(), background));
 			}
 		} catch (JSONException | FileNotFoundException e) {
 			e.printStackTrace();

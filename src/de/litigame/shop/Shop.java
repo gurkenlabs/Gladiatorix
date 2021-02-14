@@ -1,6 +1,7 @@
 package de.litigame.shop;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,17 +11,18 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Player;
 import de.litigame.gui.IngameScreen;
 
 public class Shop implements IRenderable, KeyPressedListener {
 
+	private final Image background;
 	private final List<ShopExitedListener> exitListeners = new ArrayList<>();
 	private ShopEntryMenu offerMenu, storageMenu;
 	private final List<ShopEntry> offers, storage;
 
-	public Shop(List<ShopEntry> offers, List<ShopEntry> storage) {
+	public Shop(List<ShopEntry> offers, List<ShopEntry> storage, Image background) {
+		this.background = background;
 		this.offers = offers;
 		this.storage = storage;
 	}
@@ -66,7 +68,7 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(Resources.images().get("shop_background"), 0, 0, null);
+		g.drawImage(background, 0, 0, null);
 		offerMenu.render(g);
 		storageMenu.render(g);
 	}
