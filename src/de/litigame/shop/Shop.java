@@ -17,16 +17,12 @@ import de.litigame.gui.IngameScreen;
 public class Shop implements IRenderable, KeyPressedListener {
 
 	private final List<ShopExitedListener> exitListeners = new ArrayList<>();
-	private final ShopEntryMenu offerMenu = new ShopEntryMenu(100, 100, 100, 100, ShopEntry.State.BUY),
-			storageMenu = new ShopEntryMenu(400, 100, 100, 100, ShopEntry.State.EQUIP);
+	private ShopEntryMenu offerMenu, storageMenu;
 	private final List<ShopEntry> offers, storage;
 
 	public Shop(List<ShopEntry> offers, List<ShopEntry> storage) {
 		this.offers = offers;
 		this.storage = storage;
-
-		offerMenu.onChange(i -> buy(i, Player.getInstance()));
-		storageMenu.onChange(i -> equip(i, Player.getInstance()));
 	}
 
 	private void buy(int index, Player buyer) {
@@ -65,9 +61,6 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 		Input.keyboard().onKeyPressed(this);
 		updateMenus();
-		/*
-		 * offerMenu.prepare(); storageMenu.prepare();
-		 */
 		((IngameScreen) Game.screens().get("ingame")).addOverlayMenu(this);
 	}
 
@@ -79,7 +72,13 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	private void updateMenus() {
-		offerMenu.updateEntries(offers);
-		storageMenu.updateEntries(storage);
+		if (offerMenu != null) offerMenu.suspend();
+		if (storageMenu != null) storageMenu.suspend();
+		offerMenu = new ShopEntryMenu(100, 100, 100, 200, offers, ShopEntry.State.BUY);
+		storageMenu = new ShopEntryMenu(200, 100, 100, 200, storage, ShopEntry.State.EQUIP);
+		offerMenu.onChange(i -> buy(i, Player.getInstance()));
+		storageMenu.onChange(i -> equip(i, Player.getInstance()));
+		offerMenu.prepare();
+		storageMenu.prepare();
 	}
 }
