@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.3" name="tile-grass" tilewidth="16" tileheight="16" tilecount="16" columns="4">
- <image source="../Layer 0/tile-grass.PNG" trans="222222" width="64" height="64"/>
+ <image source="../Layer0/tile-grass.PNG" trans="222222" width="64" height="64"/>
  <tile id="0" probability="0.2"/>
  <tile id="1" probability="0.05"/>
  <tile id="2" probability="0.2"/>
