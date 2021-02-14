@@ -1,6 +1,6 @@
 package de.litigame.shop;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,7 +32,7 @@ public class Shops {
 			for (Object shop : JSONShops) {
 				JSONObject JSONShop = ((JSONObject) shop);
 				String name = JSONShop.getString("shop_name");
-				Image background = Resources.images().get(JSONShop.getString("background"));
+				BufferedImage background = Resources.images().get(JSONShop.getString("background"));
 				List<ShopEntry> offers = new ArrayList<>();
 
 				for (Object entry : JSONShop.getJSONArray("offers")) {

@@ -1,8 +1,8 @@
 package de.litigame.shop;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +16,12 @@ import de.litigame.gui.IngameScreen;
 
 public class Shop implements IRenderable, KeyPressedListener {
 
-	private final Image background;
+	private final BufferedImage background;
 	private final List<ShopExitedListener> exitListeners = new ArrayList<>();
 	private ShopEntryMenu offerMenu, storageMenu;
 	private final List<ShopEntry> offers, storage;
 
-	public Shop(List<ShopEntry> offers, List<ShopEntry> storage, Image background) {
+	public Shop(List<ShopEntry> offers, List<ShopEntry> storage, BufferedImage background) {
 		this.background = background;
 		this.offers = offers;
 		this.storage = storage;
@@ -68,7 +68,8 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(background, 0, 0, null);
+		g.drawImage(background, Game.window().getResolution().width / 2 - background.getWidth(),
+				Game.window().getResolution().height / 2 - background.getHeight(), null);
 		offerMenu.render(g);
 		storageMenu.render(g);
 	}
