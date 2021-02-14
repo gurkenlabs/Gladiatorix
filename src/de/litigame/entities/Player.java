@@ -14,6 +14,7 @@ import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
 import de.litigame.utilities.GeometryUtilities;
@@ -39,7 +40,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	private Player() {
 		super("player");
-
 		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
@@ -68,7 +68,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 1;
 	}
 
 	public void interact() {

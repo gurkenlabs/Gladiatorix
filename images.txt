@@ -1,3 +1,17 @@
 test:sprites/test-dead.png
 selected_slot:sprites/sel_slot.png
 slot:sprites/slot.png
+hp-border:sprites/hp_bar_border.png
+hp-fill:sprites/hp_bar_filler.png
+
+0-hp:sprites/enemy_health_bar/health_bar_0.png
+10-hp:sprites/enemy_health_bar/health_bar_10.png
+20-hp:sprites/enemy_health_bar/health_bar_20.png
+30-hp:sprites/enemy_health_bar/health_bar_30.png
+40-hp:sprites/enemy_health_bar/health_bar_40.png
+50-hp:sprites/enemy_health_bar/health_bar_50.png
+60-hp:sprites/enemy_health_bar/health_bar_60.png
+70-hp:sprites/enemy_health_bar/health_bar_70.png
+80-hp:sprites/enemy_health_bar/health_bar_80.png
+90-hp:sprites/enemy_health_bar/health_bar_90.png
+100-hp:sprites/enemy_health_bar/health_bar_100.png
