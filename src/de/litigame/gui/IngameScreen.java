@@ -15,7 +15,7 @@ public class IngameScreen extends GameScreen {
 	private PlayerHealthBar hpb;
 	@Override
 	public void render(Graphics2D g) {
-		hpb = new PlayerHealthBar(Player.getInstance());
+		hpb = new PlayerHealthBar();
 		super.render(g);
 
 		hpb.render(g);
