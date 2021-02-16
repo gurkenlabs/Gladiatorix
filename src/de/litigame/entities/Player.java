@@ -1,5 +1,8 @@
 package de.litigame.entities;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.Valign;
@@ -15,6 +18,7 @@ import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
+import de.litigame.items.Item;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
@@ -37,8 +41,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private int money = 0, lvl = 1;
-
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
+	private final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
 	private Player() {
 		super("player");
@@ -62,6 +66,11 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				break;
 			}
 		}
+	}
+
+	public void buy(ShopEntry entry) {
+		if (entry.equippable) storage.add(entry.getItem());
+		hotbar.addItem(entry.getItem());
 	}
 
 	public boolean canBuy(ShopEntry entry) {
