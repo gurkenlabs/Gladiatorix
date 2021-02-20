@@ -38,9 +38,9 @@
       <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="266" type="COLLISIONBOX" x="96" y="80" width="16" height="16">
+    <object id="266" type="CREATURE" x="48" y="96" width="16" height="16">
      <properties>
-      <property name="collisionType" value="STATIC"/>
+      <property name="spritesheetName" value="villager"/>
      </properties>
     </object>
    </objectgroup>
@@ -101,6 +101,9 @@
   </sprite>
   <sprite width="16" height="16" imageformat="PNG" name="tile">
    <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABS0lEQVR4XoVS2arCUAw8fyVW1NqqFWm1rmirv6fS5cENl6q/NjKBI9yXm4cwSWmSyZkxeZ6jKApYLMtScLfbybdutwvP89BsNuE4DlqtFlzXFazVajCHwwGPxwP3+x2XywVVVUl9Pp8lHw6HWK1WGI1GGAwGEkEQoNfrodPpwOz3e2l4Pp+Cr9frN5A5Gcznc8RxLMOISZJgOp1KbUj1eDxKAxu51bJ4v9/wfV9+Xq/XSNMUi8VCgoPIxmRZhtvt9ocF8XQ64Xq9ot1uI4oizGYzLJdLbDYbOYmshAEfzDbZzRbJinfyfjaNx2OEYSjbyYq5MOCD2Ubm9hxGo9GQTfyZlDmQ9Xa7laG/E3jv5/ORh2PYul6vSxOls9jv94XNZDKB0XTWfGI0nTWfCIP/dNZ8YjSdNZ8YTWfNJ0bTWfOJ0XTWfGI0nTWffAGMPn+LLm12zwAAAABJRU5ErkJggg==</image>
+  </sprite>
+  <sprite width="16" height="16" imageformat="PNG" name="villager-idle-right">
+   <image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVR4XrVSSQ6AIAzkT/gc7z7Hqx/h4Nmjj8KUZEidtNCYOMmErTMthZT+RM65avL5ECJY1qNu+90o85AJskHIHJpwVr5CyMATg6zpmGUPG6AKGc9yNUIsc9Z16Cy660zWvYAquPOfXoCNpv8ApetgXocMuJHh+ws8Aa+HsIKtPRdWoLUHPE5N72yHh/uJAAAAAElFTkSuQmCC</image>
   </sprite>
  </spriteSheets>
  <tilesets/>

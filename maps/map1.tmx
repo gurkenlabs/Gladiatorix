@@ -36,9 +36,9 @@
     <property name="spritesheetName" value="test"/>
    </properties>
   </object>
-  <object id="266" type="COLLISIONBOX" x="96" y="80" width="16" height="16">
+  <object id="266" type="CREATURE" x="48" y="96" width="16" height="16">
    <properties>
-    <property name="collisionType" value="STATIC"/>
+    <property name="spritesheetName" value="villager"/>
    </properties>
   </object>
  </objectgroup>

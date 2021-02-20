@@ -1,23 +1,22 @@
 package de.litigame.entities;
 
-import java.awt.geom.Rectangle2D;
-
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.AnimationInfo;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
-import de.gurkenlabs.litiengine.entities.Entity;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
+import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
+import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
@@ -26,13 +25,15 @@ import de.litigame.items.Weapon;
 
 public class Player extends Creature implements IUpdateable, IFighter {
 
-	private static Player instance = new Player();
+	private static final Player instance = new Player();
+
+	private static final double INTERACT_RANGE = 20;
 
 	public static Player getInstance() {
 		return instance;
 	}
 
-	public final Hotbar hotbar = new Hotbar();
+	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
@@ -62,8 +63,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		}
 	}
 
-	public double distanceTo(Entity other) {
-		return getLocation().distance(other.getLocation());
+	public void dropItem() {
+		hotbar.dropSelectedItem();
 	}
 
 	@Override
@@ -81,11 +82,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void interact() {
-		Game.world().environment().interact(this);
-	}
+		IInteractEntity nearest = GeometryUtilities.getNearestEntity(this, GameManager.interactEntities);
 
-	public boolean touches(Rectangle2D rect) {
-		return instance.getBoundingBox().intersects(rect);
+		if (nearest != null && getCenter().distance(nearest.getCenter()) <= INTERACT_RANGE) nearest.interact(this);
+		else Game.world().environment().interact(this);
 	}
 
 	@Override
