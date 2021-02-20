@@ -39,10 +39,11 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public final Hotbar hotbar = new Hotbar(this);
+
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private int money = 0, lvl = 1;
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
-	private final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
+	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
 	private Player() {
 		super("player");

@@ -30,13 +30,7 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 	private void buy(int index, Player buyer) {
 		ShopEntry selected = offers.get(index);
-		if (buyer.canBuy(selected)) {
-			if (selected.equippable) {
-				offers.remove(selected);
-				storage.add(selected);
-			}
-			buyer.hotbar.giveItem(selected.getItem());
-		}
+		if (buyer.canBuy(selected)) buyer.buy(selected);
 		updateMenus();
 	}
 
@@ -76,6 +70,11 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	private void updateMenus() {
+		for (ShopEntry entry : offers) if (Player.getInstance().storage.contains(entry.getItem())) {
+			offers.remove(entry);
+			storage.add(entry);
+		}
+
 		if (offerMenu != null) offerMenu.suspend();
 		if (storageMenu != null) storageMenu.suspend();
 		double wOff = (Game.window().getResolution().width - background.getWidth()) / 2 + 56,
