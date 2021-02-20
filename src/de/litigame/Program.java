@@ -19,7 +19,7 @@ public class Program {
 		Items.init(new File("items.json"));
 		Game.screens().add(new IngameScreen());
 		Game.screens().add(new MainMenuScreen());
-		Game.screens().add(new SettigsScreen("menu_item", "Done"));
+		Game.screens().add(new SettigsScreen());
 		Game.screens().display("menu");
 		GameManager.init();
 		Game.start();
