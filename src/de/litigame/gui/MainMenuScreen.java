@@ -9,7 +9,7 @@ import de.litigame.Images;
 
 import java.awt.image.BufferedImage;
 
-public class MainMenu extends Screen {
+public class MainMenuScreen extends Screen {
 
     private Menu menu;
     private final int cells = 4;
@@ -36,7 +36,7 @@ public class MainMenu extends Screen {
         getComponents().add(bkgr);
         getComponents().add(menu);
     }*/
-    public MainMenu(){
+    public MainMenuScreen(){
         super("menu");
         BufferedImage img = Images.get("menu_item");
         Spritesheet item = new Spritesheet(img, "screens/menu_item.jpg", img.getWidth(), img.getHeight());
