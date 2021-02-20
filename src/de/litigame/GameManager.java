@@ -1,6 +1,9 @@
 package de.litigame;
 
+import java.util.stream.Collectors;
+
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.CombatEntity;
 import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Trigger;
@@ -37,26 +40,39 @@ public class GameManager {
 
 	private static void setupMapObjects(Environment env) {
 		setupTriggers(env);
+		setupSpawnpoints(env);
 	}
 
 	private static void setupTriggers(Environment env) {
-		for (Trigger trigger : env.getTriggers()) {
-			if (trigger.hasTag("deadly")) trigger.addActivatedListener(e -> {
-				IEntity entity = e.getEntity();
-				if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
-			});
-			if (trigger.hasTag("portal")) trigger.addActivatedListener(e -> {
-				if (e.getEntity() instanceof Player) {
-					String map = trigger.getProperties().getStringValue("toMap");
-					String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
-					enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
-				}
-			});
+		for (final Trigger trigger : env.getTriggers()) {
+			if (trigger.hasTag("deadly")) {
+				trigger.addActivatedListener(e -> {
+					final IEntity entity = e.getEntity();
+					if (entity instanceof CombatEntity) {
+						((CombatEntity) entity).die();
+					}
+				});
+			}
+			if (trigger.hasTag("wavestart")) {
+				trigger.addActivatedListener(e -> {
+					Spawnpoints.spawnWave(0);
+					Game.world().environment().remove(trigger);
+				});
+			}
+			if (trigger.hasTag("portal")) {
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player) {
+						final String map = trigger.getProperties().getStringValue("toMap");
+						final String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+					}
+				});
+			}
 			if (trigger.hasTag("zoom")) {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+						final float zoom = trigger.getProperties().getFloatValue("zoomValue");
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
 								? trigger.getProperties().getIntValue("zoomDuration")
 								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
@@ -64,8 +80,8 @@ public class GameManager {
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = PlayerCamera.STD_ZOOM;
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+						final float zoom = PlayerCamera.STD_ZOOM;
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
 								? trigger.getProperties().getIntValue("zoomDuration")
 								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
@@ -73,6 +89,18 @@ public class GameManager {
 				});
 			}
 		}
+	}
+
+	public static void setupSpawnpoints(Environment env) {
+		for (final CollisionBox boxbox : env.getCollisionBoxes()) {
+			if (boxbox.hasTag("enemyspawndata")) {
+				final int waveCount = boxbox.getProperties().getIntValue("waveCount");
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
+						.collect(Collectors.toList()), waveCount);
+				return;
+			}
+		}
+
 	}
 
 	public static void switchToMap(String map) {

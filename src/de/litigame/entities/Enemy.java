@@ -15,7 +15,7 @@ import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.items.Items;
 import de.litigame.items.Weapon;
 
-@AnimationInfo(spritePrefix = "test")
+@AnimationInfo(spritePrefix = "enemy1")
 @CollisionInfo(collision = true, collisionBoxWidth = 4, collisionBoxHeight = 4, valign = Valign.MIDDLE)
 @EntityInfo(width = 4, height = 4)
 @MovementInfo(velocity = 20)
@@ -34,7 +34,7 @@ public class Enemy extends Creature implements IFighter {
 		putWeapon((Weapon) Items.getItem("sword"));
 
 		StaticEnvironmentLoadedListener.attach(e -> {
-			MovementController<Enemy> controller = new EnemyController(this);
+			final MovementController<Enemy> controller = new EnemyController(this);
 			addController(controller);
 			Game.loop().attach(controller);
 		});
