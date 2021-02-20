@@ -3,7 +3,11 @@ package de.litigame.entities;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.abilities.Ability;
-import de.gurkenlabs.litiengine.entities.*;
+import de.gurkenlabs.litiengine.entities.AnimationInfo;
+import de.gurkenlabs.litiengine.entities.CollisionInfo;
+import de.gurkenlabs.litiengine.entities.Creature;
+import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.litigame.StaticEnvironmentLoadedListener;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -26,16 +30,14 @@ public class Enemy extends Creature implements IFighter {
 		super("enemy");
 		setTarget(Player.getInstance());
 		putWeapon((Weapon) Items.getItem("sword"));
-		EnemyHealthBar hb = new EnemyHealthBar(this);
 
 		StaticEnvironmentLoadedListener.attach(e -> {
 			EnemyController controller = new EnemyController(this);
 			addController(controller);
 			Game.loop().attach(controller);
-			//Game.loop().attach(hb);
 		});
 
-		addEntityRenderListener(e -> hb.render(e.getGraphics()));
+		addEntityRenderListener(e -> new EnemyHealthBar(this).render(e.getGraphics()));
 	}
 
 	public Ability getAttackAbility() {
@@ -46,6 +48,7 @@ public class Enemy extends Creature implements IFighter {
 	public double getStrength() {
 		return 1;
 	}
+
 	public void putWeapon(Weapon weapon) {
 		switch (weapon.type) {
 		case RANGE:

@@ -15,8 +15,8 @@ public class Program {
 		Resources.load("game.litidata");
 		ImageUtilities.init(new File("images.txt"));
 		Items.init(new File("items.json"));
-		GameManager.init();
 		Game.screens().add(new IngameScreen());
+		GameManager.init();
 		Game.start();
 	}
 }
