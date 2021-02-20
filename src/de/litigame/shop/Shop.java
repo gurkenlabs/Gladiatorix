@@ -35,7 +35,7 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	private void equip(int index, Player buyer) {
-
+		ShopEntry selected = storage.get(index);
 	}
 
 	public void exit() {
