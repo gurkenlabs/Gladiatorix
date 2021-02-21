@@ -13,7 +13,7 @@ public class Spawnpoints {
 	public static void createSpawnpoints(Collection<Spawnpoint> collection, int waveCount) {
 		spawns.clear();
 		collection.forEach(e -> {
-			final EnemySpawnpoint spawn = new EnemySpawnpoint(100, e);
+			final EnemySpawnpoint spawn = new EnemySpawnpoint(3000, e);
 			for (int i = 0; i < waveCount; i++) {
 				final List<Enemy> wave = new ArrayList<>();
 				if (spawn.spawnpoint.getProperties().hasCustomProperty("wave_" + (i + 1))) {
@@ -21,7 +21,7 @@ public class Spawnpoints {
 							.split(",")) {
 						switch (Integer.valueOf(enemy)) {
 						case 1:
-							wave.add(new Enemy());
+							wave.add(new Enemy("enemy1"));
 							break;
 						}
 					}

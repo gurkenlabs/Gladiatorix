@@ -16,6 +16,7 @@ public class EnemySpawnpoint {
 	private final List<List<Enemy>> waves = new ArrayList<>();
 
 	public EnemySpawnpoint(int delay, Spawnpoint spawnpoint) {
+		System.out.println("spawn");
 		this.delay = delay;
 		this.spawnpoint = spawnpoint;
 	}
@@ -29,12 +30,8 @@ public class EnemySpawnpoint {
 	}
 
 	public void spawnWave(int wave, int enemy) {
-		if (waves.get(wave).size() <= enemy) {
-			return;
-		}
-		// spawnpoint.spawn(waves.get(wave).get(enemy));
-		System.out.println(spawnpoint.spawn(waves.get(wave).get(enemy)));
-		System.out.println(waves.get(wave).get(enemy).getLocation());
+		if (waves.get(wave).size() <= enemy) return;
+		spawnpoint.spawn(waves.get(wave).get(enemy));
 		Game.loop().perform(delay, () -> spawnWave(wave, enemy + 1));
 	}
 }
