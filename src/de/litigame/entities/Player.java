@@ -68,7 +68,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 10;
 	}
 
 	public void interact() {
