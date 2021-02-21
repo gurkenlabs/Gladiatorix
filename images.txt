@@ -15,3 +15,5 @@ hp-fill:sprites/hp_bar_fill_thin.png
 80-hp:sprites/enemy_health_bar/health_bar_80.png
 90-hp:sprites/enemy_health_bar/health_bar_90.png
 100-hp:sprites/enemy_health_bar/health_bar_100.png
+menu:screens/menu.png
+menu_item:screens/menu_item.png
