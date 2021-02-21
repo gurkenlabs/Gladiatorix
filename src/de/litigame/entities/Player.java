@@ -34,6 +34,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		return instance;
 	}
 
+	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
 	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
