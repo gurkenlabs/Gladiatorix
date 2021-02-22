@@ -1,4 +1,4 @@
-package de.litigame;
+package de.litigame.spawning;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,6 @@ public class EnemySpawnpoint {
 	private final List<List<Enemy>> waves = new ArrayList<>();
 
 	public EnemySpawnpoint(int delay, Spawnpoint spawnpoint) {
-		System.out.println("spawn");
 		this.delay = delay;
 		this.spawnpoint = spawnpoint;
 	}

@@ -1,4 +1,4 @@
-package de.litigame;
+package de.litigame.spawning;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +8,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.litigame.entities.Enemy;
+import de.litigame.spawning.EnemySpawnpoint;
 
 public class Spawnpoints {
 

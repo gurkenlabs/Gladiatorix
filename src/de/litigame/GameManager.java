@@ -13,6 +13,7 @@ import de.litigame.entities.Enemy;
 import de.litigame.entities.Player;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.items.Items;
+import de.litigame.spawning.Spawnpoints;
 
 public class GameManager {
 
