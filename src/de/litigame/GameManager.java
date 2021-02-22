@@ -43,6 +43,18 @@ public class GameManager {
 		setupSpawnpoints(env);
 	}
 
+	public static void setupSpawnpoints(Environment env) {
+		for (final CollisionBox boxbox : env.getCollisionBoxes()) {
+			if (boxbox.hasTag("enemyspawndata")) {
+				final int waveCount = boxbox.getProperties().getIntValue("waveCount");
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
+						.collect(Collectors.toList()), waveCount);
+				return;
+			}
+		}
+
+	}
+
 	private static void setupTriggers(Environment env) {
 		for (final Trigger trigger : env.getTriggers()) {
 			if (trigger.hasTag("deadly")) {
@@ -55,7 +67,7 @@ public class GameManager {
 			}
 			if (trigger.hasTag("wavestart")) {
 				trigger.addActivatedListener(e -> {
-					Spawnpoints.spawnWave(0);
+					Spawnpoints.spawnNextWave();
 					Game.world().environment().remove(trigger);
 				});
 			}
@@ -89,18 +101,6 @@ public class GameManager {
 				});
 			}
 		}
-	}
-
-	public static void setupSpawnpoints(Environment env) {
-		for (final CollisionBox boxbox : env.getCollisionBoxes()) {
-			if (boxbox.hasTag("enemyspawndata")) {
-				final int waveCount = boxbox.getProperties().getIntValue("waveCount");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
-						.collect(Collectors.toList()), waveCount);
-				return;
-			}
-		}
-
 	}
 
 	public static void switchToMap(String map) {

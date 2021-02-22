@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.litigame.entities.Enemy;
 
 public class Spawnpoints {
+
+	private static int currentWave;
 	private static List<EnemySpawnpoint> spawns = new ArrayList<>();
 
+	private static boolean allDead() {
+		for (Creature c : Game.world().environment().getCreatures())
+			if (c instanceof Enemy && !c.isDead()) return false;
+		return true;
+	}
+
 	public static void createSpawnpoints(Collection<Spawnpoint> collection, int waveCount) {
+		currentWave = 0;
 		spawns.clear();
 		collection.forEach(e -> {
 			final EnemySpawnpoint spawn = new EnemySpawnpoint(3000, e);
@@ -26,15 +37,21 @@ public class Spawnpoints {
 						}
 					}
 				}
+				for (Enemy enemy : wave) enemy.onDeath(entity -> {
+					if (allDead()) {
+						spawnNextWave();
+					}
+				});
 				spawn.addWave(wave);
 			}
 			spawns.add(spawn);
 		});
 	}
 
-	public static void spawnWave(int wave) {
+	public static void spawnNextWave() {
 		for (final EnemySpawnpoint spawn : spawns) {
-			spawn.spawnWave(wave);
+			spawn.spawnWave(currentWave);
 		}
+		++currentWave;
 	}
 }

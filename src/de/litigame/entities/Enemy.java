@@ -34,6 +34,8 @@ public class Enemy extends Creature implements IFighter {
 	public Enemy(String spritesheetName) {
 		super(spritesheetName);
 
+		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
+
 		setTarget(Player.getInstance());
 
 		putWeapon((Weapon) Items.getItem("sword"));
@@ -72,4 +74,5 @@ public class Enemy extends Creature implements IFighter {
 		}
 		weapon.overrideAbility(attackAbility);
 	}
+
 }
