@@ -44,11 +44,12 @@ public class GameManager {
 	}
 
 	public static void setupSpawnpoints(Environment env) {
-		for (final CollisionBox boxbox : env.getCollisionBoxes()) {
-			if (boxbox.hasTag("enemyspawndata")) {
-				final int waveCount = boxbox.getProperties().getIntValue("waveCount");
+		for (final CollisionBox infoBox : env.getCollisionBoxes()) {
+			if (infoBox.hasTag("enemyspawndata")) {
+				int waveCount = infoBox.getProperties().getIntValue("waveCount");
+				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
 				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
-						.collect(Collectors.toList()), waveCount);
+						.collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}

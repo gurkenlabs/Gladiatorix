@@ -20,11 +20,11 @@ public class Spawnpoints {
 		return true;
 	}
 
-	public static void createSpawnpoints(Collection<Spawnpoint> collection, int waveCount) {
+	public static void createSpawnpoints(Collection<Spawnpoint> collection, int waveCount, int waveDelay) {
 		currentWave = 0;
 		spawns.clear();
 		collection.forEach(e -> {
-			final EnemySpawnpoint spawn = new EnemySpawnpoint(3000, e);
+			final EnemySpawnpoint spawn = new EnemySpawnpoint(waveDelay, e);
 			for (int i = 0; i < waveCount; i++) {
 				final List<Enemy> wave = new ArrayList<>();
 				if (spawn.spawnpoint.getProperties().hasCustomProperty("wave_" + (i + 1))) {

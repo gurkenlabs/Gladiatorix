@@ -519,6 +519,7 @@
       <property name="collisionType" value="STATIC"/>
       <property name="tags" value="enemyspawndata"/>
       <property name="waveCount" value="4"/>
+      <property name="waveDelay" value="3000"/>
      </properties>
     </object>
     <object id="3" type="SPAWNPOINT" x="400" y="352" width="48" height="32">
