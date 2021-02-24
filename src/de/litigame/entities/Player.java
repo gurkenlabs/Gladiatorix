@@ -18,6 +18,7 @@ import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
+import de.litigame.items.Armor;
 import de.litigame.items.Item;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
@@ -37,6 +38,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public static Player getInstance() {
 		return instance;
 	}
+
+	private Armor currentArmor;
 
 	public final Hotbar hotbar = new Hotbar(this);
 
@@ -88,6 +91,12 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public void dropItem() {
 		hotbar.dropSelectedItem();
+	}
+
+	public void equip(Armor armor) {
+		if (currentArmor != null) getHitPoints().removeModifier(currentArmor.healthBuff());
+		getHitPoints().addModifier(armor.healthBuff());
+		currentArmor = armor;
 	}
 
 	@Override

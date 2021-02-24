@@ -16,3 +16,7 @@
 + `weapon_range`: only for range weapons, how far
 + `weapon_type`: "melee" or "range"
 + `weapon_value`: strength of the weapon
+
+## Armor
++ `armor_buff`: increase in player HP
++ `armor_skin`: which player sprite

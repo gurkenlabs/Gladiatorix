@@ -11,11 +11,18 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
+import de.litigame.GameManager;
 import de.litigame.entities.Player;
 import de.litigame.gui.IngameScreen;
+import de.litigame.items.Armor;
+import de.litigame.items.Item;
 import de.litigame.utilities.ImageUtilities;
 
 public class Shop implements IRenderable, KeyPressedListener {
+
+	public interface ShopExitedListener {
+		void exit();
+	}
 
 	private final BufferedImage background;
 	private final List<ShopExitedListener> exitListeners = new ArrayList<>();
@@ -36,6 +43,11 @@ public class Shop implements IRenderable, KeyPressedListener {
 
 	private void equip(int index, Player buyer) {
 		ShopEntry selected = storage.get(index);
+		Item item = selected.getItem();
+		GameManager.removeItemEntities(item);
+		Player.getInstance().hotbar.removeItems(item);
+		if (item instanceof Armor) Player.getInstance().equip((Armor) item);
+		else Player.getInstance().hotbar.addItem(item);
 	}
 
 	public void exit() {

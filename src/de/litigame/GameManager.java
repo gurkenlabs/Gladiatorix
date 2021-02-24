@@ -6,14 +6,17 @@ import java.util.Set;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.CombatEntity;
 import de.gurkenlabs.litiengine.entities.IEntity;
+import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.CreatureMapObjectLoader;
 import de.gurkenlabs.litiengine.environment.Environment;
 import de.litigame.entities.Enemy;
 import de.litigame.entities.IInteractEntity;
+import de.litigame.entities.ItemProp;
 import de.litigame.entities.Player;
 import de.litigame.entities.Villager;
 import de.litigame.graphics.PlayerCamera;
+import de.litigame.items.Item;
 import de.litigame.items.Items;
 import de.litigame.shop.Shops;
 
@@ -47,6 +50,13 @@ public class GameManager {
 
 	public static int MillisToTicks(int millis) {
 		return Game.loop().getTickRate() * millis / 1000;
+	}
+
+	public static void removeItemEntities(Item item) {
+		for (Prop entity : Game.world().environment().getProps()) {
+			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName()))
+				Game.world().environment().remove(entity);
+		}
 	}
 
 	private static void setupMapObjects(Environment env) {
