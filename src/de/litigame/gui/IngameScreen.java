@@ -14,14 +14,7 @@ public class IngameScreen extends GameScreen {
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-		/*
-		 * for (IMobileEntity e : Game.world().environment().getMobileEntities()) { if
-		 * (e instanceof Enemy) { ((Enemy)
-		 * e).getController(EnemyController.class).nav.render(g); ((AStarPathFinder)
-		 * ((Enemy)
-		 * e).getController(EnemyController.class).nav.getPathFinder()).getGrid()
-		 * .render(g); } }
-		 */
+
 		Player.getInstance().hotbar.render(g);
 	}
 }

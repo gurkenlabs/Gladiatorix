@@ -24,6 +24,8 @@ public class Enemy extends Creature implements IFighter {
 
 	private Ability attackAbility;
 
+	private double strength = 0;
+
 	public int visionRange = 4000;
 
 	public Enemy() {
@@ -44,6 +46,15 @@ public class Enemy extends Creature implements IFighter {
 		Game.loop().attach(controller);
 	}
 
+	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange) {
+		this(spritesheetName);
+		putWeapon(weapon);
+		this.strength = strength;
+		getHitPoints().setMaxBaseValue(health);
+		this.visionRange = visionRange;
+
+	}
+
 	@Override
 	public boolean canCollideWith(ICollisionEntity other) {
 		return !other.hasTag("barrier");
@@ -55,7 +66,7 @@ public class Enemy extends Creature implements IFighter {
 
 	@Override
 	public double getStrength() {
-		return 0;
+		return strength;
 	}
 
 	public void putWeapon(Weapon weapon) {
@@ -71,5 +82,4 @@ public class Enemy extends Creature implements IFighter {
 		}
 		weapon.overrideAbility(attackAbility);
 	}
-
 }
