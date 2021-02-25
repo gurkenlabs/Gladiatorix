@@ -43,6 +43,8 @@ public class Enemy extends Creature implements IFighter {
 		final MovementController<Enemy> controller = new EnemyController(this);
 		addController(controller);
 		Game.loop().attach(controller);
+
+		addEntityRenderListener(e -> new EnemyHealthBar(this).render(e.getGraphics()));
 	}
 
 	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange) {
@@ -51,7 +53,6 @@ public class Enemy extends Creature implements IFighter {
 		this.strength = strength;
 		getHitPoints().setMaxBaseValue(health);
 		this.visionRange = visionRange;
-
 	}
 
 	@Override

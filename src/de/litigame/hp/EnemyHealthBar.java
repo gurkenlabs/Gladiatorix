@@ -7,7 +7,6 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Enemy;
-import de.litigame.entities.Player;
 
 public class EnemyHealthBar implements IRenderable {
 
@@ -24,11 +23,13 @@ public class EnemyHealthBar implements IRenderable {
 		String image = Math.round(fac * 10) * 10 + "-hp";
 		BufferedImage bar = Resources.images().get(image);
 		g.drawImage(bar,
-				(int) (entity.getX()
-						+ (Game.world().environment().getMap().getWidth() * 16 - Player.getInstance().getX())),
-				(int) (entity.getY()
-						+ (Game.world().environment().getMap().getHeight() * 8 - Player.getInstance().getY())),
+				(int) (entity.getCenter().getX() - Game.world().camera().getFocus().getX()
+						+ 299.5 / Game.world().camera().getZoom()),
+				(int) (entity.getCenter().getY() - Game.world().camera().getFocus().getY()
+						+ 143 / Game.world().camera().getZoom()),
 				(bar.getWidth()), (bar.getHeight()), null);
+		System.out.println(entity.getLocation() + " sda" + entity.getX() + " " + entity.getY() + "  " + bar.getWidth()
+				+ "  " + bar.getHeight());
 	}
 
 }
