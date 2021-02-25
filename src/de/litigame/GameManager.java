@@ -1,8 +1,8 @@
 package de.litigame;
 
-import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
@@ -46,7 +46,7 @@ public class GameManager {
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
 		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
-		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+		Player.getInstance().hotbar.addItem(Items.getItem("sword_stone"));
 
 		switchToState(GameState.INGAME);
 	}

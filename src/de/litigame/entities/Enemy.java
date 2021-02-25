@@ -38,7 +38,7 @@ public class Enemy extends Creature implements IFighter {
 
 		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
 		setTarget(Player.getInstance());
-		putWeapon((Weapon) Items.getItem("sword"));
+		putWeapon((Weapon) Items.getItem("sword_stone"));
 
 		final MovementController<Enemy> controller = new EnemyController(this);
 		addController(controller);

@@ -8,7 +8,7 @@
 			[
 				{
 					"tooltip" : "",
-					"item_name" : "sword",
+					"item_name" : "sword_iron",
 					"price"		: "0",
 					"required_level"	: "1",
 					"equippable" : "true"

@@ -4,13 +4,38 @@
 		{
 			"item_class"			:	"weapon",
 			"item_image"			:	"test",
-			"item_name"				:	"sword",
+			"item_name"				:	"sword_iron",
 			"weapon_impact"			:	"20",
 			"weapon_impactAngle"	:	"90",
 			"weapon_multiTarget"	:	"true",
 			"weapon_value"			:	"10",
 			"weapon_type"			:	"melee",
-			"weapon_cooldown"		:	"100"
+			"weapon_cooldown"		:	"100",
+			"weapon_skin"			:	"iron"
+		},
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"test",
+			"item_name"				:	"sword_stone",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"	:	"90",
+			"weapon_multiTarget"	:	"true",
+			"weapon_value"			:	"10",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"100",
+			"weapon_skin"			:	"stone"
+		},
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"test",
+			"item_name"				:	"sword_wood",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"	:	"90",
+			"weapon_multiTarget"	:	"true",
+			"weapon_value"			:	"10",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"100",
+			"weapon_skin"			:	"wood"
 		},
 		{
 			"item_class"			:	"weapon",
@@ -23,7 +48,8 @@
 			"weapon_type"			:	"range",
 			"weapon_cooldown"		:	"200",
 			"weapon_duration"		:	"200",
-			"weapon_range"			:	"100"
+			"weapon_range"			:	"100",
+			"weapon_skin"			:	"wood"
 		},
 		{
 			"item_class"			:	"potion",
@@ -41,7 +67,31 @@
 			"weapon_type"			:	"melee",
 			"weapon_cooldown"		:	"0",
 			"weapon_duration"		:	"0",
-			"weapon_range"			:	"0"
+			"weapon_range"			:	"0",
+			"weapon_skin"			:	"wood"
 		},
+		
+		
+		{
+			"item_class"			:	"armor",
+			"item_image"			:	"test",
+			"item_name"				:	"armor_iron",
+			"armor_buff"			:	"10",
+			"armor_skin"			:	"iron"
+		},
+		{
+			"item_class"			:	"armor",
+			"item_image"			:	"test",
+			"item_name"				:	"armor_leather",
+			"armor_buff"			:	"10",
+			"armor_skin"			:	"leather"
+		},
+		{
+			"item_class"			:	"armor",
+			"item_image"			:	"test",
+			"item_name"				:	"armor_gold",
+			"armor_buff"			:	"10",
+			"armor_skin"			:	"gold"
+		}
 	]
 }

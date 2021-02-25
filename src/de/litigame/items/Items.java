@@ -17,6 +17,8 @@ public class Items {
 	public static Item getItem(String itemName) {
 		Map<String, String> info = itemInfos.get(itemName);
 		switch (info.get("item_class")) {
+		case "armor":
+			return new Armor(info);
 		case "weapon":
 			return new Weapon(info);
 		case "potion":

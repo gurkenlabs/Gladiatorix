@@ -3,7 +3,7 @@
 - every value within the item-data is stored as a String
 
 ## Item
-+ `item_class`: "weapon"
++ `item_class`: any kind of item (headers below)
 + `item_image`: a key value of [images](image_conventions.md)
 + `item_name`: name of the item
 
