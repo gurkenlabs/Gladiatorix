@@ -17,6 +17,7 @@ import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
+import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
@@ -41,6 +42,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	private Armor currentArmor;
 
+	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
 	public final Hotbar hotbar = new Hotbar(this);
 
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
@@ -50,7 +52,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	private Player() {
 		super("player");
-
 		addController(new PlayerController(this));
 
 		Game.loop().attach(this);
