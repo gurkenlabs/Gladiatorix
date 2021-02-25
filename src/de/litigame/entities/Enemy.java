@@ -12,6 +12,7 @@ import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
+import de.litigame.hp.EnemyHealthBar;
 import de.litigame.items.Items;
 import de.litigame.items.Weapon;
 
@@ -36,9 +37,7 @@ public class Enemy extends Creature implements IFighter {
 		super(spritesheetName);
 
 		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
-
 		setTarget(Player.getInstance());
-
 		putWeapon((Weapon) Items.getItem("sword"));
 
 		final MovementController<Enemy> controller = new EnemyController(this);

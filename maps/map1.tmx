@@ -3702,7 +3702,7 @@
   </object>
   <object id="9" type="COLLISIONBOX" x="-48" y="208" width="112" height="16">
    <properties>
-    <property name="collisionType" value="STATIC"/>
+    <property name="spritesheetName" value="villager"/>
    </properties>
   </object>
  </objectgroup>
