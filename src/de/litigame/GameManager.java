@@ -1,9 +1,11 @@
 package de.litigame;
 
+import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Set;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.CombatEntity;
 import de.gurkenlabs.litiengine.entities.IEntity;
 import de.gurkenlabs.litiengine.entities.Prop;
@@ -19,6 +21,7 @@ import de.litigame.graphics.PlayerCamera;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
 import de.litigame.shop.Shops;
+import de.litigame.spawning.Spawnpoints;
 
 public class GameManager {
 
@@ -61,21 +64,45 @@ public class GameManager {
 
 	private static void setupMapObjects(Environment env) {
 		setupTriggers(env);
+		setupSpawnpoints(env);
+	}
+
+	public static void setupSpawnpoints(Environment env) {
+		for (final CollisionBox infoBox : env.getCollisionBoxes()) {
+			if (infoBox.hasTag("enemyspawndata")) {
+				int waveCount = infoBox.getProperties().getIntValue("waveCount");
+				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
+						.collect(Collectors.toList()), waveCount, waveDelay);
+				return;
+			}
+		}
+
 	}
 
 	private static void setupTriggers(Environment env) {
-		for (Trigger trigger : env.getTriggers()) {
-			if (trigger.hasTag("deadly")) trigger.addActivatedListener(e -> {
-				IEntity entity = e.getEntity();
-				if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
-			});
-			if (trigger.hasTag("portal")) trigger.addActivatedListener(e -> {
-				if (e.getEntity() instanceof Player) {
-					String map = trigger.getProperties().getStringValue("toMap");
-					String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
-					enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
-				}
-			});
+		for (final Trigger trigger : env.getTriggers()) {
+			if (trigger.hasTag("deadly")) {
+				trigger.addActivatedListener(e -> {
+					IEntity entity = e.getEntity();
+					if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
+				});
+			}
+			if (trigger.hasTag("wavestart")) {
+				trigger.addActivatedListener(e -> {
+					Spawnpoints.spawnNextWave();
+					Game.world().environment().remove(trigger);
+				});
+			}
+			if (trigger.hasTag("portal")) {
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player) {
+						String map = trigger.getProperties().getStringValue("toMap");
+						String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+					}
+				});
+			}
 			if (trigger.hasTag("zoom")) {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
