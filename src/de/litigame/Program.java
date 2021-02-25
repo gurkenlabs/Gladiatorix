@@ -8,6 +8,7 @@ import de.litigame.gui.IngameScreen;
 import de.litigame.gui.MainMenuScreen;
 import de.litigame.gui.SettigsScreen;
 import de.litigame.items.Items;
+import de.litigame.shop.Shops;
 import de.litigame.utilities.ImageUtilities;
 
 public class Program {
@@ -17,6 +18,7 @@ public class Program {
 		Resources.load("game.litidata");
 		ImageUtilities.init(new File("images.txt"));
 		Items.init(new File("items.json"));
+		Shops.init(new File("shops.json"));
 		Game.screens().add(new IngameScreen());
 		Game.screens().add(new MainMenuScreen());
 		Game.screens().add(new SettigsScreen());

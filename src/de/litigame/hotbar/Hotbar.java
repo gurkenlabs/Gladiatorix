@@ -72,6 +72,11 @@ public class Hotbar implements IRenderable {
 		}
 	}
 
+	public void removeItems(Item item) {
+		for (int i = 0; i < items.length; ++i)
+			if (items[i] != null && items[i].getName().equals(item.getName())) items[i] = null;
+	}
+
 	@Override
 	public void render(Graphics2D graphics) {
 		BufferedImage slot = Resources.images().get("slot");

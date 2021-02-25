@@ -38,9 +38,16 @@
       <property name="spritesheetName" value="test"/>
      </properties>
     </object>
-    <object id="266" type="CREATURE" x="48" y="96" width="16" height="16">
+    <object id="267" type="TRIGGER" x="0" y="80" width="112" height="80">
      <properties>
-      <property name="spritesheetName" value="villager"/>
+      <property name="shopName" value="shop1"/>
+      <property name="tags" value="shop"/>
+      <property name="triggerActivation" value="INTERACT"/>
+     </properties>
+    </object>
+    <object id="268" type="COLLISIONBOX" x="48" y="32" width="32" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
      </properties>
     </object>
    </objectgroup>
@@ -63,7 +70,7 @@
    </layer>
    <objectgroup id="0" name="default" visible="1">
     <object id="1" name="spawn" type="SPAWNPOINT" x="112" y="112" width="16" height="16"/>
-    <object id="3" type="TRIGGER" x="80" y="16" width="64" height="64">
+    <object id="3" type="TRIGGER" x="96" y="0" width="64" height="64">
      <properties>
       <property name="tags" value="deadly"/>
       <property name="triggerActivation" value="COLLISION"/>
