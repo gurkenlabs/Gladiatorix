@@ -42,13 +42,15 @@ public class Shops {
 					int price = Integer.valueOf(JSONEntry.getString("price"));
 					int required_level = Integer.valueOf(JSONEntry.getString("required_level"));
 					boolean equippable = Boolean.valueOf(JSONEntry.getString("equippable"));
+					String tooltip = JSONEntry.getString("tooltip");
 
-					ShopEntry shopEntry = new ShopEntry(item, price, required_level, equippable);
+					ShopEntry shopEntry = new ShopEntry(item, price, required_level, equippable, tooltip);
 
 					offers.add(shopEntry);
 				}
 
 				shops.put(name, new Shop(offers, new ArrayList<>(), background));
+				System.out.println("inti shop");
 			}
 		} catch (JSONException | FileNotFoundException e) {
 			e.printStackTrace();

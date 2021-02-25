@@ -12,6 +12,7 @@
     * "price"
     * "required_level"
     * "equippable"
+    * "tooltip"
 
 ## Variables
 
@@ -25,3 +26,4 @@
 | `price`          | Integer    | amount of coins needed to buy this item                   |
 | `required_level` | Integer    | level needed to buy this item                             |
 | `equippable`     | Boolean    | determines whether item cannot be obtained multiple times |
+| `tooltip`        | String     | info-text that is shown in the shop dialog                |

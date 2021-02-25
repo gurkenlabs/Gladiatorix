@@ -73,7 +73,8 @@ public class Hotbar implements IRenderable {
 	}
 
 	public void removeItems(Item item) {
-		for (int i = 0; i < items.length; ++i) if (items[i].getName().equals(item.getName())) items[i] = null;
+		for (int i = 0; i < items.length; ++i)
+			if (items[i] != null && items[i].getName().equals(item.getName())) items[i] = null;
 	}
 
 	@Override

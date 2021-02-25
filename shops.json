@@ -7,12 +7,14 @@
 			"offers"	: 
 			[
 				{
-					"item_name" : "bow",
+					"tooltip" : "",
+					"item_name" : "sword",
 					"price"		: "0",
 					"required_level"	: "1",
 					"equippable" : "true"
 				},
 				{
+					"tooltip" : "LOL U CAN SHOOT PPL",
 					"item_name" : "bow",
 					"price"		: "0",
 					"required_level"	: "1",
