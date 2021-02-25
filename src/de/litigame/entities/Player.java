@@ -1,8 +1,10 @@
 package de.litigame.entities;
 
+import java.awt.Color;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.gurkenlabs.litiengine.Direction;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.Valign;
@@ -11,6 +13,10 @@ import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
+import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
+import de.gurkenlabs.litiengine.graphics.animation.Animation;
+import de.gurkenlabs.litiengine.graphics.animation.CreatureAnimationController;
+import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
@@ -21,6 +27,8 @@ import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
+import de.litigame.items.Items;
+import de.litigame.items.Shield;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
@@ -41,6 +49,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	private Armor currentArmor;
+	private Shield currentShield;
 
 	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
 	public final Hotbar hotbar = new Hotbar(this);
@@ -88,6 +97,41 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public void changeMoney(int shift) {
 		money += shift;
+	}
+
+	@Override
+	public IEntityAnimationController<Player> createAnimationController() {
+		IEntityAnimationController<Player> controller = new CreatureAnimationController<>(this, true);
+		for (String armor : Items.itemInfos.keySet())
+			if (Items.getItem(armor) instanceof Armor) for (String weapon : Items.itemInfos.keySet())
+				if (Items.getItem(weapon) instanceof Weapon) for (Direction dir : Direction.values()) {
+					controller.add(new Animation("player_" + ((Armor) Items.getItem(armor)).getPlayerSkin() + "_"
+							+ ((Weapon) Items.getItem(weapon)).playerSkin() + "_shield_walk_"
+							+ dir.name().toLowerCase(), true, true));
+					controller.add(new Animation("player_" + ((Armor) Items.getItem(armor)).getPlayerSkin() + "_"
+							+ ((Weapon) Items.getItem(weapon)).playerSkin() + "_noshield_walk_"
+							+ dir.name().toLowerCase(), true, true));
+					controller.add(new Animation("player_" + ((Armor) Items.getItem(armor)).getPlayerSkin() + "_"
+							+ ((Weapon) Items.getItem(weapon)).playerSkin() + "_shield_idle_"
+							+ dir.name().toLowerCase(), true, true));
+					controller.add(new Animation("player_" + ((Armor) Items.getItem(armor)).getPlayerSkin() + "_"
+							+ ((Weapon) Items.getItem(weapon)).playerSkin() + "_noshield_idle_"
+							+ dir.name().toLowerCase(), true, true));
+				}
+
+		controller.addRule(p -> !p.isDead(),
+				p -> "player_" + (p.currentArmor == null ? "" : p.currentArmor.getPlayerSkin() + "_")
+						+ (p.hotbar.getSelectedItem() instanceof Weapon
+								? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_"
+								: "")
+						+ (currentShield == null ? "noshield_" : "shield_") + (p.isIdle() ? "idle" : "walk_")
+						+ p.getFacingDirection().name().toLowerCase(),
+				0);
+
+		CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
+		effect.setOffsetY(1);
+		controller.add(effect);
+		return controller;
 	}
 
 	public void dropItem() {

@@ -14,9 +14,13 @@
 + `weapon_impactAngle`: only melee weapons, how far to side
 + `weapon_multiTarget`: "true" or "false"
 + `weapon_range`: only for range weapons, how far
++ `weapon_skin`: which player sprite
 + `weapon_type`: "melee" or "range"
 + `weapon_value`: strength of the weapon
 
 ## Armor
 + `armor_buff`: increase in player HP
 + `armor_skin`: which player sprite
+
+## Shield
++ `shield_buff`: increase in player HP
