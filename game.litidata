@@ -7380,36 +7380,6 @@
       <property name="collisionType" value="STATIC"/>
      </properties>
     </object>
-    <object id="353" type="COLLISIONBOX" x="1968" y="1328" width="16" height="16">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
-    <object id="354" type="COLLISIONBOX" x="1936" y="1328" width="16" height="32">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
-    <object id="355" type="COLLISIONBOX" x="1920" y="1360" width="16" height="64">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
-    <object id="356" type="COLLISIONBOX" x="1888" y="1392" width="32" height="16">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
-    <object id="357" type="COLLISIONBOX" x="1856" y="1408" width="16" height="16">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
-    <object id="358" type="COLLISIONBOX" x="1840" y="1424" width="16" height="16">
-     <properties>
-      <property name="collisionType" value="STATIC"/>
-     </properties>
-    </object>
     <object id="359" type="COLLISIONBOX" x="1664" y="1360" width="16" height="96">
      <properties>
       <property name="collisionType" value="STATIC"/>
@@ -7425,6 +7395,797 @@
       <property name="collisionType" value="STATIC"/>
      </properties>
     </object>
+    <object id="362" type="COLLISIONBOX" x="1408" y="1312" width="16" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="363" type="COLLISIONBOX" x="1424" y="1376" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="364" type="COLLISIONBOX" x="1408" y="1456" width="32" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="365" type="COLLISIONBOX" x="1440" y="1488" width="16" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="366" type="COLLISIONBOX" x="1472" y="1632" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="367" type="COLLISIONBOX" x="1504" y="1648" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="368" type="COLLISIONBOX" x="1632" y="1680" width="80" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="369" type="COLLISIONBOX" x="1792" y="1712" width="80" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="370" type="COLLISIONBOX" x="1520" y="1584" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="371" type="COLLISIONBOX" x="1552" y="1616" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="372" type="COLLISIONBOX" x="1600" y="1584" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="373" type="COLLISIONBOX" x="1616" y="1568" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="374" type="COLLISIONBOX" x="1664" y="1600" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="375" type="COLLISIONBOX" x="1680" y="1552" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="376" type="COLLISIONBOX" x="1664" y="1568" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="377" type="COLLISIONBOX" x="1728" y="1552" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="378" type="COLLISIONBOX" x="1744" y="1552" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="379" type="COLLISIONBOX" x="1776" y="1600" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="380" type="COLLISIONBOX" x="1808" y="1552" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="381" type="COLLISIONBOX" x="1824" y="1568" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="382" type="COLLISIONBOX" x="1856" y="1584" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="383" type="COLLISIONBOX" x="1824" y="1632" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="384" type="COLLISIONBOX" x="1872" y="1632" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="385" type="COLLISIONBOX" x="1904" y="1632" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="386" type="COLLISIONBOX" x="2320" y="1712" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="387" type="COLLISIONBOX" x="2336" y="1664" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="388" type="COLLISIONBOX" x="2336" y="1616" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="389" type="COLLISIONBOX" x="2336" y="1600" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="390" type="COLLISIONBOX" x="2336" y="1536" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="391" type="COLLISIONBOX" x="2304" y="1616" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="392" type="COLLISIONBOX" x="2288" y="1680" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="393" type="COLLISIONBOX" x="2256" y="1648" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="394" type="COLLISIONBOX" x="2256" y="1600" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="395" type="COLLISIONBOX" x="2224" y="1616" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="396" type="COLLISIONBOX" x="2272" y="1568" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="397" type="COLLISIONBOX" x="2208" y="1552" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="398" type="COLLISIONBOX" x="2176" y="1584" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="399" type="COLLISIONBOX" x="2128" y="1600" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="400" type="COLLISIONBOX" x="2064" y="1632" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="401" type="COLLISIONBOX" x="2240" y="1504" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="402" type="COLLISIONBOX" x="2304" y="1488" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="403" type="COLLISIONBOX" x="2288" y="1504" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="404" type="COLLISIONBOX" x="2336" y="1456" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="405" type="COLLISIONBOX" x="2240" y="1776" width="16" height="112">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="406" type="COLLISIONBOX" x="2256" y="1888" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="407" type="COLLISIONBOX" x="2240" y="1920" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="408" type="COLLISIONBOX" x="2256" y="1952" width="16" height="96">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="409" type="COLLISIONBOX" x="2240" y="2048" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="410" type="COLLISIONBOX" x="2224" y="2064" width="16" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="411" type="COLLISIONBOX" x="2176" y="2112" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="412" type="COLLISIONBOX" x="2096" y="2128" width="80" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="413" type="COLLISIONBOX" x="2064" y="2032" width="32" height="208">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="414" type="COLLISIONBOX" x="2048" y="2240" width="48" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="415" type="COLLISIONBOX" x="2048" y="2272" width="32" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="416" type="COLLISIONBOX" x="2032" y="2320" width="48" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="417" type="COLLISIONBOX" x="2000" y="2352" width="64" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="418" type="COLLISIONBOX" x="2016" y="2336" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="419" type="COLLISIONBOX" x="2000" y="2368" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="420" type="COLLISIONBOX" x="2000" y="2384" width="32" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="421" type="COLLISIONBOX" x="2048" y="2032" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="422" type="COLLISIONBOX" x="2032" y="2016" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="423" type="COLLISIONBOX" x="2048" y="2016" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="424" type="COLLISIONBOX" x="2032" y="1952" width="48" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="425" type="COLLISIONBOX" x="2016" y="1952" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="426" type="COLLISIONBOX" x="2016" y="1936" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="427" type="COLLISIONBOX" x="2016" y="1872" width="32" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="428" type="COLLISIONBOX" x="2048" y="1840" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="429" type="COLLISIONBOX" x="2032" y="1856" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="430" type="COLLISIONBOX" x="2064" y="1744" width="16" height="144">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="431" type="COLLISIONBOX" x="2080" y="1760" width="16" height="112">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="432" type="COLLISIONBOX" x="2048" y="1712" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="433" type="COLLISIONBOX" x="2032" y="1696" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="434" type="COLLISIONBOX" x="2016" y="1696" width="16" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="435" type="COLLISIONBOX" x="1984" y="1696" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="436" type="COLLISIONBOX" x="2000" y="1712" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="437" type="COLLISIONBOX" x="1952" y="1568" width="32" height="96">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="438" type="COLLISIONBOX" x="1904" y="1520" width="32" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="439" type="COLLISIONBOX" x="1936" y="1568" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="440" type="COLLISIONBOX" x="1920" y="1584" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="441" type="COLLISIONBOX" x="1888" y="1520" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="442" type="COLLISIONBOX" x="1936" y="1776" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="443" type="COLLISIONBOX" x="1920" y="1744" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="444" type="COLLISIONBOX" x="1888" y="1808" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="445" type="COLLISIONBOX" x="1872" y="1760" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="446" type="COLLISIONBOX" x="1888" y="1696" width="16" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="447" type="COLLISIONBOX" x="1904" y="1696" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="448" type="COLLISIONBOX" x="1872" y="1664" width="64" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="449" type="COLLISIONBOX" x="1840" y="1952" width="80" height="80">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="450" type="COLLISIONBOX" x="1808" y="1936" width="16" height="160">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="451" type="COLLISIONBOX" x="1792" y="1936" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="452" type="COLLISIONBOX" x="1968" y="1920" width="16" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="453" type="COLLISIONBOX" x="1984" y="1968" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="454" type="COLLISIONBOX" x="1984" y="2016" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="455" type="COLLISIONBOX" x="1968" y="2016" width="16" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="456" type="COLLISIONBOX" x="1952" y="2064" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="457" type="COLLISIONBOX" x="1824" y="2080" width="128" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="458" type="COLLISIONBOX" x="1856" y="2048" width="32" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="459" type="COLLISIONBOX" x="1312" y="1904" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="460" type="COLLISIONBOX" x="1360" y="1904" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="461" type="COLLISIONBOX" x="1760" y="2544" width="64" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="462" type="COLLISIONBOX" x="1824" y="2560" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="463" type="COLLISIONBOX" x="1856" y="2544" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="464" type="COLLISIONBOX" x="1872" y="2528" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="465" type="COLLISIONBOX" x="1904" y="2544" width="16" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="466" type="COLLISIONBOX" x="1920" y="2592" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="467" type="COLLISIONBOX" x="1968" y="2560" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="468" type="COLLISIONBOX" x="1984" y="2560" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="470" type="COLLISIONBOX" x="2016" y="2464" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="471" type="COLLISIONBOX" x="2032" y="2480" width="48" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="472" type="COLLISIONBOX" x="2064" y="2496" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="473" type="COLLISIONBOX" x="2000" y="2528" width="64" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="474" type="COLLISIONBOX" x="1600" y="2240" width="32" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="475" type="COLLISIONBOX" x="1584" y="2256" width="16" height="64">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="476" type="COLLISIONBOX" x="1600" y="2320" width="32" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="477" type="COLLISIONBOX" x="1632" y="2352" width="64" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="478" type="COLLISIONBOX" x="1616" y="2208" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="479" type="COLLISIONBOX" x="1664" y="2368" width="16" height="48">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="480" type="COLLISIONBOX" x="1712" y="2416" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="481" type="COLLISIONBOX" x="1728" y="2432" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="482" type="COLLISIONBOX" x="1760" y="2416" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="483" type="COLLISIONBOX" x="1792" y="2416" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="484" type="COLLISIONBOX" x="1792" y="2448" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="485" type="COLLISIONBOX" x="1840" y="2448" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="486" type="COLLISIONBOX" x="1712" y="2384" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="487" type="COLLISIONBOX" x="1760" y="2384" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="488" type="COLLISIONBOX" x="1792" y="2352" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="489" type="COLLISIONBOX" x="1776" y="2160" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="490" type="COLLISIONBOX" x="1760" y="2192" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="491" type="COLLISIONBOX" x="1776" y="2224" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="492" type="COLLISIONBOX" x="1808" y="2208" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="493" type="COLLISIONBOX" x="1824" y="2256" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="494" type="COLLISIONBOX" x="1824" y="2288" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="495" type="COLLISIONBOX" x="1856" y="2224" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="496" type="COLLISIONBOX" x="1824" y="2176" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="497" type="COLLISIONBOX" x="1840" y="2160" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="498" type="COLLISIONBOX" x="1888" y="2144" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="499" type="COLLISIONBOX" x="1888" y="2112" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="500" type="COLLISIONBOX" x="1952" y="2144" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="501" type="COLLISIONBOX" x="1840" y="2128" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="502" type="COLLISIONBOX" x="1808" y="2112" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="503" type="COLLISIONBOX" x="1664" y="2208" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="504" type="COLLISIONBOX" x="1648" y="2272" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="505" type="COLLISIONBOX" x="1664" y="2256" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="506" type="COLLISIONBOX" x="1696" y="2256" width="16" height="32">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="507" type="COLLISIONBOX" x="1632" y="2304" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="508" type="COLLISIONBOX" x="1664" y="2304" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="509" type="COLLISIONBOX" x="1680" y="2320" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="510" type="COLLISIONBOX" x="1440" y="1792" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="511" type="COLLISIONBOX" x="1408" y="1808" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="512" type="COLLISIONBOX" x="688" y="1824" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="513" type="COLLISIONBOX" x="752" y="1776" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="514" type="COLLISIONBOX" x="784" y="1792" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="515" type="COLLISIONBOX" x="848" y="1792" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="516" type="COLLISIONBOX" x="880" y="1760" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="517" type="COLLISIONBOX" x="896" y="1808" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="518" type="COLLISIONBOX" x="944" y="1776" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="519" type="COLLISIONBOX" x="960" y="1840" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="520" type="COLLISIONBOX" x="1008" y="1792" width="16" height="16">
+     <properties>
+      <property name="collisionType" value="STATIC"/>
+     </properties>
+    </object>
+    <object id="521" type="TRIGGER" x="1728" y="848" width="32" height="32"/>
    </objectgroup>
   </map>
  </maps>
