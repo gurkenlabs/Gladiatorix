@@ -26,16 +26,16 @@
  <tileset firstgid="636" source="resources/tilesets/tiles-dirtgrass1.tsx"/>
  <tileset firstgid="672" source="resources/tilesets/tile-watergrass1.tsx"/>
  <tileset firstgid="692" source="resources/tilesets/tile-watergrass2.tsx"/>
- <tileset firstgid="708" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-watersand2.tsx"/>
- <tileset firstgid="724" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-watergrass1.tsx"/>
- <tileset firstgid="744" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-watersand1.tsx"/>
- <tileset firstgid="764" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-sandgrass2.tsx"/>
- <tileset firstgid="780" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-watergrass2.tsx"/>
- <tileset firstgid="796" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-streetsand2.tsx"/>
- <tileset firstgid="804" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-grass.tsx"/>
- <tileset firstgid="820" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/trees1.tsx"/>
- <tileset firstgid="836" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/bushes1.tsx"/>
- <tileset firstgid="852" source="../../../Documents/Schule/Informatik/Q4 project/Maptiles/Tiled/tile-street3.tsx"/>
+ <tileset firstgid="708" source="resources/tilesets/tile-watersand2.tsx"/>
+ <tileset firstgid="724" source="resources/tilesets/tile-watergrass1.tsx"/>
+ <tileset firstgid="744" source="resources/tilesets/tile-watersand1.tsx"/>
+ <tileset firstgid="764" source="resources/tilesets/tile-sandgrass2.tsx"/>
+ <tileset firstgid="780" source="resources/tilesets/tile-watergrass2.tsx"/>
+ <tileset firstgid="796" source="resources/tilesets/tile-streetsand2.tsx"/>
+ <tileset firstgid="804" source="resources/tilesets/tile-grass.tsx"/>
+ <tileset firstgid="820" source="resources/tilesets/trees1.tsx"/>
+ <tileset firstgid="836" source="resources/tilesets/bushes1.tsx"/>
+ <tileset firstgid="852" source="resources/tilesets/tile-street3.tsx"/>
  <layer id="3" name="Layer-1" width="224" height="208">
   <data encoding="csv">
    <chunk x="128" y="16" width="16" height="16">
