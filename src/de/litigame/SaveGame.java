@@ -13,14 +13,15 @@ import de.litigame.hotbar.*;
 
 @XmlRootElement(name = "savegame") 
 public class SaveGame {
-	
+
+	private Hotbar hotb;
 	//elements of xml file
 	
 	@XmlElement(name = "storage")
 	private Item[] storage;
 	
 	@XmlElement(name = "hotbar")
-	private Hotbar hotbar;
+	private String[] hotbar;
 	
 	@XmlElement(name = "money")
 	private int money;
@@ -29,8 +30,11 @@ public class SaveGame {
 	private int level;
 	
 	@XmlElement(name = "xPos")
-	private Point2D location;
-	
+	private double xPos;
+
+	@XmlElement(name = "yPos")
+	private double yPos;
+
 	@XmlElement(name="health")
 	private int health;
 	
@@ -43,12 +47,13 @@ public class SaveGame {
 	public SaveGame() {
 	}
 	
-	public SaveGame(/*final Item[] storage,*/ final Hotbar hotbar, final int money, final int level, final Point2D location, final int health, final String name) {
+	public SaveGame(/*final Item[] storage, final Hotbar hotbar,*/ final int money, final int level, final Point2D location, final int health, final String name) {
 		//this.storage = storage;
-		this.hotbar = hotbar;
-		//this.money = money;
+		//this.hotbar = hotbar;
+		this.money = money;
 		this.level = level;
-		this.location = location;
+		this.xPos = location.getX();
+		this.yPos = location.getY();
 		this.health = health;
 	}
 	
@@ -61,7 +66,7 @@ public class SaveGame {
 	
 	@XmlTransient
 	public Hotbar getHotbar() {
-		return this.hotbar;
+		return hotb;
 	}
 	
 	@XmlTransient
@@ -76,7 +81,22 @@ public class SaveGame {
 	
 	@XmlTransient
 	public Point2D getLocation() {
-		return this.location;
+		return new Point2D() {
+			@Override
+			public double getX() {
+				return xPos;
+			}
+
+			@Override
+			public double getY() {
+				return yPos;
+			}
+
+			@Override
+			public void setLocation(double x, double y) {
+
+			}
+		};
 	}
 	
 	@XmlTransient
@@ -97,7 +117,7 @@ public class SaveGame {
 	}
 	
 	public void setHotbar(Hotbar hotbar) {
-		this.hotbar = hotbar;
+		this.hotb = hotbar;
 	}
 	
 	public void setMoney(int money) {
@@ -109,7 +129,8 @@ public class SaveGame {
 	}
 	
 	public void setLocation(Point2D location) {
-		this.location = location;
+		this.xPos = location.getX();
+		this.yPos = location.getY();
 	}
 	
 	public void setHealth(int health) {

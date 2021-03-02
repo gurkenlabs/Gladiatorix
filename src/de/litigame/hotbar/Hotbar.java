@@ -2,6 +2,7 @@ package de.litigame.hotbar;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.IEntity;
@@ -105,5 +106,13 @@ public class Hotbar implements IRenderable {
 
 	public int size() {
 		return items.length;
+	}
+
+	public String[] parse() {
+		String[] itms= new String[items.length];
+		for (int i = 0; i<items.length; i++){
+			itms[i] = items[i].getName();
+		}
+		return itms;
 	}
 }

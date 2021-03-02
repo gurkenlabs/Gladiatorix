@@ -1,5 +1,6 @@
 package de.litigame.entities;
 
+import java.awt.geom.Point2D;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -57,6 +58,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		Game.loop().attach(this);
 	}
 
+	public void init(int m, int l, Point2D loc){
+		this.money=m; this.lvl=l; this.setLocation(loc);
+	}
+
 	public void attack() {
 		if (hotbar.getSelectedItem() instanceof Weapon) {
 			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
@@ -99,6 +104,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		getHitPoints().addModifier(armor.healthBuff());
 		currentArmor = armor;
 	}
+
+	public int getMoney(){return money;}
+	public int getLvl(){return lvl;}
 
 	@Override
 	public double getStrength() {

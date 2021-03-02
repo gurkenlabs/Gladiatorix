@@ -1,6 +1,8 @@
 package de.litigame.gui;
 
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -8,6 +10,9 @@ import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.util.io.XmlUtilities;
+import de.litigame.SaveGame;
+import de.litigame.entities.Player;
 import de.litigame.utilities.ImageUtilities;
 
 public class SettigsScreen extends Screen {
@@ -15,7 +20,7 @@ public class SettigsScreen extends Screen {
 	public SettigsScreen() {
 		super("settings");
 
-		String[] items = { "Done" };
+		String[] items = { "Save Game", "Done" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
@@ -29,10 +34,22 @@ public class SettigsScreen extends Screen {
 
 		menu.prepare();
 		menu.onChange(index -> {
-			if (index == 0) Game.screens().display("menu");
+			if (index == 0) saveGame();
+			else if (index == 1) Game.screens().display("menu");
 		});
 
 		getComponents().add(bkgr);
 		getComponents().add(menu);
+	}
+
+
+	public File saveGame () {
+		SaveGame saveGame = new SaveGame(Player.getInstance().getMoney(),
+				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "jacob");
+		String dir = "savegames/";
+		File dirFile = new File(dir);
+		dirFile.mkdirs();
+		String saveGamePath = dir + saveGame.getName() + ".xml";
+		return(XmlUtilities.save(saveGame, saveGamePath));
 	}
 }
