@@ -1,45 +1,38 @@
 package de.litigame.gui;
 
+import java.awt.image.BufferedImage;
+
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.configuration.DisplayMode;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
-import de.litigame.Images;
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.utilities.ImageUtilities;
 
 public class SettigsScreen extends Screen {
-    private Menu menu;
-    private final int cells = 2;
-    public SettigsScreen(final String image) {
-        this(   (double) (Game.window().getWidth()-Images.get(image).getWidth())/2,
-                Game.window().getHeight(),
-                Images.get(image).getWidth(),
-                Images.get(image).getHeight(),
-                image,
-                "Fullscreen: On", "Done");
-    }
 
-    public SettigsScreen(final double x, final double y, final double width, final double height, String image, final String... items){
-        super("settings");
-        Spritesheet item = new Spritesheet(Images.get(image), "screens/"+image+".jpg", 830, 199);
-        ImageComponent bkgr = new ImageComponent(0,0, Images.get("menu"));
-        menu = new Menu(x,y/(2* cells),width,height*cells, item, items);
-        menu.prepare();
-        menu.onChange(index -> {
-            if (index == 0) switchDisplayMode();
-            if (index == 1) Game.screens().display("menu");
-        });
-        getComponents().add(bkgr);
-        getComponents().add(menu);
-    }
+	public SettigsScreen() {
+		super("settings");
 
-    private void switchDisplayMode() {
-        if (Game.config().graphics().getDisplayMode() == DisplayMode.BORDERLESS) {
-            System.out.println(Game.config().graphics().getDisplayMode());
-            Game.config().graphics().setDisplayMode(DisplayMode.WINDOWED);
-        }else{
-            Game.config().graphics().setDisplayMode(DisplayMode.BORDERLESS);
-        }
-    }
+		String[] items = { "Done" };
+
+		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
+
+		BufferedImage buttonImg = Resources.images().get("menu_item");
+
+		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(),
+				buttonImg.getHeight());
+
+		Menu menu = new Menu(Game.window().getWidth() / 4, Game.window().getHeight() / 4, Game.window().getWidth() / 2,
+				Game.window().getHeight() / 2, button, items);
+
+		menu.prepare();
+		menu.onChange(index -> {
+			if (index == 0) Game.screens().display("menu");
+		});
+
+		getComponents().add(bkgr);
+		getComponents().add(menu);
+	}
 }

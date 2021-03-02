@@ -1,33 +1,36 @@
 package de.litigame.gui;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
-import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.entities.IMobileEntity;
-import de.gurkenlabs.litiengine.entities.behavior.AStarPathFinder;
+import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
-import de.litigame.entities.Enemy;
-import de.litigame.entities.EnemyController;
 import de.litigame.entities.Player;
 
 public class IngameScreen extends GameScreen {
 
+	private final List<IRenderable> overlayMenus = new ArrayList<>();
+
 	public IngameScreen() {
 		super("ingame");
+	}
+
+	public void addOverlayMenu(IRenderable menu) {
+		overlayMenus.add(menu);
+	}
+
+	public void removeOverlayMenu(IRenderable menu) {
+		overlayMenus.remove(menu);
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
 
-		for (IMobileEntity e : Game.world().environment().getMobileEntities()) {
-			if (e instanceof Enemy) {
-				((Enemy) e).getController(EnemyController.class).nav.render(g);
-				((AStarPathFinder) ((Enemy) e).getController(EnemyController.class).nav.getPathFinder()).getGrid()
-						.render(g);
-			}
-		}
-
+		Player.getInstance().healthBar.render(g);
 		Player.getInstance().hotbar.render(g);
+
+		for (IRenderable menu : overlayMenus) menu.render(g);
 	}
 }

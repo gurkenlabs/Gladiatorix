@@ -3,6 +3,7 @@
 /.project
 /.classpath
 *.jar
+*.exe
 config.properties
 crash.txt
 game.log*
@@ -10,5 +11,3 @@ game.log*
 .idea/
 build/
 gradle/
-gradlew
-gradlew.bat
