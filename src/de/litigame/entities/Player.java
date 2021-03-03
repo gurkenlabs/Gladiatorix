@@ -107,6 +107,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+			System.out.println("player_" + armor + "_" + weapon + "_shield_hit_" + dir);
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
 			/*
 			 * controller.add(new Animation("player_" + armor + "_" + weapon +
 			 * "_shield_idle_" + dir, true, true)); controller.add(new Animation("player_" +
@@ -114,15 +117,14 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			 */
 
 		}
-		controller.add(new Animation("player_leather_wood_noshield_hit_right", false, false));
 
-		controller.addRule(p -> !p.isDead(), p -> "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "wood_") + (currentShield == null ? "noshield_" : "shield_") + (p.isIdle() ? "walk_" : "walk_")
-				+ p.getFacingDirection().name().toLowerCase(), 1);
-		controller.addRule(p -> p.playHitAnimation, p -> {
+		controller.addRule(p -> !p.isDead(), p -> {
+			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "wood_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "walk_" : "walk_"))
+					+ p.getFacingDirection().name().toLowerCase();
+			if (p.playHitAnimation) p.setVelocity(70);
 			p.playHitAnimation = false;
-			p.setVelocity(70);
-			return "player_leather_wood_noshield_hit_right";
-		}, 0);
+			return image;
+		}, 1);
 		CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 		effect.setOffsetY(1);
 		controller.add(effect);
