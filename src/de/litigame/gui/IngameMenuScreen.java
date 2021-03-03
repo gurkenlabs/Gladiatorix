@@ -34,8 +34,11 @@ public class IngameMenuScreen extends Screen {
         Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(),
                 buttonImg.getHeight());
 
-        Menu menu = new Menu(Game.window().getWidth() / 4, Game.window().getHeight() / 4, Game.window().getWidth() / 2,
-                Game.window().getHeight() / 2, button, items);
+        Menu menu = new Menu(
+                (double) (Game.window().getWidth()-buttonImg.getWidth()) / 2,
+                (double) (Game.window().getHeight()-buttonImg.getHeight()*items.length) / 2,
+                buttonImg.getWidth(),
+                buttonImg.getHeight()*items.length, button, items);
 
         //menu.prepare();
         menu.onChange(index -> {
