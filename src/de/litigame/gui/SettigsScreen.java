@@ -29,17 +29,18 @@ public class SettigsScreen extends Screen {
 		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(),
 				buttonImg.getHeight());
 
-		Menu menu = new Menu(Game.window().getWidth() / 4, Game.window().getHeight() / 4, Game.window().getWidth() / 2,
+		Menu settings = new Menu(Game.window().getWidth() / 4, Game.window().getHeight() / 4, Game.window().getWidth() / 2,
 				Game.window().getHeight() / 2, button, items);
 
-		menu.prepare();
-		menu.onChange(index -> {
-			if (index == 0) saveGame();
-			else if (index == 1) Game.screens().display("menu");
+		settings.prepare();
+		settings.onChange(index -> {
+			System.out.println(index+ ", "+settings.getName());
+			if (index == 0) saveGame(); System.out.println("yes");
+			if (index == 1) Game.screens().display("menu");
 		});
 
 		getComponents().add(bkgr);
-		getComponents().add(menu);
+		getComponents().add(settings);
 	}
 
 

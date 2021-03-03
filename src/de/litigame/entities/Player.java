@@ -58,8 +58,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		Game.loop().attach(this);
 	}
 
-	public void init(int m, int l, Point2D loc){
-		this.money=m; this.lvl=l; this.setLocation(loc);
+	public void init(int m, int l, Point2D loc, int hp){
+		if(this.getHitPoints().get()==this.getHitPoints().getMax()) {
+			this.money = m;
+			this.lvl = l;
+			this.setLocation(loc);
+			this.hit(getHitPoints().getMax() - hp);
+		}
 	}
 
 	public void attack() {

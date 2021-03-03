@@ -52,9 +52,9 @@ public class MainMenuScreen extends Screen {
 
 	public void loadSavedGameFile() {
 		try {
-			String path = "savegames/" + "null" + ".xml";
+			String path = "savegames/" + "jacob" + ".xml";
 			final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
-			Player.getInstance().init(saveGame.getHealth(), saveGame.getMoney(),saveGame.getLocation());
+			Player.getInstance().init(saveGame.getHealth(), saveGame.getMoney(),saveGame.getLocation(), saveGame.getHealth());
 		}
 		catch (JAXBException e) {
 		}

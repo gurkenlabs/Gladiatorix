@@ -55,6 +55,7 @@ public class SaveGame {
 		this.xPos = location.getX();
 		this.yPos = location.getY();
 		this.health = health;
+		this.name = name;
 	}
 	
 	//getters (transient/not in file)
