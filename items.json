@@ -55,18 +55,20 @@
 			"item_image"			:	"chestplate",
 			"item_name"			:	"Eisenrüstung",
 			"armor_buff" 			: 	"40"
+			"armor_skin" 			: 	"iron"
 		},				
 		{
 			"item_class"			:	"armor",
 			"item_image"			:	"chestplate2",
 			"item_name"			:	"Gladiatorenrüstung",
-			"armor_buff" 			: 	"80"
+			"armor_buff" 			: 	"80",
+			"armor_skin" 			: 	"gold"
 		},
 		{
-			"item_class"			:	"armor",
+			"item_class"			:	"shield",
 			"item_image"			:	"shield",
 			"item_name"			:	"Schild",
 			"armor_buff" 			: 	"40"
-		},
+		}
 	]
 }

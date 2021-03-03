@@ -60,7 +60,7 @@
 					"item_name" 	: "Heilungstrank",
 					"price"		: "20",
 					"required_level": "1",
-					"equippable" 	: "true"
+					"equippable" 	: "false"
 				}
 			]
 		}
