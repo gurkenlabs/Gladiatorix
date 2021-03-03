@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <savegame>
+ <hotbar>bow, sword, null, null, null, null, null, null, null</hotbar>
+ <slot>5</slot>
  <money>0</money>
  <level>1</level>
  <xPos>1344.0</xPos>

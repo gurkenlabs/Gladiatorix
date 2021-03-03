@@ -22,6 +22,7 @@ import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
+import de.litigame.items.Items;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
@@ -58,11 +59,16 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		Game.loop().attach(this);
 	}
 
-	public void init(int m, int l, Point2D loc, int hp){
+	public void init(String[] hotbar, int m, int l, Point2D loc, int hp, int selectedSlot){
+		this.money = m;
+		this.lvl = l;
+		this.setLocation(loc);
+		this.hotbar.setToSlot(selectedSlot);
+		for(int i = 0; i<hotbar.length; i++){
+			if(!hotbar[i].equals("null")) this.hotbar.replace(Items.getItem(hotbar[i]), i);
+			else this.hotbar.replace(null, i);
+		}
 		if(this.getHitPoints().get()==this.getHitPoints().getMax()) {
-			this.money = m;
-			this.lvl = l;
-			this.setLocation(loc);
 			this.hit(getHitPoints().getMax() - hp);
 		}
 	}

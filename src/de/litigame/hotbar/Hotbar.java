@@ -43,6 +43,28 @@ public class Hotbar implements IRenderable {
 		return false;
 	}
 
+	public void replace(Item item, int i) {
+		items[i] = item;
+	}
+
+	public int getSelectedSlot() {return selectedSlot;}
+
+
+	public boolean pickUpItem(Item item){
+		int i = selectedSlot;
+		if (items[i] == null) {
+			items[i] = item;
+			removeEmptyItems();
+			return true;
+		} else if (items[i].getName().equals(item.getName()) && Item.isStackable(item)) {
+			int excess = Item.getStackable(items[i]).addAmount(Item.getStackable(item).getAmount());
+			Item.getStackable(item).setAmount(excess);
+			removeEmptyItems();
+			if (excess == 0) return true;
+		}
+		return false;
+	}
+
 	public void addToPosition(int shift) {
 		selectedSlot += shift;
 		checkBounds();
@@ -108,11 +130,14 @@ public class Hotbar implements IRenderable {
 		return items.length;
 	}
 
-	public String[] parse() {
-		String[] itms= new String[items.length];
-		for (int i = 0; i<items.length; i++){
-			itms[i] = items[i].getName();
-		}
-		return itms;
+	public String parse() {
+
+		Object[] itemNames = Arrays.stream(items).map(a -> {
+			if(a!=null) return a.getName();
+			else return "null";
+		}).toArray();
+
+		String[] itms = Arrays.copyOf(itemNames,itemNames.length,String[].class);
+		return Arrays.toString(itms).substring(1, Arrays.toString(itms).length()-1);
 	}
 }

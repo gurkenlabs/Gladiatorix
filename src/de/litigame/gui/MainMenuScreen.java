@@ -37,9 +37,10 @@ public class MainMenuScreen extends Screen {
 
 		menu.onChange(index -> {
 			if (index == 0) {
-				Player.getInstance().init(0,1,
+				String[] initialItems = {"bow","sword","null" ,"null" ,"null" ,"null" ,"null" ,"null" ,"null"};
+				Player.getInstance().init(initialItems,0,1,
 						Game.world().environment().getSpawnpoint("spawn").getLocation(),
-						Player.getInstance().getHitPoints().getMax());
+						Player.getInstance().getHitPoints().getMax(), 0);
 				saveGame.saveGame();
 				Game.screens().display("ingame");
 			}
@@ -61,7 +62,7 @@ public class MainMenuScreen extends Screen {
 		try {
 			String path = "savegames/" + "jacob" + ".xml";
 			final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
-			Player.getInstance().init(saveGame.getHealth(), saveGame.getMoney(),saveGame.getLocation(), saveGame.getHealth());
+			Player.getInstance().init(saveGame.getHotbar(), saveGame.getHealth(), saveGame.getMoney(),saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
 		}
 		catch (JAXBException e) {
 		}

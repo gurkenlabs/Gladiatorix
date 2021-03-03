@@ -26,7 +26,10 @@ public class SaveGame {
 	private Item[] storage;
 	
 	@XmlElement(name = "hotbar")
-	private String[] hotbar;
+	private String hotbar;
+
+	@XmlElement(name = "slot")
+	private int slot;
 	
 	@XmlElement(name = "money")
 	private int money;
@@ -52,9 +55,11 @@ public class SaveGame {
 	public SaveGame() {
 	}
 	
-	public SaveGame(/*final Item[] storage, final Hotbar hotbar,*/ final int money, final int level, final Point2D location, final int health, final String name) {
+	public SaveGame(/*final Item[] storage, */final Hotbar hotbar, final int money, final int level, final Point2D location, final int health, final String name) {
 		//this.storage = storage;
-		//this.hotbar = hotbar;
+		this.hotb = hotbar;
+		this.slot = hotb.getSelectedSlot();
+		this.hotbar = hotbar.parse();
 		this.money = money;
 		this.level = level;
 		this.xPos = location.getX();
@@ -64,7 +69,7 @@ public class SaveGame {
 	}
 
 	public File saveGame () {
-		SaveGame game = new SaveGame(Player.getInstance().getMoney(),
+		SaveGame game = new SaveGame(Player.getInstance().hotbar, Player.getInstance().getMoney(),
 				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "jacob");
 		String dir = "savegames/";
 		File dirFile = new File(dir);
@@ -81,8 +86,13 @@ public class SaveGame {
 	}
 	
 	@XmlTransient
-	public Hotbar getHotbar() {
-		return hotb;
+	public String[] getHotbar() {
+		return hotbar.split(", ");
+	}
+
+	@XmlTransient
+	public int getSlot() {
+		return this.slot;
 	}
 	
 	@XmlTransient
