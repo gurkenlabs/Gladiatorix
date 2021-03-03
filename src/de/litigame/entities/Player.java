@@ -50,10 +50,12 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private Shield currentShield;
 
 	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
-	public final Hotbar hotbar = new Hotbar(this);
 
+	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
+
 	private int money = 0, lvl = 1;
+	private boolean playHitAnimation = false;
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
@@ -70,7 +72,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			switch (weapon.type) {
 			case MELEE:
 				weapon.overrideAbility(melee);
+				setVelocity(0);
 				melee.cast();
+				playHitAnimation = true;
 				break;
 			case RANGE:
 				weapon.overrideAbility(range);
@@ -100,34 +104,25 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public IEntityAnimationController<Player> createAnimationController() {
 		IEntityAnimationController<Player> controller = new EntityAnimationController<>(this);
-		for (String armor : new String[] { "gold", "leather", "iron" })
-			for (String weapon : new String[] { "wood", "stone", "iron" })
-				for (String dir : new String[] { "down", "left", "right", "up" }) {
-					controller
-							.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
-					controller.add(
-							new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
-					/*
-					 * controller.add(new Animation("player_" + armor + "_" + weapon +
-					 * "_shield_idle_" + dir, true, true)); controller.add(new Animation("player_" +
-					 * armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
-					 */
-				}
+		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+			/*
+			 * controller.add(new Animation("player_" + armor + "_" + weapon +
+			 * "_shield_idle_" + dir, true, true)); controller.add(new Animation("player_" +
+			 * armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
+			 */
 
-		controller.addRule(p -> !p.isDead(),
-				p -> "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_")
-						+ (p.hotbar.getSelectedItem() instanceof Weapon
-								? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_"
-								: "wood_")
-						+ (currentShield == null ? "noshield_" : "shield_") + (p.isIdle() ? "walk_" : "walk_")
-						+ p.getFacingDirection().name().toLowerCase(),
-				2);
+		}
+		controller.add(new Animation("player_leather_wood_noshield_hit_right", false, false));
 
-		/*
-		 * controller.addListener(new AnimationListener() {
-		 *
-		 * @Override public void finished(Animation a) { controller.setDefault(a); } });
-		 */
+		controller.addRule(p -> !p.isDead(), p -> "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "wood_") + (currentShield == null ? "noshield_" : "shield_") + (p.isIdle() ? "walk_" : "walk_")
+				+ p.getFacingDirection().name().toLowerCase(), 1);
+		controller.addRule(p -> p.playHitAnimation, p -> {
+			p.playHitAnimation = false;
+			p.setVelocity(70);
+			return "player_leather_wood_noshield_hit_right";
+		}, 0);
 		CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 		effect.setOffsetY(1);
 		controller.add(effect);
