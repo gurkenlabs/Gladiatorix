@@ -1,11 +1,16 @@
 package de.litigame;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.awt.geom.Point2D;
+import java.io.File;
 
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.util.io.XmlUtilities;
+import de.litigame.entities.Player;
 import de.litigame.items.*;
 import de.litigame.hotbar.*;
 
@@ -57,7 +62,17 @@ public class SaveGame {
 		this.health = health;
 		this.name = name;
 	}
-	
+
+	public File saveGame () {
+		SaveGame game = new SaveGame(Player.getInstance().getMoney(),
+				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "jacob");
+		String dir = "savegames/";
+		File dirFile = new File(dir);
+		dirFile.mkdirs();
+		String saveGamePath = dir + game.getName() + ".xml";
+		return(XmlUtilities.save(game, saveGamePath));
+	}
+
 	//getters (transient/not in file)
 	
 	@XmlTransient

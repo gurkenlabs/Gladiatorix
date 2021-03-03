@@ -21,6 +21,8 @@ public class MainMenuScreen extends Screen {
 	public MainMenuScreen() {
 		super("menu");
 
+		SaveGame saveGame = new SaveGame();
+
 		String[] items = { "Start Game", "Load Game", "Settings", "Exit Game" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
@@ -33,15 +35,20 @@ public class MainMenuScreen extends Screen {
 		Menu menu = new Menu(Game.window().getWidth() / 4, Game.window().getHeight() / 4, Game.window().getWidth() / 2,
 				Game.window().getHeight() / 2, button, items);
 
-		menu.prepare();
 		menu.onChange(index -> {
-			if (index == 0) Game.screens().display("ingame");
-			else if (index == 1){
+			if (index == 0) {
+				Player.getInstance().init(0,1,
+						Game.world().environment().getSpawnpoint("spawn").getLocation(),
+						Player.getInstance().getHitPoints().getMax());
+				saveGame.saveGame();
+				Game.screens().display("ingame");
+			}
+			if (index == 1) {
 				loadSavedGameFile();
 				Game.screens().display("ingame");
 			}
-			else if (index == 2) Game.screens().display("settings");
-			else if (index == 3) System.exit(0);
+			if (index == 2) Game.screens().display("settings");
+			if (index == 3) System.exit(0);
 		});
 
 		getComponents().add(bkgr);
