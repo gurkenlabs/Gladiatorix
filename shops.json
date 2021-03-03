@@ -7,20 +7,62 @@
 			"offers"	: 
 			[
 				{
-					"tooltip" : "",
-					"item_name" : "sword",
-					"price"		: "0",
-					"required_level"	: "1",
-					"equippable" : "true"
+					"tooltip" 	: "",
+					"item_name" 	: "Eisenschwert",
+					"price"		: "10",
+					"required_level": "1",
+					"equippable" 	: "true"
 				},
 				{
-					"tooltip" : "LOL U CAN SHOOT PPL",
-					"item_name" : "bow",
-					"price"		: "0",
-					"required_level"	: "1",
-					"equippable" : "false"
+					"tooltip" 	: "",
+					"item_name" 	: "Steinaxt",
+					"price"		: "30",
+					"required_level": "1",
+					"equippable" 	: "true"
+				},
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Eisenaxt",
+					"price"		: "80",
+					"required_level": "1",
+					"equippable" 	: "true"
+				},
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Eisenrüstung",
+					"price"		: "50",
+					"required_level": "1",
+					"equippable" 	: "true"
+				},
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Gladiatorenrüstung",
+					"price"		: "100",
+					"required_level": "1",
+					"equippable" 	: "true"
+				},
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Schild",
+					"price"		: "50",
+					"required_level": "1",
+					"equippable" 	: "true"
 				}
 			]
 		},
+		{
+			"shop_name" : "shop2",
+			"background": "potion_shop",
+			"offers"	: 
+			[
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Heilungstrank",
+					"price"		: "20",
+					"required_level": "1",
+					"equippable" 	: "true"
+				}
+			]
+		}
 	]
 }

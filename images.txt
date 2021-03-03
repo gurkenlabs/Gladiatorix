@@ -8,6 +8,15 @@ potion_shop : sprites/shop_potions.png
 hp-border:sprites/hp_bar_border_thin.png
 hp-fill:sprites/hp_bar_fill_thin.png
 
+sword_wood:sprites/sword_wood.png
+sword_ion:sprites/sword_ion.png
+axe_stone:sprites/axe_stone.png
+axe_ion:sprites/axe_ion.png
+potion1:sprites/potion1.png
+chestplate:sprites/chestplate.png
+chestplate2:sprites/chestplate2.png
+shield:sprites/shield.png
+
 0-hp:sprites/enemy_health_bar/health_bar_0.png
 10-hp:sprites/enemy_health_bar/health_bar_10.png
 20-hp:sprites/enemy_health_bar/health_bar_20.png
