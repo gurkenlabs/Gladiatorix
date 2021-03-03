@@ -2,57 +2,57 @@ package de.litigame.gui;
 
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
+import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
-import de.gurkenlabs.litiengine.util.io.XmlUtilities;
-import de.litigame.SaveGame;
-import de.litigame.entities.Player;
 import de.litigame.utilities.ImageUtilities;
 
-import javax.xml.bind.JAXBException;
+public class IngameMenuScreen extends Screen implements KeyPressedListener {
 
-public class IngameMenuScreen extends Screen {
+	public IngameMenuScreen() {
+		super("ingameMenu");
 
-    public IngameMenuScreen() {
-        super("ingameMenu");
+		String[] items = { "Back to game", "Settings", "Quit to title" };
 
-        SaveGame saveGame = new SaveGame();
+		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
-        String[] items = { "Back to game", "Settings", "Quit to title" };
+		BufferedImage buttonImg = Resources.images().get("menu_item");
 
-        ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
+		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
 
-        BufferedImage buttonImg = Resources.images().get("menu_item");
+		Menu menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
 
-        Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(),
-                buttonImg.getHeight());
+		// menu.prepare();
+		menu.onChange(index -> {
+			if (index == 0) Game.screens().display("ingame");
+			if (index == 1) Game.screens().display("ingameSettings");
+			if (index == 2) Game.screens().display("menu");
+		});
 
-        Menu menu = new Menu(
-                (double) (Game.window().getWidth()-buttonImg.getWidth()) / 2,
-                (double) (Game.window().getHeight()-buttonImg.getHeight()*items.length) / 2,
-                buttonImg.getWidth(),
-                buttonImg.getHeight()*items.length, button, items);
+		getComponents().add(bkgr);
+		getComponents().add(menu);
+	}
 
-        //menu.prepare();
-        menu.onChange(index -> {
-            if (index == 0) Game.screens().display("ingame");
-            if (index == 1) Game.screens().display("ingameSettings");
-            if (index == 2) Game.screens().display("menu");
-        });
-        Input.keyboard().onKeyPressed(this::handlePressedKey);
-        getComponents().add(bkgr);
-        getComponents().add(menu);
-    }
-    public void handlePressedKey(final KeyEvent keyCode) {
-        if(keyCode.getKeyCode()==KeyEvent.VK_ESCAPE && isVisible()){
-            Game.screens().display("ingame");
-        }
-    }
+	@Override
+	public void keyPressed(KeyEvent event) {
+		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) Game.screens().display("ingame");
+	}
+
+	@Override
+	public void prepare() {
+		super.prepare();
+		Input.keyboard().onKeyPressed(this);
+	}
+
+	@Override
+	public void suspend() {
+		super.suspend();
+		Input.keyboard().removeKeyPressedListener(this);
+	}
 }

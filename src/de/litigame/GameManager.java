@@ -1,8 +1,8 @@
 package de.litigame;
 
-import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
@@ -57,8 +57,7 @@ public class GameManager {
 
 	public static void removeItemEntities(Item item) {
 		for (Prop entity : Game.world().environment().getProps()) {
-			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName()))
-				Game.world().environment().remove(entity);
+			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) Game.world().environment().remove(entity);
 		}
 	}
 
@@ -72,8 +71,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
-						.collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -107,18 +105,14 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						float zoom = PlayerCamera.STD_ZOOM;
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
