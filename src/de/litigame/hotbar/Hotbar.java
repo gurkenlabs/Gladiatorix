@@ -43,28 +43,6 @@ public class Hotbar implements IRenderable {
 		return false;
 	}
 
-	public void replace(Item item, int i) {
-		items[i] = item;
-	}
-
-	public int getSelectedSlot() {return selectedSlot;}
-
-
-	public boolean pickUpItem(Item item){
-		int i = selectedSlot;
-		if (items[i] == null) {
-			items[i] = item;
-			removeEmptyItems();
-			return true;
-		} else if (items[i].getName().equals(item.getName()) && Item.isStackable(item)) {
-			int excess = Item.getStackable(items[i]).addAmount(Item.getStackable(item).getAmount());
-			Item.getStackable(item).setAmount(excess);
-			removeEmptyItems();
-			if (excess == 0) return true;
-		}
-		return false;
-	}
-
 	public void addToPosition(int shift) {
 		selectedSlot += shift;
 		checkBounds();
@@ -85,8 +63,23 @@ public class Hotbar implements IRenderable {
 		return items[selectedSlot];
 	}
 
+	public int getSelectedSlot() {
+		return selectedSlot;
+	}
+
 	public void giveItem(Item item) {
 		if (!addItem(item)) item.drop(owner.getCenter());
+	}
+
+	public String parse() {
+
+		Object[] itemNames = Arrays.stream(items).map(a -> {
+			if (a != null) return a.getName();
+			else return "null";
+		}).toArray();
+
+		String[] itms = Arrays.copyOf(itemNames, itemNames.length, String[].class);
+		return Arrays.toString(itms).substring(1, Arrays.toString(itms).length() - 1);
 	}
 
 	private void removeEmptyItems() {
@@ -96,8 +89,7 @@ public class Hotbar implements IRenderable {
 	}
 
 	public void removeItems(Item item) {
-		for (int i = 0; i < items.length; ++i)
-			if (items[i] != null && items[i].getName().equals(item.getName())) items[i] = null;
+		for (int i = 0; i < items.length; ++i) if (items[i] != null && items[i].getName().equals(item.getName())) items[i] = null;
 	}
 
 	@Override
@@ -117,8 +109,11 @@ public class Hotbar implements IRenderable {
 
 		image = ImageUtilities.getRescaledCopy(image, 3);
 
-		graphics.drawImage(image, (Game.window().getResolution().width - image.getWidth()) / 2,
-				Game.window().getResolution().height - image.getHeight(), null);
+		graphics.drawImage(image, (Game.window().getResolution().width - image.getWidth()) / 2, Game.window().getResolution().height - image.getHeight(), null);
+	}
+
+	public void replace(Item item, int i) {
+		items[i] = item;
 	}
 
 	public void setToSlot(int slot) {
@@ -128,16 +123,5 @@ public class Hotbar implements IRenderable {
 
 	public int size() {
 		return items.length;
-	}
-
-	public String parse() {
-
-		Object[] itemNames = Arrays.stream(items).map(a -> {
-			if(a!=null) return a.getName();
-			else return "null";
-		}).toArray();
-
-		String[] itms = Arrays.copyOf(itemNames,itemNames.length,String[].class);
-		return Arrays.toString(itms).substring(1, Arrays.toString(itms).length()-1);
 	}
 }

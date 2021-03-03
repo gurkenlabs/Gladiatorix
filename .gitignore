@@ -11,3 +11,4 @@ game.log*
 .idea/
 build/
 gradle/
+/savegames/

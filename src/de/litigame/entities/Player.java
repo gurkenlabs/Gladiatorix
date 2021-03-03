@@ -59,20 +59,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		Game.loop().attach(this);
 	}
 
-	public void init(String[] hotbar, int m, int l, Point2D loc, int hp, int selectedSlot){
-		this.money = m;
-		this.lvl = l;
-		this.setLocation(loc);
-		this.hotbar.setToSlot(selectedSlot);
-		for(int i = 0; i<hotbar.length; i++){
-			if(!hotbar[i].equals("null")) this.hotbar.replace(Items.getItem(hotbar[i]), i);
-			else this.hotbar.replace(null, i);
-		}
-		if(this.getHitPoints().get()==this.getHitPoints().getMax()) {
-			this.hit(getHitPoints().getMax() - hp);
-		}
-	}
-
 	public void attack() {
 		if (hotbar.getSelectedItem() instanceof Weapon) {
 			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
@@ -116,13 +102,32 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		currentArmor = armor;
 	}
 
-	public int getMoney(){return money;}
-	public int getLvl(){return lvl;}
+	public int getLvl() {
+		return lvl;
+	}
+
+	public int getMoney() {
+		return money;
+	}
 
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
 		return 10;
+	}
+
+	public void init(String[] hotbar, int m, int l, Point2D loc, int hp, int selectedSlot) {
+		money = m;
+		lvl = l;
+		this.setLocation(loc);
+		this.hotbar.setToSlot(selectedSlot);
+		for (int i = 0; i < hotbar.length; i++) {
+			if (!hotbar[i].equals("null")) this.hotbar.replace(Items.getItem(hotbar[i]), i);
+			else this.hotbar.replace(null, i);
+		}
+		if (getHitPoints().get() == getHitPoints().getMax()) {
+			this.hit(getHitPoints().getMax() - hp);
+		}
 	}
 
 	public void interact() {

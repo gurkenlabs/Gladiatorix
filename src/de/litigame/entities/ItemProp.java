@@ -19,6 +19,6 @@ public class ItemProp extends Prop implements IInteractEntity {
 
 	@Override
 	public void interact(Player player) {
-		if (player.hotbar.pickUpItem(item)) Game.world().environment().remove(this);
+		if (player.hotbar.addItem(item)) Game.world().environment().remove(this);
 	}
 }
