@@ -15,8 +15,6 @@ import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
-import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -104,12 +102,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public IEntityAnimationController<Player> createAnimationController() {
 		IEntityAnimationController<Player> controller = new EntityAnimationController<>(this);
-		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
+		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron", "nosword" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
-			System.out.println("player_" + armor + "_" + weapon + "_shield_hit_" + dir);
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+			if (!weapon.equals("nosword")) {
+				controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
+				controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+			}
 			/*
 			 * controller.add(new Animation("player_" + armor + "_" + weapon +
 			 * "_shield_idle_" + dir, true, true)); controller.add(new Animation("player_" +
@@ -119,7 +118,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		}
 
 		controller.addRule(p -> !p.isDead(), p -> {
-			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "wood_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "walk_" : "walk_"))
+			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "walk_" : "walk_"))
 					+ p.getFacingDirection().name().toLowerCase();
 			if (p.playHitAnimation) p.setVelocity(70);
 			p.playHitAnimation = false;
@@ -159,11 +158,5 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
-		if (hotbar.getSelectedItem() instanceof Weapon) {
-			setTurnOnMove(false);
-			setAngle(GeometricUtilities.calcRotationAngleInDegrees(getCenter(), Input.mouse().getMapLocation()));
-		} else {
-			setTurnOnMove(true);
-		}
 	}
 }
