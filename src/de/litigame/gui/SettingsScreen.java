@@ -13,6 +13,7 @@ import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.util.MathUtilities;
 import de.litigame.GameManager;
 import de.litigame.SaveGame;
 import de.litigame.utilities.ImageUtilities;
@@ -48,16 +49,27 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 		vol_up = new ImageComponent(sound_bar.getX()+sound_bar.getWidth()+margin,y,Resources.images().get("volume_up"));
 
 		vol_down.onClicked(componentMouseEvent -> {
-			if(GameManager.volume > 0) {
-				GameManager.volume -= 0.1f;
+			if(Game.config().sound().getMusicVolume() > 0) {
+				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume()-0.1, 1));
+				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume()-0.1, 1));
+			}
+		});
+
+		vol_up.onClicked(componentMouseEvent -> {
+			if(Game.config().sound().getMusicVolume() < 1) {
+				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume()+0.1, 1));
+				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume()+0.1, 1));
 			}
 		});
 
 		settings.onChange(index -> {
 			if (index == 0) saveGame.saveGame();
-			else if (index == 1) Game.screens().display("menu");
+			else if (index == 1) {
+				Game.screens().display("menu");
+				Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+			}
 		});
-
+		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(settings);
 		getComponents().add(vol_down);
@@ -74,7 +86,7 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 		sound_bar.render(g);
 		vol_up.render(g);
 
-		g.drawImage(bar, (int)(sound_bar.getX()+margin),y+margin, (int) (bar.getWidth()*GameManager.volume),bar.getHeight(),null);
+		g.drawImage(bar, (int)(sound_bar.getX()+margin),y+margin, (int) (bar.getWidth()*Game.config().sound().getMusicVolume()),bar.getHeight(),null);
 	}
 
 	@Override

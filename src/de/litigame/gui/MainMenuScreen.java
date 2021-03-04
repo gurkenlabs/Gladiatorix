@@ -2,22 +2,26 @@ package de.litigame.gui;
 
 import java.awt.image.BufferedImage;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.xml.bind.JAXBException;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.configuration.SoundConfiguration;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.sound.SoundPlayback;
 import de.gurkenlabs.litiengine.util.io.XmlUtilities;
+import de.litigame.GameManager;
 import de.litigame.SaveGame;
 import de.litigame.entities.Player;
 import de.litigame.utilities.ImageUtilities;
 
 public class MainMenuScreen extends Screen {
 
-	public MainMenuScreen() {
+	public MainMenuScreen() throws LineUnavailableException {
 		super("menu");
 
 		SaveGame saveGame = new SaveGame();
@@ -46,6 +50,7 @@ public class MainMenuScreen extends Screen {
 			if (index == 2) Game.screens().display("settings");
 			if (index == 3) System.exit(0);
 		});
+		Game.config().sound().setMusicVolume(GameManager.volume);
 		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);

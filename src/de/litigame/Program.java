@@ -9,9 +9,11 @@ import de.litigame.items.Items;
 import de.litigame.shop.Shops;
 import de.litigame.utilities.ImageUtilities;
 
+import javax.sound.sampled.LineUnavailableException;
+
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LineUnavailableException {
 		Game.init(args);
 		Resources.load("game.litidata");
 		ImageUtilities.init(new File("images.txt"));
