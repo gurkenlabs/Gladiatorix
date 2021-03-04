@@ -110,8 +110,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				System.out.println("player_" + armor + "_" + weapon + "_noshield_idle_" + dir);
 				controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
 				controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
-				// controller.add(new Animation("player_" + armor + "_" + weapon +
-				// "_shield_idle_" + dir, true, true));
+				controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
 				controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
 			}
 		}
