@@ -52,6 +52,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private int money = 0, lvl = 1;
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
+	
+	public int updatetimer = 0;
 
 	private Player() {
 		super("player");
@@ -152,5 +154,16 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		} else {
 			setTurnOnMove(true);
 		}
+		if (!isIdle() && Game.screens().current().getName() == "ingame") {
+			if (updatetimer == 0) {
+			Game.audio().playSound(Resources.sounds().get("step"));
+			updatetimer = 20;
+			}
+			updatetimer--;
+		}
+		if (isIdle() && updatetimer != 0) {
+			updatetimer = 0;
+		}
+		
 	}
 }
