@@ -26,7 +26,7 @@ import de.litigame.spawning.Spawnpoints;
 public class GameManager {
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
-	public static float volume;
+	public static float volume = 1f;
 	public static void enterPortal(String map, double x, double y) {
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);

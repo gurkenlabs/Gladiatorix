@@ -19,6 +19,11 @@ import de.litigame.utilities.ImageUtilities;
 
 public class SettingsScreen extends Screen implements KeyPressedListener {
 
+	private Menu settings;
+	private final ImageComponent vol_down;
+	private final ImageComponent sound_bar;
+	private final ImageComponent vol_up;
+
 	public SettingsScreen() {
 		super("settings");
 
@@ -32,7 +37,21 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 
 		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
 
-		Menu settings = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
+		settings = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
+
+		int x = (int) (Game.window().getWidth() - settings.getWidth()) / 2;
+		int y = (int) (settings.getY()-settings.getRowHeight());
+		int margin = 11;
+
+		vol_down = new ImageComponent(x,y,Resources.images().get("volume_down"));
+		sound_bar = new ImageComponent(x+vol_down.getWidth()+margin,y,Resources.images().get("sound_bar"));
+		vol_up = new ImageComponent(sound_bar.getX()+sound_bar.getWidth()+margin,y,Resources.images().get("volume_up"));
+
+		vol_down.onClicked(componentMouseEvent -> {
+			if(GameManager.volume > 0) {
+				GameManager.volume -= 0.1f;
+			}
+		});
 
 		settings.onChange(index -> {
 			if (index == 0) saveGame.saveGame();
@@ -41,17 +60,21 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 
 		getComponents().add(bkgr);
 		getComponents().add(settings);
+		getComponents().add(vol_down);
+		getComponents().add(sound_bar);
+		getComponents().add(vol_up);
 	}
 
 	private void renderSoundBar(Graphics2D g, int x, int y){
-		ImageComponent img = new ImageComponent(100,100, 100,100, Resources.images().get("slot"));
-		img.setText("hello");
-		img.prepare();
-		img.render(g);
-		//img.setText("-");
-		//g.drawImage(img.getImage(),x,y,(int) img.getWidth(),(int) img.getHeight(),null);
-		//System.out.println(img.getText());
-		//g.drawString(img.getText(), (int) img.getTextX(), (int) img.getTextY());
+		int margin = 11;
+
+		BufferedImage bar = Resources.images().get("sound_bar_fill");
+
+		vol_down.render(g);
+		sound_bar.render(g);
+		vol_up.render(g);
+
+		g.drawImage(bar, (int)(sound_bar.getX()+margin),y+margin, (int) (bar.getWidth()*GameManager.volume),bar.getHeight(),null);
 	}
 
 	@Override
@@ -75,6 +98,6 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-		renderSoundBar(g, 100,100);
+		renderSoundBar(g, (int) (Game.window().getWidth() - settings.getWidth()) / 2,(int) (settings.getY()-settings.getRowHeight()));
 	}
 }
