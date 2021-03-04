@@ -35,6 +35,8 @@ public class EnemyController extends MovementController<Enemy> {
 	private void attack() {
 		nav.stop();
 		getEntity().getAttackAbility().cast();
+		getEntity().setVelocity(0);
+		getEntity().playHitAnimation = true;
 	}
 
 	private void chase() {
@@ -51,8 +53,7 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void runAway() {
-		AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(),
-				getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
+		AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(), getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
 
 		nav.navigate(node.getLocation());
 	}
@@ -68,8 +69,7 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void turnToTarget() {
-		getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
-				getEntity().getTarget().getCenter()));
+		getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(), getEntity().getTarget().getCenter()));
 	}
 
 	@Override
@@ -78,11 +78,8 @@ public class EnemyController extends MovementController<Enemy> {
 		// maybe add flee range later
 		if (rest > 0) --rest;
 
-		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
-				visionRange = getEntity().visionRange;
-		boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()),
-				canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(),
-				rests = rest > 0;
+		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()), visionRange = getEntity().visionRange;
+		boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()), canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(), rests = rest > 0;
 
 		if (!isDead) {
 			if (canSee) {
@@ -105,8 +102,7 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void wanderAround() {
-		Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(((AStarPathFinder) nav.getPathFinder()).getGrid(),
-				getEntity().getCenter(), WANDER_RANGE);
+		Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(((AStarPathFinder) nav.getPathFinder()).getGrid(), getEntity().getCenter(), WANDER_RANGE);
 
 		nav.navigate(Game.random().choose(nodes).getLocation());
 	}
