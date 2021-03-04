@@ -88,6 +88,7 @@ public class GameManager {
 				Dialogue dia = new Dialogue(message, trigger.getX(), trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
+						dia.resetTime();
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
 					}
 				});
