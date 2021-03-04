@@ -3046,9 +3046,9 @@
     </object>
     <object id="10" type="TRIGGER" x="-304" y="144" width="80" height="64">
      <properties>
-      <property name="message_1" value="Test lol"/>
+      <property name="message_1" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus laoreet mauris felis, eu sollicitudin enim fringilla et. Curabitur bibendum magna"/>
       <property name="tags" value="dialogue"/>
-      <property name="time" value="2000"/>
+      <property name="time" value="20000"/>
      </properties>
     </object>
    </objectgroup>

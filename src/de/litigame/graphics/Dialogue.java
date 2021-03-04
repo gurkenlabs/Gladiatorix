@@ -64,18 +64,53 @@ public class Dialogue implements IUpdateable, IRenderable {
 		int marginY = Game.window().getHeight()-box.getHeight()-100;
 
 		int paddingX = 50;
-		int paddingY = 150;
+		int paddingY = 50;
 
 		Font mc;
 		try {
-			mc = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf")).deriveFont((float) 40);
+			mc = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf")).deriveFont((float) 32);
 		} catch (Exception e) {
 			mc = null;
 			e.printStackTrace();
 		}
+		FontMetrics fm = g.getFontMetrics(mc);
+		StringBuilder sb = new StringBuilder();
+		String[] message = getMessage().split(" ");
+
+		int pointer = 0;
+		for(int i = 0; i<message.length; i++){
+			if(fm.stringWidth(N_words(getMessage(),pointer, i+1)) > (box.getWidth()-paddingX)){
+				sb.append("\n"+message[i]);
+				pointer+=i-pointer;
+			}else sb.append(message[i]+" ");
+		}
+
 		g.setFont(mc);
 		g.setColor(Color.WHITE);
 		g.drawImage(box,marginX, marginY,null);
-		g.drawString(getMessage(), marginX+paddingX, marginY+paddingY);
+		drawString(g, sb.toString(), marginX+box.getWidth()/2, marginY+paddingY);
+	}
+
+	private String N_words(String s, int start, int n){
+		String [] arr = s.split(" ");
+		String nWords="";
+		for(int i=start; i<n ; i++){
+			nWords = nWords + " " + arr[i] ;
+		}
+		return nWords;
+	}
+
+	private void drawString(Graphics g, String text, int x, int y) {
+		Font mc;
+		try {
+			mc = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf")).deriveFont((float) 32);
+		} catch (Exception e) {
+			mc = null;
+			e.printStackTrace();
+		}
+
+		FontMetrics fm = g.getFontMetrics(mc);
+		for (String line : text.split("\n"))
+			g.drawString(line, x-fm.stringWidth(line)/2, y += g.getFontMetrics().getHeight());
 	}
 }
