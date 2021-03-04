@@ -1,6 +1,8 @@
 package de.litigame;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -83,12 +85,16 @@ public class GameManager {
 	private static void setupTriggers(Environment env) {
 		for (final Trigger trigger : env.getTriggers()) {
 			if (trigger.hasTag("dialogue")) {
-				String message = trigger.getProperties().getStringValue("message");
+				int i = 1;
+				List<String> messages = new ArrayList<>();
+				while (trigger.getProperties().hasCustomProperty("message_" + Integer.toString(i))) {
+					messages.add(trigger.getProperties().getStringValue("message_" + Integer.toString(i)));
+					++i;
+				}
 				int time = trigger.getProperties().getIntValue("time");
-				Dialogue dia = new Dialogue(message, trigger.getX(), trigger.getY(), time);
+				Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						dia.resetTime();
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
 					}
 				});
