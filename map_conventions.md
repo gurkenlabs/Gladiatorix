@@ -11,3 +11,4 @@
 | `deadly`   | kills touching entity                  |                                             |                            |
 | `portal`   | teleports player to different map      | `toMap`: String; `toPos`: Double, Double    |                            |
 | `zoom`     | zooms camera when touching             | `zoomValue`: Float                          | `zoomDuration`: Integer    |
+| `dialogue` | displays dialogue                      | `dialogueID`: Int, `duration`: Int          | 			         |
