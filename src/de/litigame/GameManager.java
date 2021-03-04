@@ -1,6 +1,8 @@
 package de.litigame;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,9 @@ import de.litigame.entities.IInteractEntity;
 import de.litigame.entities.ItemProp;
 import de.litigame.entities.Player;
 import de.litigame.entities.Villager;
+import de.litigame.graphics.Dialogue;
 import de.litigame.graphics.PlayerCamera;
+import de.litigame.gui.IngameScreen;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
 import de.litigame.shop.Shops;
@@ -71,7 +75,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -80,6 +84,21 @@ public class GameManager {
 
 	private static void setupTriggers(Environment env) {
 		for (final Trigger trigger : env.getTriggers()) {
+			if (trigger.hasTag("dialogue")) {
+				int i = 1;
+				List<String> messages = new ArrayList<>();
+				while (trigger.getProperties().hasCustomProperty("message_" + Integer.toString(i))) {
+					messages.add(trigger.getProperties().getStringValue("message_" + Integer.toString(i)));
+					++i;
+				}
+				int time = trigger.getProperties().getIntValue("time");
+				Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player) {
+						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
+					}
+				});
+			}
 			if (trigger.hasTag("deadly")) {
 				trigger.addActivatedListener(e -> {
 					IEntity entity = e.getEntity();
@@ -93,10 +112,10 @@ public class GameManager {
 				});
 			}
 			if (trigger.hasTag("portal")) {
+				String map = trigger.getProperties().getStringValue("toMap");
+				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						String map = trigger.getProperties().getStringValue("toMap");
-						String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
 					}
 				});

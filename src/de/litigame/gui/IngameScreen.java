@@ -1,19 +1,18 @@
 package de.litigame.gui;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
-import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
-import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.entities.Player;
+import de.litigame.graphics.Dialogue;
 
-public class IngameScreen extends GameScreen implements KeyPressedListener {
+public class IngameScreen extends GameScreen {
 
+	private Dialogue dialogue;
+	// private final List<Dialogue> dialogues = new ArrayList<>();
 	private final List<IRenderable> overlayMenus = new ArrayList<>();
 
 	public IngameScreen() {
@@ -24,16 +23,10 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 		overlayMenus.add(menu);
 	}
 
-	@Override
-	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) Game.screens().display("ingameMenu");
-
-	}
-
-	@Override
-	public void prepare() {
-		super.prepare();
-		Input.keyboard().onKeyPressed(this);
+	public void drawDialogue(Dialogue dialogue) {
+		//dialogues.add(dialogue);
+		this.dialogue = dialogue;
+		dialogue.prepare();
 	}
 
 	public void removeOverlayMenu(IRenderable menu) {
@@ -43,16 +36,27 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
+		if (dialogue != null){
+			if (!dialogue.shouldBeDrawn()) {
+				dialogue.suspend();
+				dialogue = null;
+			} else {
+				dialogue.render(g);
+			}
+		}
+		/*
+		for (Dialogue dialogue : dialogues) {
+			if (!dialogue.shouldBeDrawn()) {
+				dialogues.remove(dialogue);
+				dialogue.suspend();
+			} else {
+				dialogue.render(g);
+			}
+		}*/
 
 		Player.getInstance().healthBar.render(g);
 		Player.getInstance().hotbar.render(g);
 
 		for (IRenderable menu : overlayMenus) menu.render(g);
-	}
-
-	@Override
-	public void suspend() {
-		super.suspend();
-		Input.keyboard().removeKeyPressedListener(this);
 	}
 }
