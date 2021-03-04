@@ -20,3 +20,6 @@
 ## Armor
 + `armor_buff`: increase in player HP
 + `armor_skin`: which player sprite
+
+## Potion
++ `potion_effect`: either "heal"

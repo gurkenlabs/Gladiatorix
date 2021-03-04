@@ -43,5 +43,11 @@
 			"weapon_duration"		:	"0",
 			"weapon_range"			:	"0"
 		},
+		{
+			"item_class"			:	"potion",
+			"item_image"			:	"test",
+			"item_name"				:	"potions",
+			"potion_effect"			:	"heal"
+		},
 	]
 }

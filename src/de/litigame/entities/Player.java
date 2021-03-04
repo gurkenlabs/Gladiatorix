@@ -21,6 +21,7 @@ import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
+import de.litigame.items.Potion;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
@@ -70,6 +71,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				range.cast();
 				break;
 			}
+		} else if (hotbar.getSelectedItem() instanceof Potion) {
+			((Potion) hotbar.getSelectedItem()).consume(this);
 		}
 	}
 
