@@ -49,11 +49,11 @@ public class Shop implements IRenderable, KeyPressedListener {
 		Player.getInstance().hotbar.removeItems(item);
 		if (item instanceof Armor) {
 			Player.getInstance().equip((Armor) item);
-			Resources.sounds().get("equipArmor");
+			Game.audio().playSound(Resources.sounds().get("equipArmor"));
 		}
 		else {
 			Player.getInstance().hotbar.addItem(item);
-			Resources.sounds().get("equipSword");
+			Game.audio().playSound(Resources.sounds().get("equipSword"));
 		}
 	}
 
