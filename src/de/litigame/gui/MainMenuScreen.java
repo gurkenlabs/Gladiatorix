@@ -46,7 +46,7 @@ public class MainMenuScreen extends Screen {
 			if (index == 2) Game.screens().display("settings");
 			if (index == 3) System.exit(0);
 		});
-
+		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);
 	}
@@ -61,5 +61,11 @@ public class MainMenuScreen extends Screen {
 		} catch (JAXBException e) {
 		}
 
+	}
+
+	@Override
+	public void suspend() {
+		super.suspend();
+		Game.audio().stopMusic();
 	}
 }
