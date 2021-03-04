@@ -55,7 +55,7 @@ public class MainMenuScreen extends Screen {
 
 	public void loadSavedGameFile() {
 		try {
-			String path = "savegames/" + "jacob" + ".xml";
+			String path = "savegame.xml";
 			final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
 			Player.getInstance().init(saveGame.getHotbar(), saveGame.getHealth(), saveGame.getMoney(), saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
 		} catch (JAXBException e) {

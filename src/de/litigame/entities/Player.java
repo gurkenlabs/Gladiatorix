@@ -54,6 +54,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 	
 	public int updatetimer = 0;
+	public int healthLastInstance = 100;
 
 	private Player() {
 		super("player");
@@ -154,6 +155,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		} else {
 			setTurnOnMove(true);
 		}
+		
+		//Check if Player is moving, if yes play walk sound
 		if (!isIdle() && Game.screens().current().getName() == "ingame") {
 			if (updatetimer == 0) {
 			Game.audio().playSound(Resources.sounds().get("step"));
@@ -164,6 +167,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		if (isIdle() && updatetimer != 0) {
 			updatetimer = 0;
 		}
+		
+		//Check if player was hit, if yes play hurt sound
+		if (getHitPoints().get() < healthLastInstance) {
+			Game.audio().playSound(Resources.sounds().get("grunt"));
+		}
+		healthLastInstance = getHitPoints().get();
+		
 		
 	}
 }

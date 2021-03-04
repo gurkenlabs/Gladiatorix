@@ -12,3 +12,4 @@ game.log*
 build/
 gradle/
 savegame.xml
+/screenshots

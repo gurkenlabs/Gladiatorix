@@ -70,11 +70,8 @@ public class SaveGame {
 
 	public File saveGame () {
 		SaveGame game = new SaveGame(Player.getInstance().hotbar, Player.getInstance().getMoney(),
-				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "jacob");
-		String dir = "savegames/";
-		File dirFile = new File(dir);
-		dirFile.mkdirs();
-		String saveGamePath = dir + game.getName() + ".xml";
+				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "savegame");
+		String saveGamePath = game.getName() + ".xml";
 		return(XmlUtilities.save(game, saveGamePath));
 	}
 
