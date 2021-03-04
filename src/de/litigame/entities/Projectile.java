@@ -13,9 +13,10 @@ import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
+import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.ICombatEntity;
-import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
-import de.gurkenlabs.litiengine.util.geom.Vector2D;
+import de.gurkenlabs.litiengine.physics.Collision;
+import de.litigame.utilities.GeometryUtilities;
 
 @CollisionInfo(collision = false, collisionBoxWidth = 1, collisionBoxHeight = 1, valign = Valign.MIDDLE)
 @EntityInfo(width = 1, height = 1)
@@ -51,7 +52,7 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 		multiTarget = ability.isMultiTarget();
 		origin = (Point2D) position.clone();
 		range = ability.getAttributes().range().get();
-		setLocation(calcStartLocation(position));
+		GeometryUtilities.setCenter(this, position);
 		setAngle(angle);
 		setVelocity(ability.getAttributes().duration().get());
 
@@ -64,13 +65,6 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	public void addHitListener(ProjectileHitListener listener) {
 		hitListeners.add(listener);
-	}
-
-	private Point2D calcStartLocation(Point2D position) {
-		Vector2D loc = new Vector2D(getLocation().getX(), getLocation().getY());
-		Vector2D delta = new Vector2D(getCenter(), position);
-		Vector2D start = loc.add(delta);
-		return new Point2D.Double(start.getX(), start.getY());
 	}
 
 	private void fall() {
@@ -94,18 +88,28 @@ public class Projectile extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
-		setLocation(GeometricUtilities.project(getLocation(), getAngle(), getTickVelocity()));
+		Game.physics().move(this, getTickVelocity());
 
-		for (ICombatEntity hit : Game.world().environment().findCombatEntities(getCollisionBox(),
-				entity -> !entity.equals(executor) && !hitEntities.contains(entity) && !entity.isDead())) {
-			for (ProjectileHitListener listener : hitListeners) listener.apply(executor, hit, this);
-			hitEntities.add(hit);
-			if (!multiTarget) {
-				fall();
-				return;
+		for (ICollisionEntity hit : Game.physics().getCollisionEntities()) {
+			if (getCollisionBox().intersects(hit.getCollisionBox())) {
+				if (hit.getCollisionType() == Collision.STATIC) {
+					fall();
+					return;
+				} else if (hit instanceof ICombatEntity) {
+					ICombatEntity combatEntity = (ICombatEntity) hit;
+					if (!combatEntity.equals(executor) && !hitEntities.contains(combatEntity)
+							&& !combatEntity.isDead()) {
+						for (ProjectileHitListener listener : hitListeners)
+							listener.apply(executor, combatEntity, this);
+						if (!multiTarget) {
+							fall();
+							return;
+						}
+						hitEntities.add(combatEntity);
+					}
+				}
 			}
 		}
-
 		if (origin.distance(getCenter()) >= range) fall();
 	}
 }

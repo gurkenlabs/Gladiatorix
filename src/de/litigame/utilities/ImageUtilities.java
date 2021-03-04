@@ -1,4 +1,4 @@
-package de.litigame;
+package de.litigame.utilities;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -11,12 +11,14 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-public class Images {
+import de.gurkenlabs.litiengine.resources.Resources;
 
-	private static Map<String, BufferedImage> images = new HashMap<>();
+public class ImageUtilities {
+
+	private static final Map<String, String> paths = new HashMap<>();
 
 	public static BufferedImage get(String key) {
-		return images.get(key);
+		return Resources.images().get(key);
 	}
 
 	public static BufferedImage getCopy(String key) {
@@ -25,6 +27,10 @@ public class Images {
 		g.drawImage(get(key), 0, 0, null);
 		g.dispose();
 		return copy;
+	}
+
+	public static String getPath(String name) {
+		return paths.get(name);
 	}
 
 	public static BufferedImage getRescaledCopy(BufferedImage image, double scalar) {
@@ -52,14 +58,20 @@ public class Images {
 				String[] tokens = line.split(":");
 				if (tokens.length != 2) continue;
 
-				String key = tokens[0].trim();
-				BufferedImage value = ImageIO.read(new File(tokens[1].trim()));
-				images.put(key, value);
+				String name = tokens[0].trim();
+				String path = tokens[1].trim();
+				BufferedImage image = ImageIO.read(new File(path));
+
+				paths.put(name, path);
+				Resources.images().add(name, image);
 			}
 
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private ImageUtilities() {
 	}
 }
