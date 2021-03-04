@@ -11,7 +11,8 @@ import de.litigame.graphics.Dialogue;
 
 public class IngameScreen extends GameScreen {
 
-	private final List<Dialogue> dialogues = new ArrayList<>();
+	private Dialogue dialogue;
+	// private final List<Dialogue> dialogues = new ArrayList<>();
 	private final List<IRenderable> overlayMenus = new ArrayList<>();
 
 	public IngameScreen() {
@@ -23,7 +24,8 @@ public class IngameScreen extends GameScreen {
 	}
 
 	public void drawDialogue(Dialogue dialogue) {
-		dialogues.add(dialogue);
+		//dialogues.add(dialogue);
+		this.dialogue = dialogue;
 		dialogue.prepare();
 	}
 
@@ -34,15 +36,23 @@ public class IngameScreen extends GameScreen {
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-
+		if (dialogue != null){
+			if (!dialogue.shouldBeDrawn()) {
+				dialogue.suspend();
+				dialogue = null;
+			} else {
+				dialogue.render(g);
+			}
+		}
+		/*
 		for (Dialogue dialogue : dialogues) {
 			if (!dialogue.shouldBeDrawn()) {
 				dialogues.remove(dialogue);
 				dialogue.suspend();
 			} else {
-
+				dialogue.render(g);
 			}
-		}
+		}*/
 
 		Player.getInstance().healthBar.render(g);
 		Player.getInstance().hotbar.render(g);
