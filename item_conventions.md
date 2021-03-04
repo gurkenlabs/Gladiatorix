@@ -4,7 +4,7 @@
 
 ## Item
 + `item_class`: "weapon"
-+ `item_image`: a key value of the [image-list](image_conventions.md)
++ `item_image`: a key value of [images](image_conventions.md)
 + `item_name`: name of the item
 
 ## Weapon
@@ -16,3 +16,7 @@
 + `weapon_range`: only for range weapons, how far
 + `weapon_type`: "melee" or "range"
 + `weapon_value`: strength of the weapon
+
+## Armor
++ `armor_buff`: increase in player HP
++ `armor_skin`: which player sprite
