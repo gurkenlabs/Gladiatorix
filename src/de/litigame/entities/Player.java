@@ -14,11 +14,11 @@ import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
+import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
-import de.litigame.animations.EntityAnimationController;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
@@ -105,20 +105,16 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron", "nosword" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
 			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
+			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
 			if (!weapon.equals("nosword")) {
 				controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
 				controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
 			}
-			/*
-			 * controller.add(new Animation("player_" + armor + "_" + weapon +
-			 * "_shield_idle_" + dir, true, true)); controller.add(new Animation("player_" +
-			 * armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
-			 */
-
 		}
 
 		controller.addRule(p -> !p.isDead(), p -> {
-			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "walk_" : "walk_"))
+			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_"))
 					+ p.getFacingDirection().name().toLowerCase();
 			if (p.playHitAnimation) p.setVelocity(70);
 			p.playHitAnimation = false;
