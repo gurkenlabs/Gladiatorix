@@ -22,7 +22,7 @@ public class MainMenuScreen extends Screen {
 
 		SaveGame saveGame = new SaveGame();
 
-		String[] items = { "Start Game", "Load Game", "Settings", "Exit Game" };
+		String[] items = { "Spiel Starten", "Spiel Laden", "Einstellungen", "Spiel Schliessen" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 

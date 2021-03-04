@@ -26,7 +26,7 @@ import de.litigame.spawning.Spawnpoints;
 public class GameManager {
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
-
+	public static float volume;
 	public static void enterPortal(String map, double x, double y) {
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
@@ -71,7 +71,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
