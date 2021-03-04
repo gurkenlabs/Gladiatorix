@@ -18,6 +18,7 @@ import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hotbar.Hotbar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Weapon;
+import de.gurkenlabs.litiengine.resources.*;
 
 @AnimationInfo(spritePrefix = "player")
 @CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
@@ -51,11 +52,14 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			case MELEE:
 				weapon.overrideAbility(melee);
 				melee.cast();
+				Game.audio().playSound(Resources.sounds().get("sword"));
 				break;
 			case RANGE:
 				weapon.overrideAbility(range);
 				range.cast();
 				break;
+				
+			
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.sound.Sound;
 
 public class Sounds {
@@ -62,8 +63,18 @@ public static void init() throws FileNotFoundException, UnsupportedAudioFileExce
 		e.printStackTrace();
 	}
 	
+	Resources.sounds().add("sword", sword);
+	Resources.sounds().add("step", step);
+	Resources.sounds().add("hit", hit);
+	Resources.sounds().add("gulp", gulp);
+	Resources.sounds().add("grunt", grunt);
+	Resources.sounds().add("equipSword", equipSword);
+	Resources.sounds().add("equipArmor", equipArmor);
 }
 	
 	
+
 	
+	
+
 }
