@@ -28,7 +28,7 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 	public SettingsScreen() {
 		super("settings");
 
-		String[] items = { "Save Game", "Done" };
+		String[] items = { "Done" };
 
 		SaveGame saveGame = new SaveGame();
 
@@ -49,22 +49,21 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 		vol_up = new ImageComponent(sound_bar.getX()+sound_bar.getWidth()+margin,y,Resources.images().get("volume_up"));
 
 		vol_down.onClicked(componentMouseEvent -> {
-			if(Game.config().sound().getMusicVolume() > 0) {
+			if(Game.config().sound().getMusicVolume() > 0 && Game.config().sound().getSoundVolume() > 0) {
 				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume()-0.1, 1));
 				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume()-0.1, 1));
 			}
 		});
 
 		vol_up.onClicked(componentMouseEvent -> {
-			if(Game.config().sound().getMusicVolume() < 1) {
+			if(Game.config().sound().getMusicVolume() < 1 && Game.config().sound().getSoundVolume() < 1) {
 				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume()+0.1, 1));
 				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume()+0.1, 1));
 			}
 		});
 
 		settings.onChange(index -> {
-			if (index == 0) saveGame.saveGame();
-			else if (index == 1) {
+			if (index == 0) {
 				Game.screens().get("menu").setVisible(true);
 				Game.screens().display("menu");
 			}
@@ -97,6 +96,10 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 	@Override
 	public void prepare() {
 		super.prepare();
+		for(ImageComponent cell : settings.getCellComponents()){
+			cell.setFont(GameManager.getFont(72));
+			cell.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
+		}
 		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		Input.keyboard().onKeyPressed(this);
 	}

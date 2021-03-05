@@ -10,6 +10,7 @@ import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Player;
 
 public class IngameScreen extends GameScreen implements KeyPressedListener {
@@ -34,6 +35,7 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 	public void prepare() {
 		super.prepare();
 		Game.audio().stopMusic();
+		Game.audio().playMusic(Resources.sounds().get("sounds/ingame.wav"));
 		Input.keyboard().onKeyPressed(this);
 	}
 

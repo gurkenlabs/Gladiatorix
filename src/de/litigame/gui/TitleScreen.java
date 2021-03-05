@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.GameManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,10 +27,16 @@ public class TitleScreen extends Screen {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        startGame.setFont(GameManager.getFont(42));
+        startGame.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
+    }
+
+    @Override
     public void render(Graphics2D g) {
         super.render(g);
         g.drawImage(Resources.images().get("title"),0,0, Game.window().getWidth(), Game.window().getHeight(), null);
-        startGame.setFont(new Font("Arial", Font.BOLD, 42));
         startGame.render(g);
     }
 }

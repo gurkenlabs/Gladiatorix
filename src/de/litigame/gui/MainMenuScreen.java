@@ -1,5 +1,6 @@
 package de.litigame.gui;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -21,6 +22,8 @@ import de.litigame.utilities.ImageUtilities;
 
 public class MainMenuScreen extends Screen {
 
+	private final Menu menu;
+
 	public MainMenuScreen() throws LineUnavailableException {
 		super("menu");
 
@@ -34,7 +37,7 @@ public class MainMenuScreen extends Screen {
 
 		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
 
-		Menu menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
+		menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
 
 		menu.onChange(index -> {
 			if (index == 0) {
@@ -78,6 +81,10 @@ public class MainMenuScreen extends Screen {
 	@Override
 	public void prepare() {
 		super.prepare();
+		for(ImageComponent cell : menu.getCellComponents()){
+			cell.setFont(GameManager.getFont(72));
+			cell.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
+		}
 		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 	}
 
@@ -86,4 +93,5 @@ public class MainMenuScreen extends Screen {
 		super.suspend();
 		//Game.audio().stopMusic();
 	}
+
 }
