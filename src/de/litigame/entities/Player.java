@@ -55,6 +55,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	
 	public int updatetimer = 0;
 	public int healthLastInstance = 100;
+	
+	public int attackCooldown = 0;
 
 	private Player() {
 		super("player");
@@ -64,13 +66,14 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void attack() {
-		if (hotbar.getSelectedItem() instanceof Weapon) {
+		if (hotbar.getSelectedItem() instanceof Weapon && attackCooldown == 0) {
 			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
 			switch (weapon.type) {
 			case MELEE:
 				weapon.overrideAbility(melee);
 				melee.cast();
 				Game.audio().playSound(Resources.sounds().get("sword"));
+				attackCooldown = 30;
 				break;
 			case RANGE:
 				weapon.overrideAbility(range);
@@ -175,5 +178,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		healthLastInstance = getHitPoints().get();
 		
 		
+		if (attackCooldown > 0) attackCooldown--;
+		System.out.println();
 	}
 }
