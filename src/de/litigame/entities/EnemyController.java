@@ -44,8 +44,11 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void idle() {
-		if (Math.random() < P_REST) rest();
-		else wanderAround();
+		if (Math.random() < P_REST) {
+			rest();
+		} else {
+			wanderAround();
+		}
 	}
 
 	private void rest() {
@@ -53,41 +56,55 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void runAway() {
-		AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(), getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
+		final AStarNode node = PathFinderUtilities.getFurthestNode(((AStarPathFinder) nav.getPathFinder()).getGrid(),
+				getEntity().getTarget().getCenter(), getEntity().getCenter(), WANDER_RANGE);
 
 		nav.navigate(node.getLocation());
 	}
 
 	private void slowDown() {
-		Attribute<Float> attribute = getEntity().getVelocity();
-		if (!attribute.isModifierApplied(slowness)) attribute.addModifier(slowness);
+		final Attribute<Float> attribute = getEntity().getVelocity();
+		if (!attribute.isModifierApplied(slowness)) {
+			attribute.addModifier(slowness);
+		}
 	}
 
 	private void speedUp() {
-		Attribute<Float> attribute = getEntity().getVelocity();
-		if (attribute.isModifierApplied(slowness)) attribute.removeModifier(slowness);
+		final Attribute<Float> attribute = getEntity().getVelocity();
+		if (attribute.isModifierApplied(slowness)) {
+			attribute.removeModifier(slowness);
+		}
 	}
 
 	private void turnToTarget() {
-		getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(), getEntity().getTarget().getCenter()));
+		getEntity().setAngle(GeometricUtilities.calcRotationAngleInDegrees(getEntity().getCenter(),
+				getEntity().getTarget().getCenter()));
 	}
 
 	@Override
 	public void update() {
 		super.update();
 		// maybe add flee range later
-		if (rest > 0) --rest;
+		if (rest > 0) {
+			--rest;
+		}
 
-		int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()), visionRange = getEntity().visionRange;
-		boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()), canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(), rests = rest > 0;
+		final int dist = (int) getEntity().getCenter().distance(getEntity().getTarget().getCenter()),
+				visionRange = getEntity().visionRange;
+		final boolean canHit = ((IHitAbility) getEntity().getAttackAbility()).canHit(getEntity().getTarget()),
+				canSee = dist <= visionRange, isDead = getEntity().isDead(), hasGoal = nav.isNavigating(),
+				rests = rest > 0;
 
 		if (!isDead) {
 			if (canSee) {
 				speedUp();
 				turnToTarget();
 				if (canHit) {
-					if (attack <= 0) attack();
-					else--attack;
+					if (attack <= 0) {
+						attack();
+					} else {
+						--attack;
+					}
 				} else {
 					attack = GameManager.MillisToTicks(ATTACK_DELAY);
 					chase();
@@ -102,7 +119,8 @@ public class EnemyController extends MovementController<Enemy> {
 	}
 
 	private void wanderAround() {
-		Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(((AStarPathFinder) nav.getPathFinder()).getGrid(), getEntity().getCenter(), WANDER_RANGE);
+		final Set<AStarNode> nodes = PathFinderUtilities.getNodesAround(
+				((AStarPathFinder) nav.getPathFinder()).getGrid(), getEntity().getCenter(), WANDER_RANGE);
 
 		nav.navigate(Game.random().choose(nodes).getLocation());
 	}

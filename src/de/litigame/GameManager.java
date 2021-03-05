@@ -172,7 +172,6 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					final IEntity entity = e.getEntity();
 					if (entity instanceof Player) {
-						((Player) entity).changeMoney(100);
 						final String shop = trigger.getProperties().getStringValue("shopName");
 						entity.detachControllers();
 						Shops.getShop(shop).open(() -> {

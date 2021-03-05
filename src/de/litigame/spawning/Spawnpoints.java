@@ -8,14 +8,20 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.Spawnpoint;
 import de.litigame.entities.Enemy;
+import de.litigame.items.Items;
+import de.litigame.items.Weapon;
 
 public class Spawnpoints {
 
 	private static int currentWave, waveCount;
 	private static List<EnemySpawnpoint> spawns = new ArrayList<>();
 
-	private static boolean allDead() {
-		for (Creature c : Game.world().environment().getCreatures()) if (c instanceof Enemy && !c.isDead()) return false;
+	public static boolean allDead() {
+		for (final Creature c : Game.world().environment().getCreatures()) {
+			if (c instanceof Enemy && !c.isDead()) {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -28,19 +34,15 @@ public class Spawnpoints {
 			for (int i = 0; i < waveCount; i++) {
 				final List<Enemy> wave = new ArrayList<>();
 				if (spawn.spawnpoint.getProperties().hasCustomProperty("wave_" + (i + 1))) {
-					for (final String enemy : spawn.spawnpoint.getProperties().getStringValue("wave_" + (i + 1)).split(",")) {
+					for (final String enemy : spawn.spawnpoint.getProperties().getStringValue("wave_" + (i + 1))
+							.split(",")) {
 						switch (Integer.valueOf(enemy)) {
 						case 1:
-							wave.add(new Enemy("enemy1"));
+							wave.add(new Enemy("enemy1", (Weapon) Items.getItem("Trainingsschwert"), 1, 100, 70000, 2));
 							break;
 						}
 					}
 				}
-				for (Enemy enemy : wave) enemy.onDeath(entity -> {
-					if (allDead() && !isOver()) {
-						spawnNextWave();
-					}
-				});
 				spawn.addWave(wave);
 			}
 			spawns.add(spawn);
@@ -48,7 +50,7 @@ public class Spawnpoints {
 	}
 
 	public static boolean isOver() {
-		return currentWave == waveCount && allDead();
+		return currentWave >= waveCount && allDead();
 	}
 
 	public static void spawnNextWave() {

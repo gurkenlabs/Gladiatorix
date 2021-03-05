@@ -10,8 +10,8 @@ import java.util.List;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
-import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.GameManager;
 import de.litigame.entities.Player;
 import de.litigame.gui.IngameScreen;
@@ -37,21 +37,22 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	private void buy(int index, Player buyer) {
-		ShopEntry selected = offers.get(index);
-		if (buyer.canBuy(selected)) buyer.buy(selected);
+		final ShopEntry selected = offers.get(index);
+		if (buyer.canBuy(selected)) {
+			buyer.buy(selected);
+		}
 		updateMenus();
 	}
 
 	private void equip(int index, Player buyer) {
-		ShopEntry selected = storage.get(index);
-		Item item = selected.getItem();
+		final ShopEntry selected = storage.get(index);
+		final Item item = selected.getItem();
 		GameManager.removeItemEntities(item);
 		Player.getInstance().hotbar.removeItems(item);
 		if (item instanceof Armor) {
 			Player.getInstance().equip((Armor) item);
 			Game.audio().playSound(Resources.sounds().get("equipArmor"));
-		}
-		else {
+		} else {
 			Player.getInstance().hotbar.addItem(item);
 			Game.audio().playSound(Resources.sounds().get("equipSword"));
 		}
@@ -63,13 +64,17 @@ public class Shop implements IRenderable, KeyPressedListener {
 		storageMenu.suspend();
 		((IngameScreen) Game.screens().get("ingame")).removeOverlayMenu(this);
 
-		for (ShopExitedListener listener : exitListeners) listener.exit();
+		for (final ShopExitedListener listener : exitListeners) {
+			listener.exit();
+		}
 		exitListeners.clear();
 	}
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) exit();
+		if (event.getKeyCode() == KeyEvent.VK_E) {
+			exit();
+		}
 	}
 
 	public void open(ShopExitedListener... onExit) {
@@ -89,14 +94,20 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	private void updateMenus() {
-		for (ShopEntry entry : offers) if (Player.getInstance().storage.contains(entry.getItem())) {
-			offers.remove(entry);
-			storage.add(entry);
+		for (final ShopEntry entry : offers) {
+			if (Player.getInstance().storage.contains(entry.getItem())) {
+				offers.remove(entry);
+				storage.add(entry);
+			}
 		}
 
-		if (offerMenu != null) offerMenu.suspend();
-		if (storageMenu != null) storageMenu.suspend();
-		double wOff = (Game.window().getResolution().width - background.getWidth()) / 2 + 56,
+		if (offerMenu != null) {
+			offerMenu.suspend();
+		}
+		if (storageMenu != null) {
+			storageMenu.suspend();
+		}
+		final double wOff = (Game.window().getResolution().width - background.getWidth()) / 2 + 56,
 				hOff = (Game.window().getResolution().height - background.getHeight()) / 2 + 140;
 		offerMenu = new ShopEntryMenu(wOff, hOff, offers, ShopEntry.State.BUY);
 		storageMenu = new ShopEntryMenu(Game.window().getResolution().width - wOff - offerMenu.getWidth(), hOff,

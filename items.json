@@ -6,11 +6,11 @@
 			"item_image"			:	"sword_wood",
 			"item_name"			:	"Trainingsschwert",
 			"weapon_impact"			:	"20",
-			"weapon_impactAngle"		:	"90",
+			"weapon_impactAngle"		:	"180",
 			"weapon_multiTarget"		:	"false",
 			"weapon_value"			:	"5",
 			"weapon_type"			:	"melee",
-			"weapon_cooldown"		:	"100",
+			"weapon_cooldown"		:	"500",
 			"weapon_skin"			:	"iron"
 		},
 		{

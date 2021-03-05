@@ -57,6 +57,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public int healthLastInstance = 100;
 	public final Hotbar hotbar = new Hotbar(this);
 
+	private int AttackCooldown;
+
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
 	private int money = 0, lvl = 1;
 	private boolean playHitAnimation = false;
@@ -74,7 +76,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void attack() {
-		if (hotbar.getSelectedItem() instanceof Weapon) {
+		if (hotbar.getSelectedItem() instanceof Weapon && AttackCooldown == 0) {
 			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
 			switch (weapon.type) {
 			case MELEE:
@@ -83,6 +85,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				melee.cast();
 				playHitAnimation = true;
 				Game.audio().playSound(Resources.sounds().get("swoosh"));
+				AttackCooldown = 30;
 				break;
 			case RANGE:
 				weapon.overrideAbility(range);
@@ -97,7 +100,13 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		if (entry.equippable) {
 			storage.add(entry.getItem());
 		}
-		hotbar.addItem(entry.getItem());
+		if (entry.getItem() instanceof Armor) {
+			equip((Armor) entry.getItem());
+		} else if (entry.getItem() instanceof Shield) {
+			equip((Shield) entry.getItem());
+		} else {
+			hotbar.addItem(entry.getItem());
+		}
 	}
 
 	public boolean canBuy(ShopEntry entry) {
@@ -168,6 +177,14 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		currentArmor = armor;
 	}
 
+	public void equip(Shield shield) {
+		if (currentShield != null) {
+			getHitPoints().removeModifier(currentShield.healthBuff());
+		}
+		getHitPoints().addModifier(shield.healthBuff());
+		currentShield = shield;
+	}
+
 	public int getLvl() {
 		return lvl;
 	}
@@ -222,6 +239,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		}
 		if (isIdle() && updatetimer != 0) {
 			updatetimer = 0;
+		}
+
+		if (AttackCooldown > 0) {
+			AttackCooldown--;
 		}
 
 		// Check if player was hit, if yes play hurt sound
