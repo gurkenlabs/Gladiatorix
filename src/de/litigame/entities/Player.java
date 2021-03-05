@@ -72,7 +72,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			case MELEE:
 				weapon.overrideAbility(melee);
 				melee.cast();
-				Game.audio().playSound(Resources.sounds().get("sword"));
+				Game.audio().playSound(Resources.sounds().get("swoosh"));
 				attackCooldown = 30;
 				break;
 			case RANGE:
