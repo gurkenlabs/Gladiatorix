@@ -8,17 +8,16 @@ import java.util.List;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
-import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
+import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Player;
 import de.litigame.graphics.Dialogue;
 
-public class IngameScreen extends GameScreen implements KeyPressedListener{
+public class IngameScreen extends GameScreen implements KeyPressedListener {
 
 	private Dialogue dialogue;
-	private final List<IRenderable> overlayMenus = new ArrayList<>();
-
+	public final List<IRenderable> overlayMenus = new ArrayList<>();
 
 	public IngameScreen() {
 		super("ingame");
@@ -39,7 +38,9 @@ public class IngameScreen extends GameScreen implements KeyPressedListener{
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) Game.screens().display("ingameMenu");
+		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			Game.screens().display("ingameMenu");
+		}
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class IngameScreen extends GameScreen implements KeyPressedListener{
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-		if (dialogue != null){
+		if (dialogue != null) {
 			if (!dialogue.shouldBeDrawn()) {
 				dialogue.suspend();
 				dialogue = null;
@@ -71,6 +72,8 @@ public class IngameScreen extends GameScreen implements KeyPressedListener{
 		Player.getInstance().healthBar.render(g);
 		Player.getInstance().hotbar.render(g);
 
-		for (IRenderable menu : overlayMenus) menu.render(g);
+		for (final IRenderable menu : overlayMenus) {
+			menu.render(g);
+		}
 	}
 }

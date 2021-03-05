@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<savegame>
+ <hotbar>Trainingsschwert, null, null, null, null</hotbar>
+ <slot>0</slot>
+ <money>0</money>
+ <level>1</level>
+ <xPos>1700</xPos>
+ <yPos>2850.0802013743028</yPos>
+ <health>100</health>
+ <name>respawnsave</name>
+</savegame>

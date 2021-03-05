@@ -1,5 +1,6 @@
 package de.litigame.shop;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -30,13 +31,14 @@ public class ShopEntry {
 
 	private void drawImages(String info) {
 		Graphics2D g = getImage(State.BUY).createGraphics();
-		g.drawImage(item.getImage(), 0, 0, null);
-		g.drawString(Integer.toString(price), 10, 10);
-		g.drawString(Integer.toString(requiredLevel), 20, 10);
+		g.setColor(Color.BLACK);
+		g.drawImage(ImageUtilities.getRescaledCopy(item.getImage(), 2), 20, 20, null);
+		g.drawString(Integer.toString(price), 75, 35);
+		g.drawString(Integer.toString(requiredLevel), 160, 35);
 		g.drawString(info, 20, 10);
 		g.dispose();
 		g = getImage(State.EQUIP).createGraphics();
-		g.drawImage(item.getImage(), 0, 0, null);
+		g.drawImage(item.getImage(), 20, 20, null);
 		g.drawString(info, 20, 10);
 		g.dispose();
 	}
