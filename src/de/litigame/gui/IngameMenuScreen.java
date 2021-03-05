@@ -22,7 +22,7 @@ public class IngameMenuScreen extends Screen implements KeyPressedListener {
 	public IngameMenuScreen() {
 		super("ingameMenu");
 
-		String[] items = { "Fortfahren", "Spiel speichern", "Zur�ck zum Titel" };
+		String[] items = { "Fortfahren", "Spiel speichern", "Zurueck zum Titel" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
