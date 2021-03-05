@@ -54,14 +54,14 @@
 					"price"		: "20",
 					"required_level": "1",
 					"equippable" 	: "false"
-				}
+				},
 				{
 					"tooltip" 	: "",
 					"item_name" 	: "Schnelligkeitstrank",
 					"price"		: "20",
 					"required_level": "1",
 					"equippable" 	: "false"
-				}
+				},
 				{
 					"tooltip" 	: "",
 					"item_name" 	: "Stärketrank",

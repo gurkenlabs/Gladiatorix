@@ -34,25 +34,25 @@
 			"weapon_multiTarget"		:	"true",
 			"weapon_value"			:	"25",
 			"weapon_type"			:	"melee",
-			"weapon_skin"			:	"stone"
+			"weapon_skin"			:	"stone",
 			"weapon_cooldown"		:	"3000"
 		},
 		{
 			"item_class"			:	"potion",
 			"item_image"			:	"potion1",
-			"item_name"			:	"Heilungstrank",
+			"item_name"			    :	"Heilungstrank",
 			"potion_effect"			:	"heal"
 		},
 		{
 			"item_class"			:	"potion",
 			"item_image"			:	"potion2",
-			"item_name"			:	"Schnelligkeitstrank",
+			"item_name"				:	"Schnelligkeitstrank",
 			"potion_effect"			:	"speed"
 		},
 		{
 			"item_class"			:	"potion",
 			"item_image"			:	"potion3",
-			"item_name"			:	"Stärketrank",
+			"item_name"				:	"Stärketrank",
 			"potion_effect"			:	"strength"
 		},
 		{
