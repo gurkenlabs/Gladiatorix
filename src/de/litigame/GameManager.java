@@ -23,7 +23,6 @@ import de.litigame.graphics.Dialogue;
 import de.litigame.graphics.PlayerCamera;
 import de.litigame.gui.IngameScreen;
 import de.litigame.items.Item;
-import de.litigame.items.Items;
 import de.litigame.shop.Shops;
 import de.litigame.spawning.Spawnpoints;
 
@@ -54,8 +53,6 @@ public class GameManager {
 
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
-
-		Player.getInstance().hotbar.addItem(Items.getItem("sword_stone"));
 
 		switchToState(GameState.INGAME);
 	}
@@ -89,8 +86,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
-						.collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -107,8 +103,7 @@ public class GameManager {
 					++i;
 				}
 				final int time = trigger.getProperties().getIntValue("time");
-				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(),
-						trigger.getY(), time);
+				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
@@ -141,8 +136,7 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
 						((Player) e.getEntity()).changeLvl(lvl);
-						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()),
-								Double.valueOf(coords[1].trim())));
+						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
 					}
 				});
 			}

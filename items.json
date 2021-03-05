@@ -76,7 +76,8 @@
 		{
 			"item_class"			:	"potion",
 			"item_image"			:	"potion1",
-			"item_name"			:	"Heilungstrank"
+			"item_name"			:	"Heilungstrank",
+			"potion_effect"			:	"heal"
 		},
 		{
 			"item_class"			:	"armor",

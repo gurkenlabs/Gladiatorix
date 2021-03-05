@@ -24,7 +24,7 @@ public class Potion extends Item implements Stackable, Consumable {
 		switch (itemInfo.get("potion_effect")) {
 		case "heal":
 			mod = new AttributeModifier<Integer>(Modification.ADD, 50);
-			addConsumeListener(p -> p.getHitPoints().addModifier(mod));
+			addConsumeListener(p -> p.getHitPoints().setBaseValue(p.getHitPoints().get() + 50));
 			break;
 		case "speed":
 			mod = new AttributeModifier<Float>(Modification.MULTIPLY, 2);
@@ -36,6 +36,10 @@ public class Potion extends Item implements Stackable, Consumable {
 			addConsumeListener(p -> ((Player) p).strength.addModifier(mod));
 			Game.loop().perform(10000, () -> Player.getInstance().strength.removeModifier(mod));
 		}
+		addConsumeListener(p -> {
+			amount--;
+			Player.getInstance().hotbar.removeEmptyItems();
+		});
 	}
 
 	@Override

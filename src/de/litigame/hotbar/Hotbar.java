@@ -94,7 +94,7 @@ public class Hotbar implements IRenderable {
 		return Arrays.toString(itms).substring(1, Arrays.toString(itms).length() - 1);
 	}
 
-	private void removeEmptyItems() {
+	public void removeEmptyItems() {
 		for (int i = 0; i < items.length; ++i) {
 			if (Item.isStackable(items[i]) && ((Stackable) items[i]).isEmpty()) {
 				items[i] = null;
@@ -131,8 +131,7 @@ public class Hotbar implements IRenderable {
 
 		image = ImageUtilities.getRescaledCopy(image, 3);
 
-		graphics.drawImage(image, (Game.window().getResolution().width - image.getWidth()) / 2,
-				Game.window().getResolution().height - image.getHeight(), null);
+		graphics.drawImage(image, (Game.window().getResolution().width - image.getWidth()) / 2, Game.window().getResolution().height - image.getHeight(), null);
 	}
 
 	public void replace(Item item, int i) {
