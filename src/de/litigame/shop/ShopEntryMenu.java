@@ -11,7 +11,7 @@ import de.gurkenlabs.litiengine.gui.ImageComponentList;
 public class ShopEntryMenu extends ImageComponentList {
 
 	private static List<Image> shopEntriesToImages(List<ShopEntry> entries, ShopEntry.State state) {
-		List<Image> list = new ArrayList<>();
+		final List<Image> list = new ArrayList<>();
 		entries.forEach(e -> list.add(e.getImage(state)));
 		return list;
 	}
@@ -20,8 +20,8 @@ public class ShopEntryMenu extends ImageComponentList {
 
 	public ShopEntryMenu(double x, double y, List<ShopEntry> entries, ShopEntry.State state) {
 		super(x, y, entries.isEmpty() ? 0 : shopEntriesToImages(entries, state).get(0).getWidth(null),
-				entries.isEmpty() ? 0 : shopEntriesToImages(entries, state).get(0).getWidth(null), entries.size(), 1,
-				shopEntriesToImages(entries, state), null);
+				entries.isEmpty() ? 0 : shopEntriesToImages(entries, state).get(0).getWidth(null) * 2, entries.size(),
+				1, shopEntriesToImages(entries, state), null);
 	}
 
 	public void onChange(IntConsumer cons) {
@@ -31,10 +31,13 @@ public class ShopEntryMenu extends ImageComponentList {
 	@Override
 	public void prepare() {
 		super.prepare();
-		for (ImageComponent cell : getCellComponents()) {
+		for (final ImageComponent cell : getCellComponents()) {
 			cell.onClicked(e -> {
-				if (!e.getEvent().isConsumed()) for (IntConsumer consumer : selectionChangeConsumers)
-					consumer.accept(getComponents().indexOf(cell));
+				if (!e.getEvent().isConsumed()) {
+					for (final IntConsumer consumer : selectionChangeConsumers) {
+						consumer.accept(getComponents().indexOf(cell));
+					}
+				}
 				e.getEvent().consume();
 			});
 		}

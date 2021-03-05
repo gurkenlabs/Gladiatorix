@@ -78,6 +78,9 @@ public class Shop implements IRenderable, KeyPressedListener {
 	}
 
 	public void open(ShopExitedListener... onExit) {
+		if (!((IngameScreen) Game.screens().get("ingame")).overlayMenus.isEmpty()) {
+			return;
+		}
 		exitListeners.addAll(Arrays.asList(onExit));
 
 		Input.keyboard().onKeyPressed(this);
