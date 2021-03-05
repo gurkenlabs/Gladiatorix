@@ -77,11 +77,11 @@ public class Enemy extends Creature implements IFighter {
 	public IEntityAnimationController<Enemy> createAnimationController() {
 		IEntityAnimationController<Enemy> controller = new EntityAnimationController<>(this);
 		for (String dir : new String[] { "left", "right", "down", "up" }) {
-			controller.add(new Animation(getSpritesheetName() + "_hit_" + dir, false, false));
-			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, false, false));
+			controller.add(new Animation(getSpritesheetName() + "_hit_" + dir, true, false));
+			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, true, false));
 		}
 		controller.addRule(e -> !e.isDead(), e -> {
-			String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString();
+			String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString().toLowerCase();
 			if (e.playHitAnimation) e.setVelocity(20);
 			e.playHitAnimation = false;
 			return image;
