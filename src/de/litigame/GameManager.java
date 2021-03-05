@@ -50,7 +50,7 @@ public class GameManager {
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
 		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
-		Player.getInstance().hotbar.addItem(Items.getItem("sword"));
+		Player.getInstance().hotbar.addItem(Items.getItem("sword_stone"));
 
 		switchToState(GameState.INGAME);
 	}
@@ -75,7 +75,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}

@@ -9,7 +9,7 @@ import de.gurkenlabs.litiengine.abilities.AbilityAttributes;
 import de.gurkenlabs.litiengine.attributes.Attribute;
 
 public class Weapon extends Item {
-	
+
 	public enum Type {
 		MELEE, RANGE;
 	}
@@ -18,12 +18,13 @@ public class Weapon extends Item {
 			"weapon_impactAngle", "weapon_range", "weapon_value" };
 	private final List<Attribute<Integer>> attributes = new ArrayList<>();
 	private boolean multiTarget = true;
+	private final String playerSkin;
 	public final Type type;
 
 	public Weapon(Map<String, String> itemInfo) {
 		super(itemInfo);
 
-		for (int i = 0; i < attributeKeys.length; ++i) {
+		for (String attributeKey : attributeKeys) {
 			attributes.add(new Attribute<>(0));
 		}
 
@@ -34,6 +35,8 @@ public class Weapon extends Item {
 
 		if (itemInfo.containsKey("weapon_multiTarget"))
 			multiTarget = Boolean.valueOf(itemInfo.get("weapon_multiTarget"));
+
+		playerSkin = itemInfo.get("weapon_skin");
 
 		switch (itemInfo.get("weapon_type")) {
 		case "melee":
@@ -91,6 +94,10 @@ public class Weapon extends Item {
 		attributes.value().getModifiers().addAll(value().getModifiers());
 
 		ability.setMultiTarget(multiTarget);
+	}
+
+	public String playerSkin() {
+		return playerSkin;
 	}
 
 	public Attribute<Integer> range() {

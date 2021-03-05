@@ -15,8 +15,7 @@ public class HotbarController {
 	private final List<List<Integer>> slotKeys = new ArrayList<>();
 
 	public HotbarController(Hotbar hotbar) {
-		this(hotbar, KeyEvent.VK_1, KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6,
-				KeyEvent.VK_7, KeyEvent.VK_8, KeyEvent.VK_9);
+		this(hotbar, KeyEvent.VK_1, KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5);
 	}
 
 	public HotbarController(Hotbar hotbar, int... hot) {

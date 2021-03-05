@@ -9,6 +9,9 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.ICollisionEntity;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
+import de.gurkenlabs.litiengine.graphics.animation.Animation;
+import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
+import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -25,6 +28,8 @@ public class Enemy extends Creature implements IFighter {
 
 	private Ability attackAbility;
 
+	public boolean playHitAnimation = false;
+
 	private double strength = 0;
 
 	public int visionRange = 4000;
@@ -38,7 +43,7 @@ public class Enemy extends Creature implements IFighter {
 
 		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
 		setTarget(Player.getInstance());
-		putWeapon((Weapon) Items.getItem("sword"));
+		putWeapon((Weapon) Items.getItem("sword_stone"));
 
 		final MovementController<Enemy> controller = new EnemyController(this);
 		addController(controller);
@@ -58,6 +63,22 @@ public class Enemy extends Creature implements IFighter {
 	@Override
 	public boolean canCollideWith(ICollisionEntity other) {
 		return !other.hasTag("barrier");
+	}
+
+	@Override
+	public IEntityAnimationController<Enemy> createAnimationController() {
+		IEntityAnimationController<Enemy> controller = new EntityAnimationController<>(this);
+		for (String dir : new String[] { "left", "right", "down", "up" }) {
+			controller.add(new Animation(getSpritesheetName() + "_hit_" + dir, false, false));
+			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, false, false));
+		}
+		controller.addRule(e -> !e.isDead(), e -> {
+			String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString();
+			if (e.playHitAnimation) e.setVelocity(20);
+			e.playHitAnimation = false;
+			return image;
+		});
+		return controller;
 	}
 
 	public Ability getAttackAbility() {

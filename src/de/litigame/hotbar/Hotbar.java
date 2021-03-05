@@ -18,7 +18,7 @@ public class Hotbar implements IRenderable {
 	private int selectedSlot = 0;
 
 	public Hotbar(IEntity owner) {
-		this(9, owner);
+		this(5, owner);
 	}
 
 	public Hotbar(int size, IEntity owner) {
