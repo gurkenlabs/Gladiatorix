@@ -16,6 +16,7 @@ import de.gurkenlabs.litiengine.physics.MovementController;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
 import de.litigame.hp.EnemyHealthBar;
+import de.litigame.items.Items;
 import de.litigame.items.Weapon;
 import de.litigame.spawning.Spawnpoints;
 
