@@ -3,45 +3,72 @@
 	[
 		{
 			"item_class"			:	"weapon",
-			"item_image"			:	"test",
-			"item_name"				:	"sword",
+			"item_image"			:	"sword_wood",
+			"item_name"			:	"Trainingsschwert",
 			"weapon_impact"			:	"20",
-			"weapon_impactAngle"	:	"90",
-			"weapon_multiTarget"	:	"true",
+			"weapon_impactAngle"		:	"90",
+			"weapon_multiTarget"		:	"false",
+			"weapon_value"			:	"5",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"100"
+		},
+		{
+			"item_class"			:	"weapon",
+			"item_image"			:	"sword_ion",
+			"item_name"			:	"Eisenschwert",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"		:	"90",
+			"weapon_multiTarget"		:	"false",
 			"weapon_value"			:	"10",
 			"weapon_type"			:	"melee",
 			"weapon_cooldown"		:	"100"
 		},
 		{
 			"item_class"			:	"weapon",
-			"item_image"			:	"test",
-			"item_name"				:	"bow",
+			"item_image"			:	"axe_stone",
+			"item_name"				:	"Steinaxt",
 			"weapon_impact"			:	"20",
-			"weapon_impactAngle"	:	"90",
-			"weapon_multiTarget"	:	"false",
-			"weapon_value"			:	"10",
-			"weapon_type"			:	"range",
-			"weapon_cooldown"		:	"200",
-			"weapon_duration"		:	"200",
-			"weapon_range"			:	"100"
-		},
-		{
-			"item_class"			:	"potion",
-			"item_image"			:	"test",
-			"item_name"				:	"potion"
+			"weapon_impactAngle"		:	"90",
+			"weapon_multiTarget"		:	"true",
+			"weapon_value"			:	"25",
+			"weapon_type"			:	"melee",
+			"weapon_cooldown"		:	"300"
 		},
 		{
 			"item_class"			:	"weapon",
-			"item_image"			:	"test",
-			"item_name"				:	"defaultWeapon",
-			"weapon_impact"			:	"0",
-			"weapon_impactAngle"	:	"0",
-			"weapon_multiTarget"	:	"false",
-			"weapon_value"			:	"0",
+			"item_image"			:	"axe_ion",
+			"item_name"			:	"Eisenaxt",
+			"weapon_impact"			:	"20",
+			"weapon_impactAngle"		:	"90",
+			"weapon_multiTarget"		:	"true",
+			"weapon_value"			:	"40",
 			"weapon_type"			:	"melee",
-			"weapon_cooldown"		:	"0",
-			"weapon_duration"		:	"0",
-			"weapon_range"			:	"0"
+			"weapon_cooldown"		:	"300"
 		},
+		{
+			"item_class"			:	"potion",
+			"item_image"			:	"potion1",
+			"item_name"			:	"Heilungstrank"
+		},		
+		{
+			"item_class"			:	"armor",
+			"item_image"			:	"chestplate",
+			"item_name"			:	"Eisenrüstung",
+			"armor_buff" 			: 	"40"
+			"armor_skin" 			: 	"iron"
+		},				
+		{
+			"item_class"			:	"armor",
+			"item_image"			:	"chestplate2",
+			"item_name"			:	"Gladiatorenrüstung",
+			"armor_buff" 			: 	"80",
+			"armor_skin" 			: 	"gold"
+		},
+		{
+			"item_class"			:	"shield",
+			"item_image"			:	"shield",
+			"item_name"			:	"Schild",
+			"armor_buff" 			: 	"40"
+		}
 	]
 }
