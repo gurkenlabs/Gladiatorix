@@ -15,6 +15,8 @@ import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.physics.MovementController;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
+import de.litigame.graphics.Dialogue;
+import de.litigame.gui.IngameScreen;
 import de.litigame.hp.EnemyHealthBar;
 import de.litigame.items.Items;
 import de.litigame.items.Weapon;
@@ -55,6 +57,10 @@ public class Enemy extends Creature implements IFighter {
 				Spawnpoints.spawnNextWave();
 			}
 			Player.getInstance().changeMoney(getmoneyLoot());
+			if(Spawnpoints.isOver()){
+				String[] msg = {"Druecke F um aus der Arena rauszukommen"};
+				((IngameScreen) Game.screens().get("ingame")).drawDialogue(new Dialogue(msg,0,0,3000));
+			}
 		});
 		setTarget(Player.getInstance());
 		putWeapon((Weapon) Items.getItem("Trainingsschwert"));

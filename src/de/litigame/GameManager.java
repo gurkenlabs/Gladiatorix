@@ -160,7 +160,7 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
 						((Player) e.getEntity()).changeLvl(lvl);
-						ingame = "sound/ingame.wav";
+						ingame = "sounds/ingame.wav";
 						Game.audio().playMusic(ingame);
 						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
 					}
