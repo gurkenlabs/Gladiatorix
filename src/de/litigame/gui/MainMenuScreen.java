@@ -41,17 +41,24 @@ public class MainMenuScreen extends Screen {
 				String[] initialItems = { "bow", "sword", "null", "null", "null", "null", "null", "null", "null" };
 				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
 				saveGame.saveGame();
+				suspend();
 				Game.screens().display("ingame");
 			}
 			if (index == 1) {
 				loadSavedGameFile();
+				suspend();
 				Game.screens().display("ingame");
 			}
-			if (index == 2) Game.screens().display("settings");
-			if (index == 3) System.exit(0);
+			if (index == 2) {
+				//suspend();
+				Game.screens().display("settings");
+			}
+			if (index == 3){
+				System.exit(0);
+			}
 		});
-		Game.config().sound().setMusicVolume(GameManager.volume);
-		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+		//Game.config().sound().setMusicVolume(GameManager.volume);
+		//Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);
 	}
@@ -69,8 +76,14 @@ public class MainMenuScreen extends Screen {
 	}
 
 	@Override
+	public void prepare() {
+		super.prepare();
+		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+	}
+
+	@Override
 	public void suspend() {
 		super.suspend();
-		Game.audio().stopMusic();
+		//Game.audio().stopMusic();
 	}
 }

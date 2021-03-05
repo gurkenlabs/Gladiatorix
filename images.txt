@@ -26,3 +26,4 @@ volume_down:sprites/volume_minus.png
 100-hp:sprites/enemy_health_bar/health_bar_100.png
 menu:screens/menu.png
 menu_item:screens/menu_item_new.png
+title:screens/title.png

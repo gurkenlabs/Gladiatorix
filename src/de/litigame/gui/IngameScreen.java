@@ -33,6 +33,7 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 	@Override
 	public void prepare() {
 		super.prepare();
+		Game.audio().stopMusic();
 		Input.keyboard().onKeyPressed(this);
 	}
 

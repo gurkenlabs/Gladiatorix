@@ -19,12 +19,13 @@ public class Program {
 		ImageUtilities.init(new File("images.txt"));
 		Items.init(new File("items.json"));
 		Shops.init(new File("shops.json"));
+		Game.screens().add(new TitleScreen());
 		Game.screens().add(new IngameScreen());
 		Game.screens().add(new MainMenuScreen());
 		Game.screens().add(new SettingsScreen());
 		Game.screens().add(new IngameMenuScreen());
 		Game.screens().add(new IngameSettingsScreen());
-		Game.screens().display("menu");
+		Game.screens().display("title");
 		GameManager.init();
 		Game.start();
 	}

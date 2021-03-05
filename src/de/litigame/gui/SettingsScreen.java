@@ -65,11 +65,11 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 		settings.onChange(index -> {
 			if (index == 0) saveGame.saveGame();
 			else if (index == 1) {
+				Game.screens().get("menu").setVisible(true);
 				Game.screens().display("menu");
-				Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 			}
 		});
-		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+		//Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(settings);
 		getComponents().add(vol_down);
@@ -97,8 +97,8 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 	@Override
 	public void prepare() {
 		super.prepare();
+		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		Input.keyboard().onKeyPressed(this);
-
 	}
 
 	@Override
