@@ -42,8 +42,7 @@ public class Enemy extends Creature implements IFighter {
 	}
 
 	public Enemy(Enemy other) {
-		this(other.getSpritesheetName(), null, other.strength, other.getHitPoints().getMax(), other.visionRange,
-				other.moneyLoot);
+		this(other.getSpritesheetName(), null, other.strength, other.getHitPoints().getMax(), other.visionRange, other.moneyLoot);
 		putWeapon(other.weapon);
 	}
 
@@ -71,6 +70,7 @@ public class Enemy extends Creature implements IFighter {
 		putWeapon(weapon);
 		this.strength = strength;
 		getHitPoints().setMaxBaseValue(health);
+		getHitPoints().setBaseValue(health);
 		this.visionRange = visionRange;
 		this.moneyLoot = moneyLoot;
 	}
@@ -88,8 +88,7 @@ public class Enemy extends Creature implements IFighter {
 			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, true, false));
 		}
 		controller.addRule(e -> !e.isDead(), e -> {
-			final String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_")
-					+ e.getFacingDirection().toString().toLowerCase();
+			final String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString().toLowerCase();
 			if (e.playHitAnimation) {
 				e.setVelocity(20);
 			}
