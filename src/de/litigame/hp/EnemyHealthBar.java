@@ -22,14 +22,7 @@ public class EnemyHealthBar implements IRenderable {
 		double fac = (double) hp / entity.getHitPoints().getMax();
 		String image = Math.round(fac * 10) * 10 + "-hp";
 		BufferedImage bar = Resources.images().get(image);
-		g.drawImage(bar,
-				(int) (entity.getCenter().getX() - Game.world().camera().getFocus().getX()
-						+ 299.5 / Game.world().camera().getZoom()),
-				(int) (entity.getCenter().getY() - Game.world().camera().getFocus().getY()
-						+ 143 / Game.world().camera().getZoom()),
-				(bar.getWidth()), (bar.getHeight()), null);
-		System.out.println(entity.getLocation() + " sda" + entity.getX() + " " + entity.getY() + "  " + bar.getWidth()
-				+ "  " + bar.getHeight());
+		g.drawImage(bar, (int) (entity.getCenter().getX() - Game.world().camera().getFocus().getX() + 299.5 / Game.world().camera().getZoom()), (int) (entity.getCenter().getY() - Game.world().camera().getFocus().getY() + 143 / Game.world().camera().getZoom()), (bar.getWidth()), (bar.getHeight()), null);
 	}
 
 }

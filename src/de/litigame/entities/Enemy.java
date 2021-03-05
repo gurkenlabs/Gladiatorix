@@ -32,32 +32,40 @@ public class Enemy extends Creature implements IFighter {
 
 	private double strength = 0;
 
-	public int visionRange = 4000;
+	public int visionRange = 4000, moneyLoot;
 
 	public Enemy() {
 		this("enemy");
 	}
 
+	public Enemy(Enemy other) {
+		this(other.getSpritesheetName(), null, other.strength, other.getHitPoints().getMax(), other.visionRange, other.moneyLoot);
+		attackAbility = other.attackAbility;
+	}
+
 	public Enemy(String spritesheetName) {
 		super(spritesheetName);
 
-		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
+		onDeath(e -> {
+			Game.loop().perform(2000, () -> Game.world().environment().remove(e));
+			Player.getInstance().changeMoney(getmoneyLoot());
+		});
 		setTarget(Player.getInstance());
 		putWeapon((Weapon) Items.getItem("sword_stone"));
 
 		final MovementController<Enemy> controller = new EnemyController(this);
 		addController(controller);
-		Game.loop().attach(controller);
 
 		addEntityRenderListener(e -> new EnemyHealthBar(this).render(e.getGraphics()));
 	}
 
-	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange) {
+	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange, int moneyLoot) {
 		this(spritesheetName);
 		putWeapon(weapon);
 		this.strength = strength;
 		getHitPoints().setMaxBaseValue(health);
 		this.visionRange = visionRange;
+		this.moneyLoot = moneyLoot;
 	}
 
 	@Override
@@ -69,11 +77,11 @@ public class Enemy extends Creature implements IFighter {
 	public IEntityAnimationController<Enemy> createAnimationController() {
 		IEntityAnimationController<Enemy> controller = new EntityAnimationController<>(this);
 		for (String dir : new String[] { "left", "right", "down", "up" }) {
-			controller.add(new Animation(getSpritesheetName() + "_hit_" + dir, false, false));
-			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, false, false));
+			controller.add(new Animation(getSpritesheetName() + "_hit_" + dir, true, false));
+			controller.add(new Animation(getSpritesheetName() + "_walk_" + dir, true, false));
 		}
 		controller.addRule(e -> !e.isDead(), e -> {
-			String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString();
+			String image = e.getSpritesheetName() + "_" + (e.playHitAnimation ? "hit_" : "walk_") + e.getFacingDirection().toString().toLowerCase();
 			if (e.playHitAnimation) e.setVelocity(20);
 			e.playHitAnimation = false;
 			return image;
@@ -85,12 +93,17 @@ public class Enemy extends Creature implements IFighter {
 		return attackAbility;
 	}
 
+	public int getmoneyLoot() {
+		return moneyLoot;
+	}
+
 	@Override
 	public double getStrength() {
 		return strength;
 	}
 
 	public void putWeapon(Weapon weapon) {
+		if (weapon == null) return;
 		switch (weapon.type) {
 		case RANGE:
 			attackAbility = new RangeAttackAbility(this);

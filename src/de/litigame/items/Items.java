@@ -23,6 +23,8 @@ public class Items {
 			return new Weapon(info);
 		case "potion":
 			return new Potion(info);
+		case "shield":
+			return new Shield(info);
 		}
 		return null;
 	}

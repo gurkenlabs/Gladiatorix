@@ -9,7 +9,8 @@
 | tag          | description                            | required properties                         | optional properties            |
 | ------------ | -------------------------------------- | ------------------------------------------- | ------------------------------ |
 | `deadly`     | kills touching entity                  |                                             |                                |
-| `portal`     | teleports player to different map      | `toMap`: String; `toPos`: Double, Double    |                                |
+| `portal`     | teleports player to different map      | `toMap`: String; `toPos`: Double, Double; `cost`: Integer |                         |
+| `portalback` | the portal in arena to come back       | `toMap`: String; `toPos`: Double, Double; `gain`: Integer |                                |
 | `shop`       | shop position to buy items             | `shopName`: String                          |                                |
 | `zoom`       | zooms camera when touching             | `zoomValue`: Float                          | `zoomDuration`: Integer        |
 | `dialogue`   | displays a text box inside the world   | `time`: Integer                             | `message_<INDEX>`: String, ... |

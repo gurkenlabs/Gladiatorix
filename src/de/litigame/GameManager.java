@@ -32,10 +32,12 @@ public class GameManager {
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
 
 	public static void enterPortal(String map, double x, double y) {
+		if (map.equals(Game.world().environment().getMap().getName())) return;
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
 		Game.world().environment().add(Player.getInstance());
+		if (isArena(Game.world().environment())) Spawnpoints.spawnNextWave();
 	}
 
 	public static void init() {
@@ -49,10 +51,14 @@ public class GameManager {
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
-		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
 		Player.getInstance().hotbar.addItem(Items.getItem("sword_stone"));
 
 		switchToState(GameState.INGAME);
+	}
+
+	private static boolean isArena(Environment env) {
+		for (CollisionBox box : env.getCollisionBoxes()) if (box.hasTag("enemyspawndata")) return true;
+		return false;
 	}
 
 	public static int MillisToTicks(int millis) {
@@ -105,18 +111,25 @@ public class GameManager {
 					if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
 				});
 			}
-			if (trigger.hasTag("wavestart")) {
-				trigger.addActivatedListener(e -> {
-					Spawnpoints.spawnNextWave();
-					Game.world().environment().remove(trigger);
-				});
-			}
 			if (trigger.hasTag("portal")) {
+				int cost = trigger.getProperties().getIntValue("cost");
 				String map = trigger.getProperties().getStringValue("toMap");
 				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 				trigger.addActivatedListener(e -> {
-					if (e.getEntity() instanceof Player) {
+					if (e.getEntity() instanceof Player && ((Player) e.getEntity()).getMoney() >= cost) {
+						((Player) e.getEntity()).changeMoney(-cost);
 						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+					}
+				});
+			}
+			if (trigger.hasTag("portalback")) {
+				int lvl = trigger.getProperties().getIntValue("gain");
+				String map = trigger.getProperties().getStringValue("toMap");
+				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
+						((Player) e.getEntity()).changeLvl(lvl);
+						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
 					}
 				});
 			}
