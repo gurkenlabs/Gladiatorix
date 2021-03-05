@@ -74,10 +74,8 @@ public class GameManager {
 	}
 
 	public static void removeItemEntities(Item item) {
-		for (final Prop entity : Game.world().environment().getProps()) {
-			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) {
-				Game.world().environment().remove(entity);
-			}
+		for (Prop entity : Game.world().environment().getProps()) {
+			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) Game.world().environment().remove(entity);
 		}
 	}
 
@@ -151,19 +149,15 @@ public class GameManager {
 			if (trigger.hasTag("zoom")) {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						final float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						float zoom = trigger.getProperties().getFloatValue("zoomValue");
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						final float zoom = PlayerCamera.STD_ZOOM;
-						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						float zoom = PlayerCamera.STD_ZOOM;
+						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});

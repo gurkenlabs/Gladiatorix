@@ -24,3 +24,6 @@
 
 ## Shield
 + `shield_buff`: increase in player HP
+
+## Potion
++ `potion_effect`: either "heal"

@@ -29,6 +29,7 @@ import de.litigame.items.Armor;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
 import de.litigame.items.Shield;
+import de.litigame.items.Potion;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
@@ -93,6 +94,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				break;
 
 			}
+		} else if (hotbar.getSelectedItem() instanceof Potion) {
+			((Potion) hotbar.getSelectedItem()).consume(this);
 		}
 	}
 

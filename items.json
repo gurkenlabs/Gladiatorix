@@ -77,14 +77,14 @@
 			"item_class"			:	"potion",
 			"item_image"			:	"potion1",
 			"item_name"			:	"Heilungstrank"
-		},		
+		},
 		{
 			"item_class"			:	"armor",
 			"item_image"			:	"chestplate",
 			"item_name"			:	"Eisenrüstung",
 			"armor_buff" 			: 	"40",
 			"armor_skin" 			: 	"iron"
-		},				
+		},
 		{
 			"item_class"			:	"armor",
 			"item_image"			:	"chestplate2",
