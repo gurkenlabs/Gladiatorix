@@ -43,6 +43,7 @@ public class GameManager {
 	}
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
+	public static String ingame = "sounds/ingame.wav";
 
 	public static Font getFont(float size) {
 		return minecraft.deriveFont(size);
@@ -55,7 +56,7 @@ public class GameManager {
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
-		Game.audio().stopMusic();
+		ingame = "sound/fight.wav";
 		Game.audio().playMusic(Resources.sounds().get("sounds/fight.wav"));
 		Game.world().environment().add(Player.getInstance());
 		if (isArena(Game.world().environment())) {
@@ -109,7 +110,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -159,6 +160,8 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
 						((Player) e.getEntity()).changeLvl(lvl);
+						ingame = "sound/ingame.wav";
+						Game.audio().playMusic(ingame);
 						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
 					}
 				});

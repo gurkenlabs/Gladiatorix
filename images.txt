@@ -7,7 +7,7 @@ forge : sprites/shop_forge.png
 potion_shop : sprites/shop_potions.png
 hp-border:sprites/hp_bar_border_thin.png
 hp-fill:sprites/hp_bar_fill_thin.png
-
+coin:sprites/coin.png
 
 sword_wood:sprites/sword_wood.png
 sword_ion:sprites/sword_ion.png
