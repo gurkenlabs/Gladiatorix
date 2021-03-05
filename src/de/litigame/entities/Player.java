@@ -19,6 +19,10 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.sound.Sound;
+import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -40,6 +44,10 @@ import de.litigame.utilities.GeometryUtilities;
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature implements IUpdateable, IFighter {
+
+	private Sound walk = Resources.sounds().get("sounds/step.wav");
+
+	private boolean soundPlaying = false;
 
 	private static final Player instance = new Player();
 

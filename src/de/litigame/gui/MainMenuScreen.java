@@ -1,28 +1,35 @@
 package de.litigame.gui;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.xml.bind.JAXBException;
 
 import de.gurkenlabs.litiengine.Game;
+import de.gurkenlabs.litiengine.configuration.SoundConfiguration;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.sound.SoundPlayback;
 import de.gurkenlabs.litiengine.util.io.XmlUtilities;
+import de.litigame.GameManager;
 import de.litigame.SaveGame;
 import de.litigame.entities.Player;
 import de.litigame.utilities.ImageUtilities;
 
 public class MainMenuScreen extends Screen {
 
-	public MainMenuScreen() {
+	private final Menu menu;
+
+	public MainMenuScreen() throws LineUnavailableException {
 		super("menu");
 
 		final SaveGame saveGame = new SaveGame();
 
-		final String[] items = { "Neues Spiel", "Fortfahren", "Einstellungen", "Spiel Schließen" };
+		final String[] items = { "Neues Spiel", "Fortfahren", "Einstellungen", "Spiel Schlieï¿½en" };
 
 		final ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
@@ -40,6 +47,7 @@ public class MainMenuScreen extends Screen {
 			}
 			if (index == 1) {
 				loadSavedGameFile();
+				suspend();
 				Game.screens().display("ingame");
 			}
 			if (index == 2) {
@@ -49,7 +57,8 @@ public class MainMenuScreen extends Screen {
 				System.exit(0);
 			}
 		});
-
+		//Game.config().sound().setMusicVolume(GameManager.volume);
+		//Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);
 	}
@@ -65,4 +74,21 @@ public class MainMenuScreen extends Screen {
 		}
 
 	}
+
+	@Override
+	public void prepare() {
+		super.prepare();
+		for(ImageComponent cell : menu.getCellComponents()){
+			cell.setFont(GameManager.getFont(72));
+			cell.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
+		}
+		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+	}
+
+	@Override
+	public void suspend() {
+		super.suspend();
+		//Game.audio().stopMusic();
+	}
+
 }

@@ -13,20 +13,23 @@ import de.litigame.items.Items;
 import de.litigame.shop.Shops;
 import de.litigame.utilities.ImageUtilities;
 
+import javax.sound.sampled.LineUnavailableException;
+
 public class Program {
 
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedAudioFileException, IOException  {
+	public static void main(String[] args) throws LineUnavailableException, FileNotFoundException, UnsupportedAudioFileException, IOException  {
 		Game.init(args);
 		Resources.load("game.litidata");
 		ImageUtilities.init(new File("images.txt"));
 		Items.init(new File("items.json"));
 		Shops.init(new File("shops.json"));
+		Game.screens().add(new TitleScreen());
 		Game.screens().add(new IngameScreen());
 		Game.screens().add(new MainMenuScreen());
 		Game.screens().add(new SettingsScreen());
 		Game.screens().add(new IngameMenuScreen());
 		Game.screens().add(new IngameSettingsScreen());
-		Game.screens().display("menu");
+		Game.screens().display("title");
 		GameManager.init();
 		Game.start();
 	}

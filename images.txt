@@ -20,6 +20,10 @@ shield:sprites/shield.png
 
 dialogue_box:sprites/dialogue_box.png
 
+sound_bar:sprites/sound_bar.png
+sound_bar_fill:sprites/volume_bar_fill.png
+volume_up:sprites/volume_plus.png
+volume_down:sprites/volume_minus.png
 
 0-hp:sprites/enemy_health_bar/health_bar_0.png
 10-hp:sprites/enemy_health_bar/health_bar_10.png
@@ -34,3 +38,4 @@ dialogue_box:sprites/dialogue_box.png
 100-hp:sprites/enemy_health_bar/health_bar_100.png
 menu:screens/menu.png
 menu_item:screens/menu_item_new.png
+title:screens/title.png

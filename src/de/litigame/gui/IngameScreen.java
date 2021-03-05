@@ -10,6 +10,7 @@ import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.gui.screens.GameScreen;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Player;
 import de.litigame.graphics.Dialogue;
 
@@ -17,7 +18,7 @@ public class IngameScreen extends GameScreen implements KeyPressedListener{
 
 	private Dialogue dialogue;
 	private final List<IRenderable> overlayMenus = new ArrayList<>();
-	
+
 
 	public IngameScreen() {
 		super("ingame");
@@ -35,15 +36,17 @@ public class IngameScreen extends GameScreen implements KeyPressedListener{
 	public void removeOverlayMenu(IRenderable menu) {
 		overlayMenus.remove(menu);
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent event) {
 		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) Game.screens().display("ingameMenu");
 	}
-	
+
 	@Override
 	public void prepare() {
 		super.prepare();
+		Game.audio().stopMusic();
+		Game.audio().playMusic(Resources.sounds().get("sounds/ingame.wav"));
 		Input.keyboard().onKeyPressed(this);
 	}
 

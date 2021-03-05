@@ -1,5 +1,8 @@
 package de.litigame;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,9 +30,21 @@ import de.litigame.shop.Shops;
 import de.litigame.spawning.Spawnpoints;
 
 public class GameManager {
+	public static Font minecraft = null;
+
+	static {
+		try {
+			minecraft = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf"));
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
 
+	public static Font getFont(float size){
+		return minecraft.deriveFont(size);
+	}
 	public static void enterPortal(String map, double x, double y) {
 		if (map.equals(Game.world().environment().getMap().getName())) {
 			return;
@@ -46,6 +61,9 @@ public class GameManager {
 	public static void init() {
 		CreatureMapObjectLoader.registerCustomCreatureType(Enemy.class);
 		CreatureMapObjectLoader.registerCustomCreatureType(Villager.class);
+
+		Game.config().sound().setSoundVolume(1);
+		Game.config().sound().setMusicVolume(1);
 
 		Game.world().setCamera(new PlayerCamera());
 
