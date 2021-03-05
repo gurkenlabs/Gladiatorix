@@ -75,6 +75,11 @@ public class SaveGame {
 		return(XmlUtilities.save(game, saveGamePath));
 	}
 
+	public void restore () {
+		final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
+		SaveGame game = new SaveGame(Player.getInstance().hotbar, Player.getInstance().getMoney(),
+				Player.getInstance().getLvl(), Player.getInstance().getLocation(), Player.getInstance().getHitPoints().get(), "savegame");
+	}
 	//getters (transient/not in file)
 	
 	@XmlTransient

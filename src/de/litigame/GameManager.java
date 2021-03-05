@@ -17,6 +17,7 @@ import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.entities.Trigger;
 import de.gurkenlabs.litiengine.environment.CreatureMapObjectLoader;
 import de.gurkenlabs.litiengine.environment.Environment;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Enemy;
 import de.litigame.entities.IInteractEntity;
 import de.litigame.entities.ItemProp;
@@ -52,6 +53,8 @@ public class GameManager {
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
+		Game.audio().stopMusic();
+		Game.audio().playMusic(Resources.sounds().get("sounds/fight.wav"));
 		Game.world().environment().add(Player.getInstance());
 		if (isArena(Game.world().environment())) {
 			Spawnpoints.spawnNextWave();
@@ -104,7 +107,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}

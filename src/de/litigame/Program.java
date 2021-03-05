@@ -24,6 +24,7 @@ public class Program {
 		Items.init(new File("items.json"));
 		Shops.init(new File("shops.json"));
 		Game.screens().add(new TitleScreen());
+		Game.screens().add(new GameOverScreen());
 		Game.screens().add(new IngameScreen());
 		Game.screens().add(new MainMenuScreen());
 		Game.screens().add(new SettingsScreen());
