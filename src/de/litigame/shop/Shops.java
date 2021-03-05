@@ -50,7 +50,6 @@ public class Shops {
 				}
 
 				shops.put(name, new Shop(offers, new ArrayList<>(), background));
-				System.out.println("inti shop");
 			}
 		} catch (JSONException | FileNotFoundException e) {
 			e.printStackTrace();
