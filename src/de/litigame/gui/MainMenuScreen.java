@@ -34,10 +34,11 @@ public class MainMenuScreen extends Screen {
 			if (index == 0) {
 				final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
 				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
+				loadSavedGameFile("respawnsave");
 				Game.screens().display("ingame");
 			}
 			if (index == 1) {
-				loadSavedGameFile();
+				loadSavedGameFile("savegame");
 				suspend();
 				Game.screens().display("ingame");
 			}
@@ -48,17 +49,15 @@ public class MainMenuScreen extends Screen {
 				System.exit(0);
 			}
 		});
-		// Game.config().sound().setMusicVolume(GameManager.volume);
-		// Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);
 	}
 
 //loadSavedGameFile(): Loads values from xml file
 
-	public void loadSavedGameFile() {
+	public void loadSavedGameFile(String name) {
 		try {
-			final String path = "savegame.xml";
+			final String path = name + ".xml";
 			final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
 			Player.getInstance().init(saveGame.getHotbar(), saveGame.getHealth(), saveGame.getMoney(), saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
 		} catch (final JAXBException e) {
