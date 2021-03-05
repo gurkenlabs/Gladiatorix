@@ -1,16 +1,18 @@
 package de.litigame.graphics;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
-import de.gurkenlabs.litiengine.graphics.TextRenderer;
 import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.GameManager;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Dialogue implements IUpdateable, IRenderable {
 	private int displayTime, messageIndex;
@@ -40,7 +42,7 @@ public class Dialogue implements IUpdateable, IRenderable {
 	}
 
 	public boolean shouldBeDrawn() {
-		return displayTime > 0;
+		return displayTime > 0 || messageIndex < messages.length - 1;
 	}
 
 	public void suspend() {
@@ -61,7 +63,7 @@ public class Dialogue implements IUpdateable, IRenderable {
 		BufferedImage box = Resources.images().get("dialogue_box");
 
 		int marginX = 100;
-		int marginY = Game.window().getHeight()-box.getHeight()-100;
+		int marginY = Game.window().getHeight() - box.getHeight() - 100;
 
 		int paddingX = 50;
 		int paddingY = 50;
@@ -78,24 +80,24 @@ public class Dialogue implements IUpdateable, IRenderable {
 		String[] message = getMessage().split(" ");
 
 		int pointer = 0;
-		for(int i = 0; i<message.length; i++){
-			if(fm.stringWidth(N_words(getMessage(),pointer, i+1)) > (box.getWidth()-paddingX)){
-				sb.append("\n"+message[i]);
-				pointer+=i-pointer;
-			}else sb.append(message[i]+" ");
+		for (int i = 0; i < message.length; i++) {
+			if (fm.stringWidth(N_words(getMessage(), pointer, i + 1)) > (box.getWidth() - paddingX)) {
+				sb.append("\n" + message[i]);
+				pointer += i - pointer;
+			} else sb.append(message[i] + " ");
 		}
 
 		g.setFont(mc);
 		g.setColor(Color.WHITE);
-		g.drawImage(box,marginX, marginY,null);
-		drawString(g, sb.toString(), marginX+box.getWidth()/2, marginY+paddingY);
+		g.drawImage(box, marginX, marginY, null);
+		drawString(g, sb.toString(), marginX + box.getWidth() / 2, marginY + paddingY);
 	}
 
-	private String N_words(String s, int start, int n){
-		String [] arr = s.split(" ");
-		String nWords="";
-		for(int i=start; i<n ; i++){
-			nWords = nWords + " " + arr[i] ;
+	private String N_words(String s, int start, int n) {
+		String[] arr = s.split(" ");
+		String nWords = "";
+		for (int i = start; i < n; i++) {
+			nWords = nWords + " " + arr[i];
 		}
 		return nWords;
 	}
@@ -110,7 +112,6 @@ public class Dialogue implements IUpdateable, IRenderable {
 		}
 
 		FontMetrics fm = g.getFontMetrics(mc);
-		for (String line : text.split("\n"))
-			g.drawString(line, x-fm.stringWidth(line)/2, y += g.getFontMetrics().getHeight());
+		for (String line : text.split("\n")) g.drawString(line, x - fm.stringWidth(line) / 2, y += g.getFontMetrics().getHeight());
 	}
 }

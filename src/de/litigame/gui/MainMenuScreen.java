@@ -1,19 +1,16 @@
 package de.litigame.gui;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.xml.bind.JAXBException;
 
 import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.configuration.SoundConfiguration;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.Menu;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
-import de.gurkenlabs.litiengine.sound.SoundPlayback;
 import de.gurkenlabs.litiengine.util.io.XmlUtilities;
 import de.litigame.GameManager;
 import de.litigame.SaveGame;
@@ -22,26 +19,20 @@ import de.litigame.utilities.ImageUtilities;
 
 public class MainMenuScreen extends Screen {
 
-	private final Menu menu;
+	final BufferedImage buttonImg = Resources.images().get("menu_item");
+	final ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
+	final Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
+
+	final String[] items = { "Neues Spiel", "Fortfahren", "Einstellungen", "Spiel Schliessen" };
+
+	private final Menu menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
 
 	public MainMenuScreen() throws LineUnavailableException {
 		super("menu");
 
-		final SaveGame saveGame = new SaveGame();
-
-		final String[] items = { "Neues Spiel", "Fortfahren", "Einstellungen", "Spiel Schlie�en" };
-
-		final ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
-
-		final BufferedImage buttonImg = Resources.images().get("menu_item");
-
-		final Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
-
-		final Menu menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
-
 		menu.onChange(index -> {
 			if (index == 0) {
-				final String[] initialItems = { "Trainingsschwert", "Heilungstrank", "null", "null", "null" };
+				final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
 				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
 				Game.screens().display("ingame");
 			}
@@ -57,8 +48,8 @@ public class MainMenuScreen extends Screen {
 				System.exit(0);
 			}
 		});
-		//Game.config().sound().setMusicVolume(GameManager.volume);
-		//Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+		// Game.config().sound().setMusicVolume(GameManager.volume);
+		// Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
 		getComponents().add(bkgr);
 		getComponents().add(menu);
 	}
@@ -78,7 +69,7 @@ public class MainMenuScreen extends Screen {
 	@Override
 	public void prepare() {
 		super.prepare();
-		for(ImageComponent cell : menu.getCellComponents()){
+		for (ImageComponent cell : menu.getCellComponents()) {
 			cell.setFont(GameManager.getFont(72));
 			cell.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
 		}
@@ -88,7 +79,7 @@ public class MainMenuScreen extends Screen {
 	@Override
 	public void suspend() {
 		super.suspend();
-		//Game.audio().stopMusic();
+		// Game.audio().stopMusic();
 	}
 
 }

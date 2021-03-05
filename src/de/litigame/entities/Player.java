@@ -19,10 +19,7 @@ import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
 import de.gurkenlabs.litiengine.resources.Resources;
-import de.gurkenlabs.litiengine.input.Input;
-import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.sound.Sound;
-import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -32,22 +29,22 @@ import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
 import de.litigame.items.Items;
-import de.litigame.items.Shield;
 import de.litigame.items.Potion;
+import de.litigame.items.Shield;
 import de.litigame.items.Weapon;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
-@CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.MIDDLE)
+@CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.DOWN)
 @EntityInfo(width = 16, height = 6)
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature implements IUpdateable, IFighter {
 
-	private Sound walk = Resources.sounds().get("sounds/step.wav");
+	private final Sound walk = Resources.sounds().get("sounds/step.wav");
 
-	private boolean soundPlaying = false;
+	private final boolean soundPlaying = false;
 
 	private static final Player instance = new Player();
 
@@ -138,32 +135,21 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		for (final String armor : new String[] { "gold", "leather", "iron" }) {
 			for (final String weapon : new String[] { "wood", "stone", "iron", "nosword" }) {
 				for (final String dir : new String[] { "down", "left", "right", "up" }) {
-					controller
-							.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
-					controller.add(
-							new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
 					controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
-					controller
-							.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
 					if (!weapon.equals("nosword")) {
-						controller.add(
-								new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
-						controller.add(
-								new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+						controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
+						controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
 					}
 				}
 			}
 		}
 
 		controller.addRule(p -> !p.isDead(), p -> {
-			final String image = "player_"
-					+ (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_")
-					+ (p.hotbar.getSelectedItem() instanceof Weapon
-							? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_"
-							: "nosword_")
-					+ (currentShield == null ? "noshield_" : "shield_")
-					+ (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_"))
-					+ p.getFacingDirection().name().toLowerCase();
+			final String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_")
+					+ (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_")) + p.getFacingDirection().name().toLowerCase();
 			if (p.playHitAnimation) {
 				p.setVelocity(70);
 			}
