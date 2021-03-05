@@ -11,3 +11,5 @@ game.log*
 .idea/
 build/
 gradle/
+savegame.xml
+/screenshots

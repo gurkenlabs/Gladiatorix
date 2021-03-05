@@ -1,6 +1,7 @@
 package de.litigame.entities;
 
 import java.awt.Color;
+import java.awt.geom.Point2D;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,7 +26,9 @@ import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
 import de.litigame.items.Shield;
+import de.litigame.items.Items;
 import de.litigame.items.Weapon;
+import de.gurkenlabs.litiengine.resources.*;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
 
@@ -57,6 +60,11 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
+	public int updatetimer = 0;
+	public int healthLastInstance = 100;
+
+	public int attackCooldown = 0;
+
 	private Player() {
 		super("player");
 		addController(new PlayerController(this));
@@ -65,7 +73,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void attack() {
-		if (hotbar.getSelectedItem() instanceof Weapon) {
+		if (hotbar.getSelectedItem() instanceof Weapon && attackCooldown == 0) {
 			final Weapon weapon = (Weapon) hotbar.getSelectedItem();
 			switch (weapon.type) {
 			case MELEE:
@@ -73,11 +81,15 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				setVelocity(0);
 				melee.cast();
 				playHitAnimation = true;
+				Game.audio().playSound(Resources.sounds().get("swoosh"));
+				attackCooldown = 30;
 				break;
 			case RANGE:
 				weapon.overrideAbility(range);
 				range.cast();
 				break;
+
+
 			}
 		}
 	}
@@ -136,10 +148,32 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		currentArmor = armor;
 	}
 
+	public int getLvl() {
+		return lvl;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
 		return 10;
+	}
+
+	public void init(String[] hotbar, int m, int l, Point2D loc, int hp, int selectedSlot) {
+		money = m;
+		lvl = l;
+		this.setLocation(loc);
+		this.hotbar.setToSlot(selectedSlot);
+		for (int i = 0; i < hotbar.length; i++) {
+			if (!hotbar[i].equals("null")) this.hotbar.replace(Items.getItem(hotbar[i]), i);
+			else this.hotbar.replace(null, i);
+		}
+		if (getHitPoints().get() == getHitPoints().getMax()) {
+			this.hit(getHitPoints().getMax() - hp);
+		}
 	}
 
 	public void interact() {
@@ -154,5 +188,33 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public void update() {
+		if (hotbar.getSelectedItem() instanceof Weapon) {
+			setTurnOnMove(false);
+			setAngle(GeometricUtilities.calcRotationAngleInDegrees(getCenter(), Input.mouse().getMapLocation()));
+		} else {
+			setTurnOnMove(true);
+		}
+
+		//Check if Player is moving, if yes play walk sound
+		if (!isIdle() && Game.screens().current().getName() == "ingame") {
+			if (updatetimer == 0) {
+			Game.audio().playSound(Resources.sounds().get("step"));
+			updatetimer = 20;
+			}
+			updatetimer--;
+		}
+		if (isIdle() && updatetimer != 0) {
+			updatetimer = 0;
+		}
+
+		//Check if player was hit, if yes play hurt sound
+		if (getHitPoints().get() < healthLastInstance) {
+			Game.audio().playSound(Resources.sounds().get("grunt"));
+		}
+		healthLastInstance = getHitPoints().get();
+
+
+		if (attackCooldown > 0) attackCooldown--;
+		System.out.println();
 	}
 }

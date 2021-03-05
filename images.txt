@@ -33,4 +33,4 @@ dialogue_box:sprites/dialogue_box.png
 90-hp:sprites/enemy_health_bar/health_bar_90.png
 100-hp:sprites/enemy_health_bar/health_bar_100.png
 menu:screens/menu.png
-menu_item:screens/menu_item.png
+menu_item:screens/menu_item_new.png
