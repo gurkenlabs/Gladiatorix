@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="1">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="16" tileheight="16" infinite="1" nextlayerid="4" nextobjectid="1" name="arena2">
  <tileset firstgid="1" source="resources/tilesets/tile-watergrass1.tsx"/>
  <tileset firstgid="21" source="resources/tilesets/tile-watergrass2.tsx"/>
  <tileset firstgid="37" source="resources/tilesets/tile-grass.tsx"/>
@@ -14,6 +14,28 @@
  <tileset firstgid="197" source="resources/tilesets/arena2.tsx"/>
  <layer id="1" name="Layer -1" width="100" height="100">
   <data encoding="csv">
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -32,6 +54,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -50,6 +94,28 @@
 19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-16" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -68,6 +134,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,19,
@@ -86,6 +174,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="16" y="0" width="16" height="16">
 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -104,10 +214,54 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                              
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </data>
  </layer>
  <layer id="2" name="Layer 0" width="100" height="100">
   <data encoding="csv">
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-32" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -126,6 +280,28 @@
 0,0,0,161,162,161,162,163,164,161,162,163,164,161,161,162,
 0,0,0,163,164,161,162,163,164,161,162,163,164,161,161,162
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -144,6 +320,28 @@
 163,149,135,162,163,164,161,162,163,164,161,162,163,161,161,161,
 162,162,162,45,163,164,161,162,163,164,161,161,161,161,161,161
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -162,6 +360,28 @@
 161,162,163,164,161,162,161,162,134,39,51,48,37,38,39,0,
 161,162,163,164,161,162,161,162,130,51,45,50,39,48,44,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -180,6 +400,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-32" y="0" width="16" height="16">
 0,0,0,163,164,161,162,163,164,161,162,163,164,161,161,162,
 0,0,0,164,161,161,162,163,164,161,162,163,164,149,135,135,
@@ -198,6 +440,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-16" y="0" width="16" height="16">
 162,162,162,45,45,164,161,162,163,164,161,161,161,161,161,161,
 135,150,162,131,152,164,161,162,163,164,161,132,161,161,161,161,
@@ -216,6 +480,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="0" width="16" height="16">
 161,162,163,164,161,162,161,162,147,131,131,138,39,49,49,0,
 161,162,163,164,161,162,161,161,163,162,164,147,138,49,0,0,
@@ -234,6 +520,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="16" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -252,10 +560,54 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                              
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </data>
  </layer>
  <layer id="3" name="Layer 1" width="100" height="100">
   <data encoding="csv">
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-32" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -274,6 +626,28 @@
 0,0,0,0,181,181,0,0,0,0,0,0,0,0,0,0,
 0,0,0,181,0,0,0,0,181,0,184,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -292,6 +666,28 @@
 325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,
 341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -310,6 +706,28 @@
 181,0,0,181,0,0,0,0,0,179,0,0,171,0,0,0,
 0,0,0,0,0,181,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-32" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,192,0,0,0,
 0,0,0,0,0,0,0,181,0,0,0,0,0,0,0,0,
@@ -328,6 +746,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="-16" y="0" width="16" height="16">
 357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,
 373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,
@@ -346,6 +786,28 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                               
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
    <chunk x="0" y="0" width="16" height="16">
 0,0,181,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -364,6 +826,175 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
+                                                                                                              
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   </data>
  </layer>
+ <objectgroup id="0" name="default" visible="1">
+  <object id="1" type="COLLISIONBOX" x="-160" y="-128" width="64" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="2" type="COLLISIONBOX" x="-96" y="-112" width="32" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="3" type="COLLISIONBOX" x="-64" y="-96" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="4" type="COLLISIONBOX" x="-32" y="-64" width="16" height="48">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="5" type="COLLISIONBOX" x="-48" y="-16" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="6" type="COLLISIONBOX" x="-64" y="0" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="7" type="COLLISIONBOX" x="-160" y="32" width="64" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="8" type="COLLISIONBOX" x="-48" y="-80" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="9" type="COLLISIONBOX" x="-96" y="16" width="32" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="10" type="COLLISIONBOX" x="-192" y="-112" width="32" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="11" type="COLLISIONBOX" x="-208" y="-96" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="12" type="COLLISIONBOX" x="-240" y="-64" width="16" height="48">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="13" type="COLLISIONBOX" x="-224" y="-16" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="14" type="COLLISIONBOX" x="-208" y="0" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="15" type="COLLISIONBOX" x="-224" y="-80" width="16" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="16" type="COLLISIONBOX" x="-192" y="16" width="32" height="16">
+   <properties>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="tags" value="barrier"/>
+   </properties>
+  </object>
+  <object id="17" type="SPAWNPOINT" x="112" y="160" width="16" height="16">
+   <properties>
+    <property name="tags" value="enemyspawn"/>
+    <property name="wave_1" value="1"/>
+    <property name="wave_3" value="2,2"/>
+    <property name="wave_4" value="2,2"/>
+   </properties>
+  </object>
+  <object id="19" type="COLLISIONBOX" x="-448" y="-224" width="32" height="32">
+   <properties>
+    <property name="collisionType" value="STATIC"/>
+    <property name="tags" value="enemyspawndata"/>
+    <property name="waveCount" value="4"/>
+    <property name="waveDelay" value="4000"/>
+   </properties>
+  </object>
+  <object id="20" type="SPAWNPOINT" x="-304" y="144" width="16" height="16">
+   <properties>
+    <property name="tags" value="enemyspawn"/>
+    <property name="wave_1" value="2"/>
+    <property name="wave_2" value="1,2"/>
+    <property name="wave_3" value="2"/>
+    <property name="wave_4" value="2,2"/>
+   </properties>
+  </object>
+  <object id="21" type="SPAWNPOINT" x="80" y="-176" width="16" height="16">
+   <properties>
+    <property name="tags" value="enemyspawn"/>
+    <property name="wave_1" value="1"/>
+    <property name="wave_2" value="2,2"/>
+    <property name="wave_4" value="2,2"/>
+   </properties>
+  </object>
+  <object id="22" type="SPAWNPOINT" x="-288" y="-176" width="16" height="16">
+   <properties>
+    <property name="tags" value="enemyspawn"/>
+    <property name="wave_3" value="2,2"/>
+    <property name="wave_4" value="2,2"/>
+   </properties>
+  </object>
+  <object id="23" type="TRIGGER" x="-256" y="-128" width="256" height="192">
+   <properties>
+    <property name="gain" value="1"/>
+    <property name="tags" value="portalback"/>
+    <property name="toMap" value="map1"/>
+    <property name="toPos" value="2015, 875"/>
+    <property name="triggerActivation" value="INTERACT"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
