@@ -70,7 +70,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private Player() {
 		super("player");
 		addController(new PlayerController(this));
-
 		Game.loop().attach(this);
 	}
 
@@ -96,7 +95,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void buy(ShopEntry entry) {
-		if (entry.equippable) storage.add(entry.getItem());
+		if (entry.equippable) {
+			storage.add(entry.getItem());
+		}
 		hotbar.addItem(entry.getItem());
 	}
 
@@ -114,26 +115,43 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	@Override
 	public IEntityAnimationController<Player> createAnimationController() {
-		IEntityAnimationController<Player> controller = new EntityAnimationController<>(this);
-		for (String armor : new String[] { "gold", "leather", "iron" }) for (String weapon : new String[] { "wood", "stone", "iron", "nosword" }) for (String dir : new String[] { "down", "left", "right", "up" }) {
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
-			controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
-			if (!weapon.equals("nosword")) {
-				controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
-				controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+		final IEntityAnimationController<Player> controller = new EntityAnimationController<>(this);
+		for (final String armor : new String[] { "gold", "leather", "iron" }) {
+			for (final String weapon : new String[] { "wood", "stone", "iron", "nosword" }) {
+				for (final String dir : new String[] { "down", "left", "right", "up" }) {
+					controller
+							.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
+					controller.add(
+							new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
+					controller
+							.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
+					if (!weapon.equals("nosword")) {
+						controller.add(
+								new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
+						controller.add(
+								new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+					}
+				}
 			}
 		}
 
 		controller.addRule(p -> !p.isDead(), p -> {
-			String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_") + (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_"))
+			final String image = "player_"
+					+ (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_")
+					+ (p.hotbar.getSelectedItem() instanceof Weapon
+							? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_"
+							: "nosword_")
+					+ (currentShield == null ? "noshield_" : "shield_")
+					+ (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_"))
 					+ p.getFacingDirection().name().toLowerCase();
-			if (p.playHitAnimation) p.setVelocity(70);
+			if (p.playHitAnimation) {
+				p.setVelocity(70);
+			}
 			p.playHitAnimation = false;
 			return image;
 		}, 1);
-		CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
+		final CreatureShadowImageEffect effect = new CreatureShadowImageEffect(this, new Color(24, 30, 28, 100));
 		effect.setOffsetY(1);
 		controller.add(effect);
 		return controller;
@@ -144,7 +162,9 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	}
 
 	public void equip(Armor armor) {
-		if (currentArmor != null) getHitPoints().removeModifier(currentArmor.healthBuff());
+		if (currentArmor != null) {
+			getHitPoints().removeModifier(currentArmor.healthBuff());
+		}
 		getHitPoints().addModifier(armor.healthBuff());
 		currentArmor = armor;
 	}
@@ -169,8 +189,11 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		this.setLocation(loc);
 		this.hotbar.setToSlot(selectedSlot);
 		for (int i = 0; i < hotbar.length; i++) {
-			if (!hotbar[i].equals("null")) this.hotbar.replace(Items.getItem(hotbar[i]), i);
-			else this.hotbar.replace(null, i);
+			if (!hotbar[i].equals("null")) {
+				this.hotbar.replace(Items.getItem(hotbar[i]), i);
+			} else {
+				this.hotbar.replace(null, i);
+			}
 		}
 		if (getHitPoints().get() == getHitPoints().getMax()) {
 			this.hit(getHitPoints().getMax() - hp);
@@ -214,6 +237,8 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		}
 		healthLastInstance = getHitPoints().get();
 
-		if (attackCooldown > 0) attackCooldown--;
+		if (attackCooldown > 0) {
+			attackCooldown--;
+		}
 	}
 }

@@ -45,7 +45,7 @@
 			"weapon_impactAngle"		:	"90",
 			"weapon_multiTarget"		:	"false",
 			"weapon_value"			:	"10",
-			"weapon_type"			:	"range",
+			"weapon_type"			:	"melee",
 			"weapon_cooldown"		:	"200",
 			"weapon_duration"		:	"200",
 			"weapon_range"			:	"100",

@@ -32,12 +32,16 @@ public class GameManager {
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
 
 	public static void enterPortal(String map, double x, double y) {
-		if (map.equals(Game.world().environment().getMap().getName())) return;
+		if (map.equals(Game.world().environment().getMap().getName())) {
+			return;
+		}
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
 		Game.world().environment().add(Player.getInstance());
-		if (isArena(Game.world().environment())) Spawnpoints.spawnNextWave();
+		if (isArena(Game.world().environment())) {
+			Spawnpoints.spawnNextWave();
+		}
 	}
 
 	public static void init() {
@@ -57,7 +61,11 @@ public class GameManager {
 	}
 
 	private static boolean isArena(Environment env) {
-		for (CollisionBox box : env.getCollisionBoxes()) if (box.hasTag("enemyspawndata")) return true;
+		for (final CollisionBox box : env.getCollisionBoxes()) {
+			if (box.hasTag("enemyspawndata")) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -66,8 +74,10 @@ public class GameManager {
 	}
 
 	public static void removeItemEntities(Item item) {
-		for (Prop entity : Game.world().environment().getProps()) {
-			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) Game.world().environment().remove(entity);
+		for (final Prop entity : Game.world().environment().getProps()) {
+			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) {
+				Game.world().environment().remove(entity);
+			}
 		}
 	}
 
@@ -79,9 +89,10 @@ public class GameManager {
 	public static void setupSpawnpoints(Environment env) {
 		for (final CollisionBox infoBox : env.getCollisionBoxes()) {
 			if (infoBox.hasTag("enemyspawndata")) {
-				int waveCount = infoBox.getProperties().getIntValue("waveCount");
-				int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
+				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
+						.collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -92,13 +103,14 @@ public class GameManager {
 		for (final Trigger trigger : env.getTriggers()) {
 			if (trigger.hasTag("dialogue")) {
 				int i = 1;
-				List<String> messages = new ArrayList<>();
+				final List<String> messages = new ArrayList<>();
 				while (trigger.getProperties().hasCustomProperty("message_" + Integer.toString(i))) {
 					messages.add(trigger.getProperties().getStringValue("message_" + Integer.toString(i)));
 					++i;
 				}
-				int time = trigger.getProperties().getIntValue("time");
-				Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
+				final int time = trigger.getProperties().getIntValue("time");
+				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(),
+						trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
@@ -107,14 +119,16 @@ public class GameManager {
 			}
 			if (trigger.hasTag("deadly")) {
 				trigger.addActivatedListener(e -> {
-					IEntity entity = e.getEntity();
-					if (entity instanceof CombatEntity) ((CombatEntity) entity).die();
+					final IEntity entity = e.getEntity();
+					if (entity instanceof CombatEntity) {
+						((CombatEntity) entity).die();
+					}
 				});
 			}
 			if (trigger.hasTag("portal")) {
-				int cost = trigger.getProperties().getIntValue("cost");
-				String map = trigger.getProperties().getStringValue("toMap");
-				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+				final int cost = trigger.getProperties().getIntValue("cost");
+				final String map = trigger.getProperties().getStringValue("toMap");
+				final String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && ((Player) e.getEntity()).getMoney() >= cost) {
 						((Player) e.getEntity()).changeMoney(-cost);
@@ -123,42 +137,50 @@ public class GameManager {
 				});
 			}
 			if (trigger.hasTag("portalback")) {
-				int lvl = trigger.getProperties().getIntValue("gain");
-				String map = trigger.getProperties().getStringValue("toMap");
-				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+				final int lvl = trigger.getProperties().getIntValue("gain");
+				final String map = trigger.getProperties().getStringValue("toMap");
+				final String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
 						((Player) e.getEntity()).changeLvl(lvl);
-						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
+						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()),
+								Double.valueOf(coords[1].trim())));
 					}
 				});
 			}
 			if (trigger.hasTag("zoom")) {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
+						final float zoom = trigger.getProperties().getFloatValue("zoomValue");
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = PlayerCamera.STD_ZOOM;
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
+						final float zoom = PlayerCamera.STD_ZOOM;
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 			}
-			if (trigger.hasTag("shop")) trigger.addActivatedListener(e -> {
-				IEntity entity = e.getEntity();
-				if (entity instanceof Player) {
-					String shop = trigger.getProperties().getStringValue("shopName");
-					entity.detachControllers();
-					Shops.getShop(shop).open(() -> {
-						entity.attachControllers();
-					});
-				}
-			});
+			if (trigger.hasTag("shop")) {
+				trigger.addActivatedListener(e -> {
+					final IEntity entity = e.getEntity();
+					if (entity instanceof Player) {
+						((Player) entity).changeMoney(100);
+						final String shop = trigger.getProperties().getStringValue("shopName");
+						entity.detachControllers();
+						Shops.getShop(shop).open(() -> {
+							entity.attachControllers();
+						});
+					}
+				});
+			}
 		}
 	}
 
