@@ -34,7 +34,7 @@ public class MainMenuScreen extends Screen {
 
 		menu.onChange(index -> {
 			if (index == 0) {
-				String[] initialItems = { "bow", "sword", "null", "null", "null", "null", "null", "null", "null" };
+				String[] initialItems = { "null", "null", "null", "null", "null" };
 				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
 				Game.screens().display("ingame");
 			}
