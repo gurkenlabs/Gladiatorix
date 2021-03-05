@@ -38,6 +38,11 @@ public class Enemy extends Creature implements IFighter {
 		this("enemy");
 	}
 
+	public Enemy(Enemy other) {
+		this(other.getSpritesheetName(), null, other.strength, other.getHitPoints().getMax(), other.visionRange, other.moneyLoot);
+		attackAbility = other.attackAbility;
+	}
+
 	public Enemy(String spritesheetName) {
 		super(spritesheetName);
 
@@ -50,7 +55,6 @@ public class Enemy extends Creature implements IFighter {
 
 		final MovementController<Enemy> controller = new EnemyController(this);
 		addController(controller);
-		Game.loop().attach(controller);
 
 		addEntityRenderListener(e -> new EnemyHealthBar(this).render(e.getGraphics()));
 	}
@@ -99,6 +103,7 @@ public class Enemy extends Creature implements IFighter {
 	}
 
 	public void putWeapon(Weapon weapon) {
+		if (weapon == null) return;
 		switch (weapon.type) {
 		case RANGE:
 			attackAbility = new RangeAttackAbility(this);

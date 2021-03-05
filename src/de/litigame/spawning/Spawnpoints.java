@@ -37,7 +37,7 @@ public class Spawnpoints {
 					}
 				}
 				for (Enemy enemy : wave) enemy.onDeath(entity -> {
-					if (allDead()) {
+					if (allDead() && !isOver()) {
 						spawnNextWave();
 					}
 				});
@@ -48,7 +48,7 @@ public class Spawnpoints {
 	}
 
 	public static boolean isOver() {
-		return currentWave == waveCount - 1 && allDead();
+		return currentWave == waveCount && allDead();
 	}
 
 	public static void spawnNextWave() {

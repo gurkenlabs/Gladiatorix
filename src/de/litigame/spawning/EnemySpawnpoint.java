@@ -30,7 +30,7 @@ public class EnemySpawnpoint {
 
 	public void spawnWave(int wave, int enemy) {
 		if (waves.get(wave).size() <= enemy) return;
-		spawnpoint.spawn(waves.get(wave).get(enemy));
+		spawnpoint.spawn(new Enemy(waves.get(wave).get(enemy)));
 		Game.loop().perform(delay, () -> spawnWave(wave, enemy + 1));
 	}
 }
