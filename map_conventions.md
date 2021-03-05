@@ -6,11 +6,12 @@
 5. spawn points
 
 ## Triggers
-| tag          | description                            | required properties                         | optional properties        |
-| ------------ | -------------------------------------- | ------------------------------------------- | -------------------------- |
-| `deadly`     | kills touching entity                  |                                             |                            |
-| `portal`     | teleports player to different map      | `toMap`: String; `toPos`: Double, Double    |                            |
-| `zoom`       | zooms camera when touching             | `zoomValue`: Float                          | `zoomDuration`: Integer    |
+| tag          | description                            | required properties                         | optional properties            |
+| ------------ | -------------------------------------- | ------------------------------------------- | ------------------------------ |
+| `deadly`     | kills touching entity                  |                                             |                                |
+| `portal`     | teleports player to different map      | `toMap`: String; `toPos`: Double, Double    |                                |
+| `zoom`       | zooms camera when touching             | `zoomValue`: Float                          | `zoomDuration`: Integer        |
+| `dialogue`   | displays a text box inside the world   | `time`: Integer                             | `message_<INDEX>`: String, ... |
 
 ## Collisionboxes
 | tag              | description                                           | required properties                         | required attributes       |

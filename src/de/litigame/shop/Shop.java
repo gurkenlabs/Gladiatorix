@@ -10,6 +10,7 @@ import java.util.List;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.graphics.IRenderable;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.input.Input;
 import de.litigame.GameManager;
 import de.litigame.entities.Player;
@@ -46,8 +47,14 @@ public class Shop implements IRenderable, KeyPressedListener {
 		Item item = selected.getItem();
 		GameManager.removeItemEntities(item);
 		Player.getInstance().hotbar.removeItems(item);
-		if (item instanceof Armor) Player.getInstance().equip((Armor) item);
-		else Player.getInstance().hotbar.addItem(item);
+		if (item instanceof Armor) {
+			Player.getInstance().equip((Armor) item);
+			Game.audio().playSound(Resources.sounds().get("equipArmor"));
+		}
+		else {
+			Player.getInstance().hotbar.addItem(item);
+			Game.audio().playSound(Resources.sounds().get("equipSword"));
+		}
 	}
 
 	public void exit() {
