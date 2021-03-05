@@ -17,6 +17,9 @@ import de.gurkenlabs.litiengine.graphics.CreatureShadowImageEffect;
 import de.gurkenlabs.litiengine.graphics.animation.Animation;
 import de.gurkenlabs.litiengine.graphics.animation.EntityAnimationController;
 import de.gurkenlabs.litiengine.graphics.animation.IEntityAnimationController;
+import de.gurkenlabs.litiengine.input.Input;
+import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.util.geom.GeometricUtilities;
 import de.litigame.GameManager;
 import de.litigame.abilities.MeleeAttackAbility;
 import de.litigame.abilities.RangeAttackAbility;
@@ -47,23 +50,24 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		return instance;
 	}
 
+	public int attackCooldown = 0;
 	private Armor currentArmor;
+
 	private Shield currentShield;
 
 	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
+	public int healthLastInstance = 100;
 
 	public final Hotbar hotbar = new Hotbar(this);
 	private final MeleeAttackAbility melee = new MeleeAttackAbility(this);
-
 	private int money = 0, lvl = 1;
 	private boolean playHitAnimation = false;
+
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
 	public int updatetimer = 0;
 	public int healthLastInstance = 100;
-
-	public int attackCooldown = 0;
 
 	private Player() {
 		super("player");
@@ -195,11 +199,11 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			setTurnOnMove(true);
 		}
 
-		//Check if Player is moving, if yes play walk sound
+		// Check if Player is moving, if yes play walk sound
 		if (!isIdle() && Game.screens().current().getName() == "ingame") {
 			if (updatetimer == 0) {
-			Game.audio().playSound(Resources.sounds().get("step"));
-			updatetimer = 20;
+				Game.audio().playSound(Resources.sounds().get("step"));
+				updatetimer = 20;
 			}
 			updatetimer--;
 		}
@@ -207,14 +211,12 @@ public class Player extends Creature implements IUpdateable, IFighter {
 			updatetimer = 0;
 		}
 
-		//Check if player was hit, if yes play hurt sound
+		// Check if player was hit, if yes play hurt sound
 		if (getHitPoints().get() < healthLastInstance) {
 			Game.audio().playSound(Resources.sounds().get("grunt"));
 		}
 		healthLastInstance = getHitPoints().get();
 
-
 		if (attackCooldown > 0) attackCooldown--;
-		System.out.println();
 	}
 }
