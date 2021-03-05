@@ -22,7 +22,7 @@ public class MainMenuScreen extends Screen {
 
 		SaveGame saveGame = new SaveGame();
 
-		String[] items = { "Start Game", "Load Game", "Settings", "Exit Game" };
+		String[] items = { "Neues Spiel", "Fortfahren", "Einstellungen", "Spiel Schlieﬂen" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
@@ -36,7 +36,6 @@ public class MainMenuScreen extends Screen {
 			if (index == 0) {
 				String[] initialItems = { "bow", "sword", "null", "null", "null", "null", "null", "null", "null" };
 				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
-				saveGame.saveGame();
 				Game.screens().display("ingame");
 			}
 			if (index == 1) {

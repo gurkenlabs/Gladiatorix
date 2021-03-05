@@ -11,14 +11,16 @@ import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.input.IKeyboard.KeyPressedListener;
 import de.gurkenlabs.litiengine.input.Input;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.litigame.SaveGame;
 import de.litigame.utilities.ImageUtilities;
 
 public class IngameMenuScreen extends Screen implements KeyPressedListener {
+	SaveGame saveGame = new SaveGame();
 
 	public IngameMenuScreen() {
 		super("ingameMenu");
 
-		String[] items = { "Back to game", "Settings", "Quit to title" };
+		String[] items = { "Fortfahren", "Spiel speichern", "Zurück zum Titel" };
 
 		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
 
@@ -28,10 +30,10 @@ public class IngameMenuScreen extends Screen implements KeyPressedListener {
 
 		Menu menu = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
 
-		// menu.prepare();
+		
 		menu.onChange(index -> {
 			if (index == 0) Game.screens().display("ingame");
-			if (index == 1) Game.screens().display("ingameSettings");
+			if (index == 1) saveGame.saveGame();
 			if (index == 2) Game.screens().display("menu");
 		});
 

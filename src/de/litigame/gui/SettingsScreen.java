@@ -19,7 +19,7 @@ public class SettingsScreen extends Screen implements KeyPressedListener {
 	public SettingsScreen() {
 		super("settings");
 
-		String[] items = { "Save Game", "Done" };
+		String[] items = { "Save Game", "Zurück" };
 
 		SaveGame saveGame = new SaveGame();
 
