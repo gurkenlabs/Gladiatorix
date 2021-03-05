@@ -9,7 +9,7 @@
 				{
 					"tooltip" 	: "",
 					"item_name" 	: "Eisenschwert",
-					"price"		: "10",
+					"price"		: "60",
 					"required_level": "1",
 					"equippable" 	: "true"
 				},
@@ -17,13 +17,6 @@
 					"tooltip" 	: "",
 					"item_name" 	: "Steinaxt",
 					"price"		: "30",
-					"required_level": "1",
-					"equippable" 	: "true"
-				},
-				{
-					"tooltip" 	: "",
-					"item_name" 	: "Eisenaxt",
-					"price"		: "80",
 					"required_level": "1",
 					"equippable" 	: "true"
 				},
@@ -58,6 +51,20 @@
 				{
 					"tooltip" 	: "",
 					"item_name" 	: "Heilungstrank",
+					"price"		: "20",
+					"required_level": "1",
+					"equippable" 	: "false"
+				}
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Schnelligkeitstrank",
+					"price"		: "20",
+					"required_level": "1",
+					"equippable" 	: "false"
+				}
+				{
+					"tooltip" 	: "",
+					"item_name" 	: "Stärketrank",
 					"price"		: "20",
 					"required_level": "1",
 					"equippable" 	: "false"
