@@ -28,10 +28,9 @@ import de.litigame.hp.PlayerHealthBar;
 import de.litigame.input.PlayerController;
 import de.litigame.items.Armor;
 import de.litigame.items.Item;
-import de.litigame.items.Shield;
 import de.litigame.items.Items;
+import de.litigame.items.Shield;
 import de.litigame.items.Weapon;
-import de.gurkenlabs.litiengine.resources.*;
 import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
 
@@ -67,7 +66,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
 
 	public int updatetimer = 0;
-	public int healthLastInstance = 100;
 
 	private Player() {
 		super("player");
@@ -92,7 +90,6 @@ public class Player extends Creature implements IUpdateable, IFighter {
 				weapon.overrideAbility(range);
 				range.cast();
 				break;
-
 
 			}
 		}
