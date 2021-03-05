@@ -14,6 +14,9 @@ sword_ion:sprites/sword_ion.png
 axe_stone:sprites/axe_stone.png
 axe_ion:sprites/axe_ion.png
 potion1:sprites/potion1.png
+potion2:sprites/potion2.png
+potion3:sprites/potion3.png
+potion4:sprites/potion4.png
 chestplate:sprites/chestplate.png
 chestplate2:sprites/chestplate2.png
 shield:sprites/shield.png
