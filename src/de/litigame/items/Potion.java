@@ -7,6 +7,7 @@ import java.util.Map;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.attributes.AttributeModifier;
 import de.gurkenlabs.litiengine.attributes.Modification;
+import de.gurkenlabs.litiengine.resources.Resources;
 import de.litigame.entities.Player;
 import de.litigame.items.Item.Consumable;
 import de.litigame.items.Item.Stackable;
@@ -38,6 +39,7 @@ public class Potion extends Item implements Stackable, Consumable {
 		}
 		addConsumeListener(p -> {
 			amount--;
+			Game.audio().playSound(Resources.sounds().get("gulp"));
 			Player.getInstance().hotbar.removeEmptyItems();
 		});
 	}
