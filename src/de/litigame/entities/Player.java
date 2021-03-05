@@ -71,7 +71,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	private final RangeAttackAbility range = new RangeAttackAbility(this);
 
 	public final Set<Item> storage = new TreeSet<>((i1, i2) -> i1.getName().compareTo(i2.getName()));
-	public final RangeAttribute<Integer> strength = new RangeAttribute<>(100, 0, 10);
+	public final RangeAttribute<Integer> strength = new RangeAttribute<>(20, 0, 10);
 
 	public int updatetimer = 0;
 
@@ -196,7 +196,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub
-		return 10;
+		return strength.get();
 	}
 
 	public void init(String[] hotbar, int m, int l, Point2D loc, int hp, int selectedSlot) {

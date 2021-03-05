@@ -33,7 +33,7 @@ public class Potion extends Item implements Stackable, Consumable {
 			Game.loop().perform(5000, () -> Player.getInstance().getVelocity().removeModifier(mod));
 			break;
 		case "strength":
-			mod = new AttributeModifier<Float>(Modification.MULTIPLY, 1.5);
+			mod = new AttributeModifier<Float>(Modification.ADD, 10);
 			addConsumeListener(p -> ((Player) p).strength.addModifier(mod));
 			Game.loop().perform(10000, () -> Player.getInstance().strength.removeModifier(mod));
 		}
