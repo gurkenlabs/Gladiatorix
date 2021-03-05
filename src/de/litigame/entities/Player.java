@@ -60,7 +60,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 
 	public final PlayerHealthBar healthBar = new PlayerHealthBar(this);
 
-	public int healthLastInstance = 100;
+	public int healthLastInstance = 0;
 	public final Hotbar hotbar = new Hotbar(this);
 
 	private int AttackCooldown;
