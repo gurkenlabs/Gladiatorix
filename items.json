@@ -82,7 +82,7 @@
 			"item_class"			:	"armor",
 			"item_image"			:	"chestplate",
 			"item_name"			:	"Eisenrüstung",
-			"armor_buff" 			: 	"40"
+			"armor_buff" 			: 	"40",
 			"armor_skin" 			: 	"iron"
 		},				
 		{

@@ -136,6 +136,10 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		currentArmor = armor;
 	}
 
+	public int getMoney() {
+		return money;
+	}
+
 	@Override
 	public double getStrength() {
 		// TODO Auto-generated method stub

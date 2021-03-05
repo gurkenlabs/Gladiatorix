@@ -49,7 +49,6 @@ public class GameManager {
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
 
-		Player.getInstance().hotbar.addItem(Items.getItem("bow"));
 		Player.getInstance().hotbar.addItem(Items.getItem("sword_stone"));
 
 		switchToState(GameState.INGAME);
@@ -112,10 +111,23 @@ public class GameManager {
 				});
 			}
 			if (trigger.hasTag("portal")) {
+				int cost = trigger.getProperties().getIntValue("cost");
 				String map = trigger.getProperties().getStringValue("toMap");
 				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
 				trigger.addActivatedListener(e -> {
-					if (e.getEntity() instanceof Player) {
+					if (e.getEntity() instanceof Player && ((Player) e.getEntity()).getMoney() >= cost) {
+						((Player) e.getEntity()).changeMoney(-cost);
+						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
+					}
+				});
+			}
+			if (trigger.hasTag("portalback")) {
+				int lvl = trigger.getProperties().getIntValue("gain");
+				String map = trigger.getProperties().getStringValue("toMap");
+				String[] coords = trigger.getProperties().getStringValue("toPos").split(",");
+				trigger.addActivatedListener(e -> {
+					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
+						((Player) e.getEntity()).changeLvl(lvl);
 						enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim()));
 					}
 				});

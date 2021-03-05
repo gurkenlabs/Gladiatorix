@@ -32,7 +32,7 @@ public class Enemy extends Creature implements IFighter {
 
 	private double strength = 0;
 
-	public int visionRange = 4000;
+	public int visionRange = 4000, moneyLoot;
 
 	public Enemy() {
 		this("enemy");
@@ -41,7 +41,10 @@ public class Enemy extends Creature implements IFighter {
 	public Enemy(String spritesheetName) {
 		super(spritesheetName);
 
-		onDeath(e -> Game.loop().perform(2000, () -> Game.world().environment().remove(e)));
+		onDeath(e -> {
+			Game.loop().perform(2000, () -> Game.world().environment().remove(e));
+			Player.getInstance().changeMoney(getmoneyLoot());
+		});
 		setTarget(Player.getInstance());
 		putWeapon((Weapon) Items.getItem("sword_stone"));
 
@@ -52,12 +55,13 @@ public class Enemy extends Creature implements IFighter {
 		addEntityRenderListener(e -> new EnemyHealthBar(this).render(e.getGraphics()));
 	}
 
-	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange) {
+	public Enemy(String spritesheetName, Weapon weapon, double strength, int health, int visionRange, int moneyLoot) {
 		this(spritesheetName);
 		putWeapon(weapon);
 		this.strength = strength;
 		getHitPoints().setMaxBaseValue(health);
 		this.visionRange = visionRange;
+		this.moneyLoot = moneyLoot;
 	}
 
 	@Override
@@ -83,6 +87,10 @@ public class Enemy extends Creature implements IFighter {
 
 	public Ability getAttackAbility() {
 		return attackAbility;
+	}
+
+	public int getmoneyLoot() {
+		return moneyLoot;
 	}
 
 	@Override
