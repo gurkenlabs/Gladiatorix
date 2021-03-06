@@ -33,7 +33,7 @@ public class MainMenuScreen extends Screen {
 		menu.onChange(index -> {
 			if (index == 0) {
 				final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
-				Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
+				Player.getInstance().init(initialItems, 0, 1, Player.getInstance().getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
 				loadSavedGameFile("respawnsave");
 				Game.screens().display("ingame");
 			}
