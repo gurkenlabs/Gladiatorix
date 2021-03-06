@@ -49,8 +49,6 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 		super.prepare();
 		Game.audio().stopMusic();
 		Game.audio().playMusic(Resources.sounds().get(GameManager.ingame));
-		final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
-		Player.getInstance().init(initialItems, 0, 1, Game.world().environment().getSpawnpoint("spawn").getLocation(), Player.getInstance().getHitPoints().getMax(), 0);
 
 		//Player.getInstance().changeMoney(-100);
 		Input.keyboard().onKeyPressed(this);
