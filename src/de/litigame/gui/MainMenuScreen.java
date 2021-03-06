@@ -59,7 +59,8 @@ public class MainMenuScreen extends Screen {
 		try {
 			final String path = name + ".xml";
 			final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
-			Player.getInstance().init(saveGame.getHotbar(), saveGame.getHealth(), saveGame.getMoney(), saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
+			System.out.println(saveGame.getMoney());
+			Player.getInstance().init(saveGame.getHotbar(), saveGame.getMoney(), saveGame.getHealth(), saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
 		} catch (final JAXBException e) {
 		}
 
