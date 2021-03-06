@@ -2,6 +2,7 @@ package de.litigame;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class GameManager {
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
 	public static String ingame = "sounds/ingame.wav";
+	public static Point2D spawn;
+	public static String save = "savegame";
 
 	public static Font getFont(float size) {
 		return minecraft.deriveFont(size);
@@ -77,6 +80,7 @@ public class GameManager {
 
 		switchToMap("map1");
 		Game.world().environment().getSpawnpoint("spawn").spawn(Player.getInstance());
+		spawn = Game.world().environment().getSpawnpoint("spawn").getLocation();
 
 		switchToState(GameState.INGAME);
 	}
@@ -110,7 +114,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}

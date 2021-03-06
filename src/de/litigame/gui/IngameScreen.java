@@ -48,7 +48,7 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 	public void prepare() {
 		super.prepare();
 		Game.audio().stopMusic();
-		Game.audio().playMusic(Resources.sounds().get(GameManager.ingame));
+		Game.audio().playMusic(Resources.sounds().get("sounds/ingame.wav"));
 
 		//Player.getInstance().changeMoney(-100);
 		Input.keyboard().onKeyPressed(this);

@@ -43,6 +43,23 @@ public class GameOverScreen extends Screen {
     public void prepare() {
         super.prepare();
         Game.audio().stopMusic();
+        GameManager.init();
+        GameManager.spawn = new Point2D() {
+            @Override
+            public double getX() {
+                return 2000;
+            }
+
+            @Override
+            public double getY() {
+                return 2000;
+            }
+
+            @Override
+            public void setLocation(double x, double y) {
+
+            }
+        };
         startGame.setFont(GameManager.getFont(42));
         startGame.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
     }

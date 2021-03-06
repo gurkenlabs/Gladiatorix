@@ -79,6 +79,7 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		super("player");
 		onDeath(event -> {
 			Game.screens().display("game_over");
+
 		});
 		addController(new PlayerController(this));
 		Game.loop().attach(this);
