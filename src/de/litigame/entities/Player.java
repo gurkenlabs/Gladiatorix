@@ -36,8 +36,8 @@ import de.litigame.shop.ShopEntry;
 import de.litigame.utilities.GeometryUtilities;
 
 @AnimationInfo(spritePrefix = "player")
-@CollisionInfo(collision = true, collisionBoxWidth = 16, collisionBoxHeight = 6, valign = Valign.DOWN)
-@EntityInfo(width = 16, height = 6)
+@CollisionInfo(collision = true, collisionBoxWidth = 6, collisionBoxHeight = 6, valign = Valign.DOWN)
+@EntityInfo(width = 6, height = 24)
 @MovementInfo(velocity = 70)
 
 public class Player extends Creature implements IUpdateable, IFighter {
@@ -139,32 +139,21 @@ public class Player extends Creature implements IUpdateable, IFighter {
 		for (final String armor : new String[] { "gold", "leather", "iron" }) {
 			for (final String weapon : new String[] { "wood", "stone", "iron", "nosword" }) {
 				for (final String dir : new String[] { "down", "left", "right", "up" }) {
-					controller
-							.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
-					controller.add(
-							new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_walk_" + dir, true, false));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_walk_" + dir, true, false));
 					controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_idle_" + dir, true, true));
-					controller
-							.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
+					controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_idle_" + dir, true, true));
 					if (!weapon.equals("nosword")) {
-						controller.add(
-								new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
-						controller.add(
-								new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
+						controller.add(new Animation("player_" + armor + "_" + weapon + "_shield_hit_" + dir, false, false));
+						controller.add(new Animation("player_" + armor + "_" + weapon + "_noshield_hit_" + dir, false, false));
 					}
 				}
 			}
 		}
 
 		controller.addRule(p -> !p.isDead(), p -> {
-			final String image = "player_"
-					+ (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_")
-					+ (p.hotbar.getSelectedItem() instanceof Weapon
-							? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_"
-							: "nosword_")
-					+ (currentShield == null ? "noshield_" : "shield_")
-					+ (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_"))
-					+ p.getFacingDirection().name().toLowerCase();
+			final String image = "player_" + (p.currentArmor == null ? "leather_" : p.currentArmor.getPlayerSkin() + "_") + (p.hotbar.getSelectedItem() instanceof Weapon ? ((Weapon) p.hotbar.getSelectedItem()).playerSkin() + "_" : "nosword_") + (currentShield == null ? "noshield_" : "shield_")
+					+ (p.playHitAnimation ? "hit_" : (p.isIdle() ? "idle_" : "walk_")) + p.getFacingDirection().name().toLowerCase();
 			if (p.playHitAnimation) {
 				p.setVelocity(70);
 			}
