@@ -99,8 +99,10 @@ public class GameManager {
 	}
 
 	public static void removeItemEntities(Item item) {
-		for (Prop entity : Game.world().environment().getProps()) {
-			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) Game.world().environment().remove(entity);
+		for (final Prop entity : Game.world().environment().getProps()) {
+			if (entity instanceof ItemProp && ((ItemProp) entity).item.getName().equals(item.getName())) {
+				Game.world().environment().remove(entity);
+			}
 		}
 	}
 
@@ -114,7 +116,8 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnpoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
+						.collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -131,7 +134,8 @@ public class GameManager {
 					++i;
 				}
 				final int time = trigger.getProperties().getIntValue("time");
-				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
+				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(),
+						trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
@@ -166,22 +170,27 @@ public class GameManager {
 						((Player) e.getEntity()).changeLvl(lvl);
 						ingame = "sounds/ingame.wav";
 						Game.audio().playMusic(ingame);
-						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
+						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()),
+								Double.valueOf(coords[1].trim())));
 					}
 				});
 			}
 			if (trigger.hasTag("zoom")) {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
+						final float zoom = trigger.getProperties().getFloatValue("zoomValue");
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
-						float zoom = PlayerCamera.STD_ZOOM;
-						int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
+						final float zoom = PlayerCamera.STD_ZOOM;
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
+								? trigger.getProperties().getIntValue("zoomDuration")
+								: PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
