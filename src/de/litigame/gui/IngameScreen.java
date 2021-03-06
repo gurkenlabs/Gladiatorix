@@ -1,6 +1,7 @@
 package de.litigame.gui;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +49,9 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 	public void prepare() {
 		super.prepare();
 		Game.audio().stopMusic();
-		Game.audio().playMusic(Resources.sounds().get("sounds/ingame.wav"));
+		Game.audio().playMusic(Resources.sounds().get("ingame.wav"));
 
-		//Player.getInstance().changeMoney(-100);
+		// Player.getInstance().changeMoney(-100);
 		Input.keyboard().onKeyPressed(this);
 	}
 
@@ -71,10 +72,10 @@ public class IngameScreen extends GameScreen implements KeyPressedListener {
 				dialogue.render(g);
 			}
 		}
-		g.drawImage(Resources.images().get("coin"), 10, 10,100,100, null);
+		g.drawImage(Resources.images().get("coin"), 10, 10, 100, 100, null);
 		g.setFont(GameManager.getFont(72));
 		g.setColor(Color.WHITE);
-		g.drawString(String.valueOf(Player.getInstance().getMoney()),120,80);
+		g.drawString(String.valueOf(Player.getInstance().getMoney()), 120, 80);
 		Player.getInstance().healthBar.render(g);
 		Player.getInstance().hotbar.render(g);
 

@@ -85,9 +85,9 @@ public class IngameSettingsScreen extends Screen implements KeyPressedListener {
 		super.prepare();
 		for (ImageComponent cell : settings.getCellComponents()) {
 			cell.setFont(GameManager.getFont(72));
-			cell.setHoverSound(Resources.sounds().get("sounds/mouse-over.wav"));
+			cell.setHoverSound(Resources.sounds().get("mouse-over.wav"));
 		}
-		Game.audio().playMusic(Resources.sounds().get("sounds/menu.mp3"));
+		Game.audio().playMusic(Resources.sounds().get("menu.mp3"));
 		Input.keyboard().onKeyPressed(this);
 	}
 

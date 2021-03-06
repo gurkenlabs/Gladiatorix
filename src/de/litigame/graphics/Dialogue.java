@@ -6,7 +6,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.IUpdateable;
@@ -70,7 +69,7 @@ public class Dialogue implements IUpdateable, IRenderable {
 
 		Font mc;
 		try {
-			mc = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf")).deriveFont((float) 32);
+			mc = Font.createFont(Font.TRUETYPE_FONT, ClassLoader.getSystemResourceAsStream("Minecraft.ttf")).deriveFont((float) 32);
 		} catch (Exception e) {
 			mc = null;
 			e.printStackTrace();
@@ -105,7 +104,7 @@ public class Dialogue implements IUpdateable, IRenderable {
 	private void drawString(Graphics g, String text, int x, int y) {
 		Font mc;
 		try {
-			mc = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf")).deriveFont((float) 32);
+			mc = Font.createFont(Font.TRUETYPE_FONT, ClassLoader.getSystemResourceAsStream("Minecraft.ttf")).deriveFont((float) 32);
 		} catch (Exception e) {
 			mc = null;
 			e.printStackTrace();

@@ -3,9 +3,9 @@ package de.litigame.utilities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,8 +34,7 @@ public class ImageUtilities {
 	}
 
 	public static BufferedImage getRescaledCopy(BufferedImage image, double scalar) {
-		BufferedImage scaled = new BufferedImage((int) (image.getWidth() * scalar), (int) (image.getHeight() * scalar),
-				image.getType());
+		BufferedImage scaled = new BufferedImage((int) (image.getWidth() * scalar), (int) (image.getHeight() * scalar), image.getType());
 		Graphics2D g = scaled.createGraphics();
 		g.scale(scalar, scalar);
 		g.drawImage(image, 0, 0, null);
@@ -47,9 +46,9 @@ public class ImageUtilities {
 		return getRescaledCopy(get(key), scalar);
 	}
 
-	public static void init(File imageFile) {
+	public static void init(InputStream imageFile) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(imageFile));
+			BufferedReader br = new BufferedReader(new InputStreamReader(imageFile));
 			String line = "";
 
 			while (true) {
@@ -60,7 +59,7 @@ public class ImageUtilities {
 
 				String name = tokens[0].trim();
 				String path = tokens[1].trim();
-				BufferedImage image = ImageIO.read(new File(path));
+				BufferedImage image = ImageIO.read(ClassLoader.getSystemResourceAsStream(path));
 
 				paths.put(name, path);
 				Resources.images().add(name, image);

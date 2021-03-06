@@ -42,7 +42,7 @@ import de.litigame.utilities.GeometryUtilities;
 
 public class Player extends Creature implements IUpdateable, IFighter {
 
-	private final Sound walk = Resources.sounds().get("sounds/step.wav");
+	private final Sound walk = Resources.sounds().get("step.wav");
 
 	private final boolean soundPlaying = false;
 

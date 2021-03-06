@@ -1,8 +1,6 @@
 package de.litigame.items;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,9 +27,9 @@ public class Items {
 		return null;
 	}
 
-	public static void init(File itemFile) {
+	public static void init(InputStream itemFile) {
 		try {
-			JSONObject data = new JSONObject(new JSONTokener(new FileInputStream(itemFile)));
+			JSONObject data = new JSONObject(new JSONTokener(itemFile));
 			itemInfos.clear();
 			for (Object obj : data.getJSONArray("items")) {
 				JSONObject item = (JSONObject) obj;
@@ -42,7 +40,7 @@ public class Items {
 				}
 				itemInfos.put(name, info);
 			}
-		} catch (JSONException | FileNotFoundException e) {
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

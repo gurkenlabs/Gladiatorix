@@ -1,9 +1,7 @@
 package de.litigame.shop;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,9 +24,9 @@ public class Shops {
 		return shops.get(shopName);
 	}
 
-	public static void init(File shopFile) {
+	public static void init(InputStream shopFile) {
 		try {
-			JSONArray JSONShops = new JSONObject(new JSONTokener(new FileInputStream(shopFile))).getJSONArray("shops");
+			JSONArray JSONShops = new JSONObject(new JSONTokener(shopFile)).getJSONArray("shops");
 			for (Object shop : JSONShops) {
 				JSONObject JSONShop = ((JSONObject) shop);
 				String name = JSONShop.getString("shop_name");
@@ -51,7 +49,7 @@ public class Shops {
 
 				shops.put(name, new Shop(offers, new ArrayList<>(), background));
 			}
-		} catch (JSONException | FileNotFoundException e) {
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

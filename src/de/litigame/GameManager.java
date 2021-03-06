@@ -3,7 +3,6 @@ package de.litigame;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.geom.Point2D;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,14 +36,14 @@ public class GameManager {
 
 	static {
 		try {
-			minecraft = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Minecraft.ttf"));
+			minecraft = Font.createFont(Font.TRUETYPE_FONT, ClassLoader.getSystemResourceAsStream("Minecraft.ttf"));
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static final Set<IInteractEntity> interactEntities = new HashSet<>();
-	public static String ingame = "sounds/ingame.wav";
+	public static String ingame = "ingame.wav";
 	public static Point2D spawn;
 	public static String save = "savegame";
 
@@ -59,8 +58,8 @@ public class GameManager {
 		Game.world().environment().remove(Player.getInstance());
 		switchToMap(map);
 		Player.getInstance().setLocation(x, y);
-		ingame = "sound/fight.wav";
-		Game.audio().playMusic(Resources.sounds().get("sounds/fight.wav"));
+		ingame = "fight.wav";
+		Game.audio().playMusic(Resources.sounds().get("fight.wav"));
 		Game.world().environment().add(Player.getInstance());
 		if (isArena(Game.world().environment())) {
 			Spawnpoints.spawnNextWave();
@@ -116,8 +115,7 @@ public class GameManager {
 			if (infoBox.hasTag("enemyspawndata")) {
 				final int waveCount = infoBox.getProperties().getIntValue("waveCount");
 				final int waveDelay = infoBox.getProperties().getIntValue("waveDelay");
-				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn"))
-						.collect(Collectors.toList()), waveCount, waveDelay);
+				Spawnpoints.createSpawnpoints(env.getSpawnPoints().stream().filter(spawn -> spawn.hasTag("enemyspawn")).collect(Collectors.toList()), waveCount, waveDelay);
 				return;
 			}
 		}
@@ -134,8 +132,7 @@ public class GameManager {
 					++i;
 				}
 				final int time = trigger.getProperties().getIntValue("time");
-				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(),
-						trigger.getY(), time);
+				final Dialogue dia = new Dialogue(messages.toArray(new String[messages.size()]), trigger.getX(), trigger.getY(), time);
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						((IngameScreen) Game.screens().get("ingame")).drawDialogue(dia);
@@ -168,10 +165,9 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player && Spawnpoints.isOver()) {
 						((Player) e.getEntity()).changeLvl(lvl);
-						ingame = "sounds/ingame.wav";
+						ingame = "ingame.wav";
 						Game.audio().playMusic(ingame);
-						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()),
-								Double.valueOf(coords[1].trim())));
+						Game.loop().perform(3000, () -> enterPortal(map, Double.valueOf(coords[0].trim()), Double.valueOf(coords[1].trim())));
 					}
 				});
 			}
@@ -179,18 +175,14 @@ public class GameManager {
 				trigger.addActivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						final float zoom = trigger.getProperties().getFloatValue("zoomValue");
-						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
 				trigger.addDeactivatedListener(e -> {
 					if (e.getEntity() instanceof Player) {
 						final float zoom = PlayerCamera.STD_ZOOM;
-						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration")
-								? trigger.getProperties().getIntValue("zoomDuration")
-								: PlayerCamera.STD_DELAY;
+						final int duration = trigger.getProperties().hasCustomProperty("zoomDuration") ? trigger.getProperties().getIntValue("zoomDuration") : PlayerCamera.STD_DELAY;
 						Game.world().camera().setZoom(zoom, duration);
 					}
 				});
