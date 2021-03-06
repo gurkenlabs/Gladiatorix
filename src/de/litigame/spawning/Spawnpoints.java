@@ -34,16 +34,17 @@ public class Spawnpoints {
 			for (int i = 0; i < waveCount; i++) {
 				final List<Enemy> wave = new ArrayList<>();
 				if (spawn.spawnpoint.getProperties().hasCustomProperty("wave_" + (i + 1))) {
-					for (final String enemy : spawn.spawnpoint.getProperties().getStringValue("wave_" + (i + 1)).split(",")) {
+					for (final String enemy : spawn.spawnpoint.getProperties().getStringValue("wave_" + (i + 1))
+							.split(",")) {
 						switch (Integer.valueOf(enemy)) {
 						case 1:
 							wave.add(new Enemy("enemy1", (Weapon) Items.getItem("Trainingsschwert"), 1, 100, 70000, 2));
 							break;
 						case 2:
-							wave.add(new Enemy("enemy2", (Weapon) Items.getItem("Steinaxt"), 2, 150, 70000, 4));
+							wave.add(new Enemy("enemy2", (Weapon) Items.getItem("Steinaxt"), 2, 350, 70000, 4));
 							break;
 						case 3:
-							wave.add(new Enemy("enemy3", (Weapon) Items.getItem("Eisenschwert"), 4, 400, 70000, 5));
+							wave.add(new Enemy("enemy3", (Weapon) Items.getItem("Eisenschwert"), 4, 750, 70000, 5));
 							break;
 						}
 					}
