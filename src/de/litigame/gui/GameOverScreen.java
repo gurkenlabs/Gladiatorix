@@ -4,6 +4,7 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.gui.ImageComponent;
 import de.gurkenlabs.litiengine.gui.screens.Screen;
 import de.gurkenlabs.litiengine.resources.Resources;
+import de.gurkenlabs.litiengine.util.io.XmlUtilities;
 import de.litigame.GameManager;
 import de.litigame.SaveGame;
 import de.litigame.entities.Player;
@@ -12,20 +13,27 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import javax.xml.bind.JAXBException;
+
 public class GameOverScreen extends Screen {
 
     private final ImageComponent startGame;
     public GameOverScreen() {
         super("game_over");
-
-        SaveGame saveGame = new SaveGame();
         BufferedImage button = Resources.images().get("sound_bar");
 
         startGame = new ImageComponent((Game.window().getWidth()-button.getWidth())/2, Game.window().getHeight()-button.getHeight()-100, button);
         startGame.setText("Nochmal Spielen");
         startGame.onClicked(event -> {
             suspend();
-            final String[] initialItems = { "Trainingsschwert", "null", "null", "null", "null" };
+            GameManager.switchToMap("map1");
+			try {
+				final String path = "respawnsave.xml";
+				final SaveGame saveGame = XmlUtilities.read(SaveGame.class, Resources.getLocation(path));
+				Player.getInstance().init(saveGame.getHotbar(), saveGame.getHealth(), saveGame.getMoney(), saveGame.getLocation(), saveGame.getHealth(), saveGame.getSlot());
+			} catch (final JAXBException e) {
+		}
+			Player.getInstance().resurrect();
             Game.screens().display("menu");
         });
         getComponents().add(startGame);

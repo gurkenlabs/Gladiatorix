@@ -120,10 +120,10 @@ public class Hotbar implements IRenderable {
 			final int x = i * slot.getWidth(), y = 0;
 			g.drawImage(slot, x, y, null);
 			if (i == selectedSlot) {
-				g.drawImage(Resources.images().get("selected_slot"), x, y, null);
+				g.drawImage(Resources.images().get("selected_slot"), x+(slot.getWidth()-Resources.images().get("selected_slot").getWidth())/2, y + (slot.getHeight()-Resources.images().get("selected_slot").getHeight())/2, null);
 			}
 			if (items[i] != null) {
-				g.drawImage(items[i].getImage(), x, y, null);
+				g.drawImage(items[i].getImage(), x+(slot.getWidth()-items[i].getImage().getWidth())/2, y + (slot.getHeight()-items[i].getImage().getHeight())/2, null);
 			}
 		}
 
