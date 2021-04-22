@@ -19,8 +19,8 @@ public class PlayerHealthBar implements IRenderable {
 	@Override
 
 	public void render(Graphics2D g) {
-		BufferedImage border = Resources.images().get("hp-border");
-		BufferedImage fill = Resources.images().get("hp-fill");
+		BufferedImage border = Resources.images().get("hp_bar_border_thin.png");
+		BufferedImage fill = Resources.images().get("hp_bar_fill_thin.png");
 		double hp = player.getHitPoints().get();
 		double frac = hp / player.getHitPoints().getMax();
 		int scaling = 5;

@@ -15,103 +15,109 @@ import de.gurkenlabs.litiengine.resources.Resources;
 import de.gurkenlabs.litiengine.util.MathUtilities;
 import de.litigame.GameManager;
 import de.litigame.SaveGame;
-import de.litigame.utilities.ImageUtilities;
 
 public class IngameSettingsScreen extends Screen implements KeyPressedListener {
 
-	private final Menu settings;
-	private final ImageComponent sound_bar;
-	private final ImageComponent vol_down;
-	private final ImageComponent vol_up;
+  private Menu settings;
+  private ImageComponent sound_bar;
+  private ImageComponent vol_down;
+  private ImageComponent vol_up;
 
-	public IngameSettingsScreen() {
-		super("ingameSettings");
+  public IngameSettingsScreen() {
+    super("ingameSettings");
+  }
 
-		String[] items = { "Save Game", "Done" };
+  @Override
+  public void keyPressed(KeyEvent event) {
+    if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+      Game.screens().display("menu");
+  }
 
-		SaveGame saveGame = new SaveGame();
+  @Override
+  public void prepare() {
+    super.prepare();
+    Game.audio().playMusic(Resources.sounds().get("menu.mp3"));
+    Input.keyboard().onKeyPressed(this);
+  }
 
-		ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu"));
+  @Override
+  public void render(Graphics2D g) {
+    super.render(g);
+    renderSoundBar(g, (int) (Game.window().getWidth() - settings.getWidth()) / 2, (int) (settings.getY() - settings.getHeight()));
+  }
 
-		BufferedImage buttonImg = Resources.images().get("menu_item");
+  private void renderSoundBar(Graphics2D g, int x, int y) {
+    int margin = 11;
 
-		Spritesheet button = new Spritesheet(buttonImg, ImageUtilities.getPath("menu_item"), buttonImg.getWidth(), buttonImg.getHeight());
+    BufferedImage bar = Resources.images().get("sound_bar_fill.png");
 
-		settings = new Menu((double) (Game.window().getWidth() - buttonImg.getWidth()) / 2, (double) (Game.window().getHeight() - buttonImg.getHeight() * items.length) / 2, buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
+    vol_down.render(g);
+    sound_bar.render(g);
+    vol_up.render(g);
 
-		int x = (int) (Game.window().getWidth() - settings.getWidth()) / 2;
-		int y = (int) (settings.getY() - settings.getHeight() / settings.getRows());
-		int margin = 11;
+    g.drawImage(bar, (int) (sound_bar.getX() + margin), y + margin, (int) (bar.getWidth() * Game.config().sound().getMusicVolume()), bar.getHeight(),
+        null);
+  }
 
-		vol_down = new ImageComponent(x, y, Resources.images().get("volume_down"));
-		sound_bar = new ImageComponent(x + vol_down.getWidth() + margin, y, Resources.images().get("sound_bar"));
-		vol_up = new ImageComponent(sound_bar.getX() + sound_bar.getWidth() + margin, y, Resources.images().get("volume_up"));
+  @Override
+  public void suspend() {
+    super.suspend();
+    Input.keyboard().removeKeyPressedListener(this);
+  }
 
-		vol_down.onClicked(componentMouseEvent -> {
-			if (Game.config().sound().getMusicVolume() > 0 && Game.config().sound().getSoundVolume() > 0) {
-				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume() - 0.1, 1));
-				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume() - 0.1, 1));
-			}
-		});
+  @Override protected void initializeComponents() {
+    super.initializeComponents();
 
-		vol_up.onClicked(componentMouseEvent -> {
-			if (Game.config().sound().getMusicVolume() < 1 && Game.config().sound().getSoundVolume() < 1) {
-				Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume() + 0.1, 1));
-				Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume() + 0.1, 1));
-			}
-		});
+    String[] items = { "Save Game", "Done" };
 
-		settings.onChange(index -> {
-			if (index == 0) saveGame.saveGame();
-			else if (index == 1) {
-				Game.screens().get("menu").setVisible(true);
-				Game.screens().display("ingameMenu");
-			}
-		});
-		getComponents().add(bkgr);
-		getComponents().add(settings);
-		getComponents().add(vol_down);
-		getComponents().add(sound_bar);
-		getComponents().add(vol_up);
-	}
+    SaveGame saveGame = new SaveGame();
 
-	@Override
-	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) Game.screens().display("menu");
-	}
+    ImageComponent bkgr = new ImageComponent(0, 0, Resources.images().get("menu.png"));
 
-	@Override
-	public void prepare() {
-		super.prepare();
-		for (ImageComponent cell : settings.getCellComponents()) {
-			cell.setFont(GameManager.getFont(72));
-			cell.setHoverSound(Resources.sounds().get("mouse-over.wav"));
-		}
-		Game.audio().playMusic(Resources.sounds().get("menu.mp3"));
-		Input.keyboard().onKeyPressed(this);
-	}
+    BufferedImage buttonImg = Resources.images().get("menu_item.png");
 
-	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
-		renderSoundBar(g, (int) (Game.window().getWidth() - settings.getWidth()) / 2, (int) (settings.getY() - settings.getHeight()));
-	}
+    Spritesheet button = new Spritesheet(buttonImg, "menu_item", buttonImg.getWidth(), buttonImg.getHeight());
 
-	private void renderSoundBar(Graphics2D g, int x, int y) {
-		int margin = 11;
+    settings = new Menu(Game.window().getWidth() - buttonImg.getWidth() / 2d, Game.window().getHeight() - buttonImg.getHeight() * items.length / 2d,
+        buttonImg.getWidth(), buttonImg.getHeight() * items.length, button, items);
 
-		BufferedImage bar = Resources.images().get("sound_bar_fill");
+    int x = (int) (Game.window().getWidth() - settings.getWidth()) / 2;
+    int y = (int) (settings.getY() - settings.getHeight() / settings.getRows());
+    int margin = 11;
 
-		vol_down.render(g);
-		sound_bar.render(g);
-		vol_up.render(g);
+    vol_down = new ImageComponent(x, y, Resources.images().get("volume_minus.png"));
+    sound_bar = new ImageComponent(x + vol_down.getWidth() + margin, y, Resources.images().get("sound_bar.png"));
+    vol_up = new ImageComponent(sound_bar.getX() + sound_bar.getWidth() + margin, y, Resources.images().get("volume_plus.png"));
 
-		g.drawImage(bar, (int) (sound_bar.getX() + margin), y + margin, (int) (bar.getWidth() * Game.config().sound().getMusicVolume()), bar.getHeight(), null);
-	}
+    vol_down.onClicked(componentMouseEvent -> {
+      if (Game.config().sound().getMusicVolume() > 0 && Game.config().sound().getSoundVolume() > 0) {
+        Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume() - 0.1, 1));
+        Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume() - 0.1, 1));
+      }
+    });
 
-	@Override
-	public void suspend() {
-		super.suspend();
-		Input.keyboard().removeKeyPressedListener(this);
-	}
+    vol_up.onClicked(componentMouseEvent -> {
+      if (Game.config().sound().getMusicVolume() < 1 && Game.config().sound().getSoundVolume() < 1) {
+        Game.config().sound().setMusicVolume((float) MathUtilities.round(Game.config().sound().getMusicVolume() + 0.1, 1));
+        Game.config().sound().setSoundVolume((float) MathUtilities.round(Game.config().sound().getSoundVolume() + 0.1, 1));
+      }
+    });
+
+    settings.onChange(index -> {
+      if (index == 0)
+        saveGame.saveGame();
+      else if (index == 1) {
+        Game.screens().get("menu").setVisible(true);
+        Game.screens().display("ingameMenu");
+      }
+    });
+    getComponents().add(bkgr);
+    getComponents().add(settings);
+    getComponents().add(vol_down);
+    getComponents().add(sound_bar);
+    getComponents().add(vol_up);
+    for (ImageComponent cell : settings.getCellComponents()) {
+      cell.setHoverSound(Resources.sounds().get("mouse-over.wav"));
+    }
+  }
 }

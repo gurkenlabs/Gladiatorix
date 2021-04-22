@@ -21,7 +21,7 @@ public class GameOverScreen extends Screen {
 
 	public GameOverScreen() {
 		super("game_over");
-		BufferedImage button = Resources.images().get("sound_bar");
+		BufferedImage button = Resources.images().get("sound_bar.png");
 
 		startGame = new ImageComponent((Game.window().getWidth() - button.getWidth()) / 2, Game.window().getHeight() - button.getHeight() - 100, button);
 		startGame.setText("Nochmal Spielen");
@@ -61,14 +61,13 @@ public class GameOverScreen extends Screen {
 
 			}
 		};
-		startGame.setFont(GameManager.getFont(42));
 		startGame.setHoverSound(Resources.sounds().get("mouse-over.wav"));
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-		g.drawImage(Resources.images().get("game_over"), 0, 0, Game.window().getWidth(), Game.window().getHeight(), null);
+		g.drawImage(Resources.images().get("game_over.png"), 0, 0, Game.window().getWidth(), Game.window().getHeight(), null);
 		startGame.render(g);
 	}
 }

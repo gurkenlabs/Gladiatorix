@@ -21,7 +21,7 @@ public class EnemyHealthBar implements IRenderable {
 		int hp = entity.getHitPoints().get();
 		double fac = (double) hp / entity.getHitPoints().getMax();
 		String image = Math.round(fac * 10) * 10 + "-hp";
-		BufferedImage bar = Resources.images().get(image);
+		BufferedImage bar = Resources.images().get(image+".png");
 		g.drawImage(bar, (int) (entity.getCenter().getX() - Game.world().camera().getFocus().getX() + 299.5 / Game.world().camera().getZoom()), (int) (entity.getCenter().getY() - Game.world().camera().getFocus().getY() + 143 / Game.world().camera().getZoom()), (bar.getWidth()), (bar.getHeight()), null);
 	}
 

@@ -18,69 +18,68 @@ import de.litigame.graphics.Dialogue;
 
 public class IngameScreen extends GameScreen implements KeyPressedListener {
 
-	private Dialogue dialogue;
-	public final List<IRenderable> overlayMenus = new ArrayList<>();
+  private Dialogue dialogue;
+  public final List<IRenderable> overlayMenus = new ArrayList<>();
 
-	public IngameScreen() {
-		super("ingame");
-	}
+  public IngameScreen() {
+    super("ingame");
+  }
 
-	public void addOverlayMenu(IRenderable menu) {
-		overlayMenus.add(menu);
-	}
+  public void addOverlayMenu(IRenderable menu) {
+    overlayMenus.add(menu);
+  }
 
-	public void drawDialogue(Dialogue dialogue) {
-		this.dialogue = dialogue;
-		dialogue.prepare();
-	}
+  public void drawDialogue(Dialogue dialogue) {
+    this.dialogue = dialogue;
+    dialogue.prepare();
+  }
 
-	public void removeOverlayMenu(IRenderable menu) {
-		overlayMenus.remove(menu);
-	}
+  public void removeOverlayMenu(IRenderable menu) {
+    overlayMenus.remove(menu);
+  }
 
-	@Override
-	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			Game.screens().display("ingameMenu");
-		}
-	}
+  @Override
+  public void keyPressed(KeyEvent event) {
+    if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+      Game.screens().display("ingameMenu");
+    }
+  }
 
-	@Override
-	public void prepare() {
-		super.prepare();
-		Game.audio().stopMusic();
-		Game.audio().playMusic(Resources.sounds().get("ingame.wav"));
+  @Override
+  public void prepare() {
+    super.prepare();
+    Game.audio().stopMusic();
+    Game.audio().playMusic(Resources.sounds().get("ingame.wav"));
 
-		// Player.getInstance().changeMoney(-100);
-		Input.keyboard().onKeyPressed(this);
-	}
+    // Player.getInstance().changeMoney(-100);
+    Input.keyboard().onKeyPressed(this);
+  }
 
-	@Override
-	public void suspend() {
-		super.suspend();
-		Input.keyboard().removeKeyPressedListener(this);
-	}
+  @Override
+  public void suspend() {
+    super.suspend();
+    Input.keyboard().removeKeyPressedListener(this);
+  }
 
-	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
-		if (dialogue != null) {
-			if (!dialogue.shouldBeDrawn()) {
-				dialogue.suspend();
-				dialogue = null;
-			} else {
-				dialogue.render(g);
-			}
-		}
-		g.drawImage(Resources.images().get("coin"), 10, 10, 100, 100, null);
-		g.setFont(GameManager.getFont(72));
-		g.setColor(Color.WHITE);
-		g.drawString(String.valueOf(Player.getInstance().getMoney()), 120, 80);
-		Player.getInstance().healthBar.render(g);
-		Player.getInstance().hotbar.render(g);
+  @Override
+  public void render(Graphics2D g) {
+    super.render(g);
+    if (dialogue != null) {
+      if (!dialogue.shouldBeDrawn()) {
+        dialogue.suspend();
+        dialogue = null;
+      } else {
+        dialogue.render(g);
+      }
+    }
+    g.drawImage(Resources.images().get("coin.png"), 10, 10, 100, 100, null);
+    g.setColor(Color.WHITE);
+    g.drawString(String.valueOf(Player.getInstance().getMoney()), 120, 80);
+    Player.getInstance().healthBar.render(g);
+    Player.getInstance().hotbar.render(g);
 
-		for (final IRenderable menu : overlayMenus) {
-			menu.render(g);
-		}
-	}
+    for (final IRenderable menu : overlayMenus) {
+      menu.render(g);
+    }
+  }
 }

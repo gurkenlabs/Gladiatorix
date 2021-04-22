@@ -1,6 +1,8 @@
 package de.litigame.shop;
 
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,42 +20,43 @@ import de.litigame.items.Items;
 
 public class Shops {
 
-	private static final Map<String, Shop> shops = new HashMap<>();
+  private static final Map<String, Shop> shops = new HashMap<>();
 
-	public static Shop getShop(String shopName) {
-		return shops.get(shopName);
-	}
+  public static Shop getShop(String shopName) {
+    return shops.get(shopName);
+  }
 
-	public static void init(InputStream shopFile) {
-		try {
-			JSONArray JSONShops = new JSONObject(new JSONTokener(shopFile)).getJSONArray("shops");
-			for (Object shop : JSONShops) {
-				JSONObject JSONShop = ((JSONObject) shop);
-				String name = JSONShop.getString("shop_name");
-				BufferedImage background = Resources.images().get(JSONShop.getString("background"));
-				List<ShopEntry> offers = new ArrayList<>();
+  public static void init(String shopFile) {
+    try {
+      InputStream str = new FileInputStream(shopFile);
+      JSONArray JSONShops = new JSONObject(new JSONTokener(str)).getJSONArray("shops");
+      for (Object shop : JSONShops) {
+        JSONObject JSONShop = ((JSONObject) shop);
+        String name = JSONShop.getString("shop_name");
+        BufferedImage background = Resources.images().get(JSONShop.getString("background") + ".png");
+        List<ShopEntry> offers = new ArrayList<>();
 
-				for (Object entry : JSONShop.getJSONArray("offers")) {
-					JSONObject JSONEntry = (JSONObject) entry;
-					Item item = Items.getItem(JSONEntry.getString("item_name"));
+        for (Object entry : JSONShop.getJSONArray("offers")) {
+          JSONObject JSONEntry = (JSONObject) entry;
+          Item item = Items.getItem(JSONEntry.getString("item_name"));
 
-					int price = Integer.valueOf(JSONEntry.getString("price"));
-					int required_level = Integer.valueOf(JSONEntry.getString("required_level"));
-					boolean equippable = Boolean.valueOf(JSONEntry.getString("equippable"));
-					String tooltip = JSONEntry.getString("tooltip");
+          int price = Integer.valueOf(JSONEntry.getString("price"));
+          int required_level = Integer.valueOf(JSONEntry.getString("required_level"));
+          boolean equippable = Boolean.valueOf(JSONEntry.getString("equippable"));
+          String tooltip = JSONEntry.getString("tooltip");
 
-					ShopEntry shopEntry = new ShopEntry(item, price, required_level, equippable, tooltip);
+          ShopEntry shopEntry = new ShopEntry(item, price, required_level, equippable, tooltip);
 
-					offers.add(shopEntry);
-				}
+          offers.add(shopEntry);
+        }
 
-				shops.put(name, new Shop(offers, new ArrayList<>(), background));
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
+        shops.put(name, new Shop(offers, new ArrayList<>(), background));
+      }
+    } catch (JSONException | FileNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
 
-	private Shops() {
-	}
+  private Shops() {
+  }
 }
