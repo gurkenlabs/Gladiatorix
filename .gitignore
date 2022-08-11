@@ -10,6 +10,5 @@ game.log*
 /.gradle
 .idea/
 build/
-gradle/
 savegame.xml
 /screenshots
